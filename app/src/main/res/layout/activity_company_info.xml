@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".activity.CompanyInfo">
+
+    <LinearLayout
+        android:id="@+id/companyinfo_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="false"
+        android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dimen_10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/back_Arrow_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="@dimen/dimen_15dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/back_arrow"
+        />
+
+        <TextView
+            android:id="@+id/JobApply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/dimen_90dp"
+            android:layout_marginTop="@dimen/dimen_15dp"
+            android:text="Company Info"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/editbutton_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:src="@drawable/edit" />
+    </RelativeLayout>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/dimen_20dp"
+        android:layout_marginHorizontal="@dimen/dimen_30dp">
+
+        <TextView
+            android:id="@+id/companyName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Company Name"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/companyName_text"
+            android:layout_width="match_parent"
+            android:paddingStart="15dp"
+            android:enabled="false"
+            android:textSize="@dimen/dimen_15dp"
+            android:imeOptions="actionNext"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_edittext"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="@dimen/dimen_30dp">
+        <TextView
+            android:id="@+id/CurrentDesignation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Current Designation"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/current_desig_text"
+            android:layout_width="match_parent"
+            android:enabled="false"
+            android:paddingStart="15dp"
+            android:textSize="@dimen/dimen_15dp"
+            android:layout_height="40dp"
+            android:imeOptions="actionNext"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_edittext"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="30dp"
+        android:weightSum="2"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="@dimen/dimen_10dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/jobType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Job Type"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+            <EditText
+                android:id="@+id/jobtype_text"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:enabled="false"
+                android:textSize="@dimen/dimen_15dp"
+                android:imeOptions="actionNext"
+                android:paddingStart="15dp"
+                android:background="@drawable/custom_edittext"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/dimen_10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/employment_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Employment Type"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/employment_type_text"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:enabled="false"
+                android:textSize="@dimen/dimen_15dp"
+                android:paddingStart="15dp"
+                android:imeOptions="actionNext"
+                android:layout_weight="0"
+                android:background="@drawable/custom_edittext"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="30dp"
+        android:weightSum="2"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="@dimen/dimen_10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/total_exp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Total Expirence"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/totalexp_text"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:enabled="false"
+                android:textSize="@dimen/dimen_15dp"
+                android:imeOptions="actionNext"
+                android:paddingStart="15dp"
+                android:background="@drawable/custom_edittext"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/dimen_10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/Department"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Department"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/Department_text"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:enabled="false"
+                android:textSize="@dimen/dimen_15dp"
+                android:imeOptions="actionNext"
+                android:layout_weight="0"
+                android:paddingStart="15dp"
+                android:background="@drawable/custom_edittext"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="30dp"
+        android:weightSum="2"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="@dimen/dimen_10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/notice_period"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Notice Period(in Months"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/noticePeriod_text"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:hint="in Months"
+                android:textSize="@dimen/dimen_15dp"
+                android:imeOptions="actionNext"
+                android:enabled="false"
+                android:paddingStart="15dp"
+                android:background="@drawable/custom_edittext"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/dimen_10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/gap_in_work_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Gap in work expirence(in Months)"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/gap_in_workExp"
+                android:layout_width="match_parent"
+                android:paddingStart="15dp"
+                android:layout_height="40dp"
+                android:imeOptions="actionNext"
+                android:enabled="false"
+                android:textSize="@dimen/dimen_15dp"
+                android:hint="in Months"
+                android:layout_weight="0"
+                android:background="@drawable/custom_edittext"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="30dp"
+        android:weightSum="2"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="@dimen/dimen_10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/currentCTC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Current CTC"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/currentCTC_text"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="@dimen/dimen_10dp"
+                android:paddingStart="15dp"
+                android:enabled="false"
+                android:textSize="@dimen/dimen_15dp"
+                android:imeOptions="actionNext"
+                android:background="@drawable/custom_edittext"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/dimen_10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/ExpectedCTC"
+                android:layout_width="match_parent"
+                android:layout_height="29dp"
+                android:layout_marginBottom="8dp"
+                android:text="Expected CTC"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/ExpectedCTC_text"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_weight="0"
+                android:enabled="false"
+                android:textSize="@dimen/dimen_15dp"
+                android:imeOptions="actionDone"
+                android:paddingStart="15dp"
+                android:background="@drawable/custom_edittext"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dimen_30dp"
+            android:layout_marginHorizontal="30dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/previous_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/dimen_10dp"
+                android:visibility="invisible"
+                android:layout_weight="1"
+                android:background="@drawable/previous_button"
+                android:text="Previous"
+                android:textColor="@color/white" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/next_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/dimen_10dp"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                android:background="@drawable/update_button"
+                android:text="Next"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/updatebutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dimen_5dp"
+            android:layout_weight="0"
+            android:text="Update"
+            android:visibility="invisible"
+            android:textColor="@color/white"
+            android:background="@drawable/update_button"/>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

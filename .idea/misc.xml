@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/drawable/add_profile.xml" value="0.33229166666666665" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/drawable/ass_profile.xml" value="0.30364583333333334" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/drawable/azure_logo.xml" value="0.3828125" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/drawable/back_arrow.xml" value="0.3769230769230769" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/drawable/border.xml" value="0.32447916666666665" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/drawable/button_search.xml" value="0.3769230769230769" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/drawable/custom_button.xml" value="0.3828125" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/drawable/custom_cv.xml" value="0.3769230769230769" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/drawable/custom_edittext.xml" value="0.3769230769230769" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/drawable/custom_search.xml" value="0.30364583333333334" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/drawable/custum_button.xml" value="0.3828125" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/drawable/custum_circle.xml" value="0.3769230769230769" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/drawable/edit.xml" value="0.35025641025641024" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/drawable/google_icon.xml" value="0.3828125" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/drawable/ic_baseline_add_to_home_screen_24.xml" value="0.278125" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/drawable/ic_baseline_camera_alt_24.xml" value="0.33229166666666665" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.3828125" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.3828125" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.3828125" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.3828125" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.3769230769230769" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/drawable/ic_baseline_person_pin_24.xml" value="0.3828125" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.3769230769230769" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/drawable/linkedin_logo.xml" value="0.3828125" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/drawable/previous_button.xml" value="0.1787037037037037" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/drawable/signout_button.xml" value="0.3769230769230769" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/drawable/update_button.xml" value="0.3769230769230769" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout-v31/activity_personal_info.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/activity_company_info.xml" value="0.5" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/activity_education_info.xml" value="0.33" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/activity_forgot_password.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/activity_job_apply.xml" value="0.33" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/activity_job_description.xml" value="0.42064372918978915" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/activity_job_vacancy_page.xml" value="0.5" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/activity_login.xml" value="0.28289473684210525" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/activity_main.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/activity_personal_info.xml" value="0.3968531468531469" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/activity_personal_info1.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/activity_welcome.xml" value="0.28306159420289856" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/applied_job_1.xml" value="0.33" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/companylist.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/custom_cv.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/dashboard.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/fragment_applied.xml" value="0.276268115942029" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/fragment_fav_fragment.xml" value="0.28940217391304346" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/fragment_home_fragment.xml" value="0.28940217391304346" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/fragment_homefragment.xml" value="0.33" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/fragment_profile.xml" value="0.1" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/job_vacancy.xml" value="0.33" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/log_in.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/login.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/registration.xml" value="0.5295489891135303" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/row.xml" value="0.5" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/secondpage.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/menu/nav_menu.xml" value="0.1" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/xml/security_config.xml" value="0.29791666666666666" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
