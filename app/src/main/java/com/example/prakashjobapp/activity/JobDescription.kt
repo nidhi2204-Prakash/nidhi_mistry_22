@@ -33,7 +33,7 @@ class JobDescription : AppCompatActivity() {
 
 
     companion object{
-
+        var vacancyId :Int = 0
         var companyName1 :String = String()
         var jobTitle :String = String()
         var employmentType :String = String()
@@ -78,8 +78,10 @@ class JobDescription : AppCompatActivity() {
         job_title = findViewById(R.id.job_title)
         apply_now = findViewById(R.id.apply_now)
 
+
         //GetData
         val bundle : Bundle = intent.extras!!
+        vacancyId = bundle.getInt(KeyClass.KEY_VACANCY_ID)
         companyName1 = bundle.getString(KeyClass.KEY_COMPANY_NAME)!!
         company_name.text = companyName1
         jobTitle =  bundle.getString(KeyClass.KEY_JOB_TITLE)!!
@@ -103,11 +105,13 @@ class JobDescription : AppCompatActivity() {
 
 
         backarrow.setOnClickListener {
-            val intent = Intent(this, JobVacancyPage::class.java)
-            startActivity(intent)
+//            val intent = Intent(this, JobVacancyPage::class.java)
+//            startActivity(intent)
+            onBackPressed()
         }
         apply_now.setOnClickListener {
             val intent = Intent(this, JobApply::class.java)
+            intent.putExtra(KeyClass.KEY_VACANCY_ID, vacancyId)
             startActivity(intent)
 
         }

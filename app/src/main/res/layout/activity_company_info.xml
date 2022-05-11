@@ -27,10 +27,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="@dimen/dimen_15dp"
+            android:layout_marginTop="@dimen/dimen_20dp"
             android:layout_marginBottom="10dp"
-            android:src="@drawable/back_arrow"
-        />
+            android:src="@drawable/back_arrow" />
 
         <TextView
             android:id="@+id/JobApply"
@@ -48,29 +47,24 @@
             android:id="@+id/editbutton_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
             android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/dimen_5dp"
             android:layout_marginTop="@dimen/dimen_20dp"
+            android:visibility="invisible"
             android:src="@drawable/edit" />
     </RelativeLayout>
 
     <LinearLayout
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="@dimen/dimen_20dp"
-        android:layout_marginHorizontal="@dimen/dimen_30dp">
+        style="@style/linear_layout"
+        android:layout_marginTop="@dimen/dimen_20dp">
 
         <TextView
+            style="@style/text_view"
             android:id="@+id/companyName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="Company Name"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+         />
 
         <EditText
             android:id="@+id/companyName_text"
@@ -78,6 +72,7 @@
             android:paddingStart="15dp"
             android:enabled="false"
             android:textSize="@dimen/dimen_15dp"
+            android:nextFocusDown="@id/current_desig_text"
             android:imeOptions="actionNext"
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
@@ -87,19 +82,13 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginHorizontal="@dimen/dimen_30dp">
+        style="@style/linear_layout">
         <TextView
+            style="@style/text_view"
             android:id="@+id/CurrentDesignation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="Current Designation"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+           />
 
         <EditText
             android:id="@+id/current_desig_text"
@@ -108,6 +97,7 @@
             android:paddingStart="15dp"
             android:textSize="@dimen/dimen_15dp"
             android:layout_height="40dp"
+            android:nextFocusDown="@id/jobtype_text"
             android:imeOptions="actionNext"
             android:layout_marginTop="10dp"
             android:background="@drawable/custom_edittext"
@@ -129,25 +119,23 @@
             android:layout_marginEnd="@dimen/dimen_10dp"
             android:orientation="vertical">
             <TextView
+                style="@style/text_view"
                 android:id="@+id/jobType"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="Job Type"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+              />
             <EditText
                 android:id="@+id/jobtype_text"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:enabled="false"
                 android:textSize="@dimen/dimen_15dp"
+                android:nextFocusRight="@id/employment_type_text"
                 android:imeOptions="actionNext"
                 android:paddingStart="15dp"
                 android:background="@drawable/custom_edittext"
                 android:textColor="@color/black"
-                android:textStyle="bold" />
+               />
         </LinearLayout>
 
         <LinearLayout
@@ -158,14 +146,10 @@
             android:orientation="vertical">
 
             <TextView
+                style="@style/text_view"
                 android:id="@+id/employment_type"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="Employment Type"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:text="Employment Type"   />
 
             <EditText
                 android:id="@+id/employment_type_text"
@@ -173,12 +157,13 @@
                 android:layout_height="40dp"
                 android:enabled="false"
                 android:textSize="@dimen/dimen_15dp"
+                android:nextFocusDown="@id/totalexp_text"
                 android:paddingStart="15dp"
                 android:imeOptions="actionNext"
                 android:layout_weight="0"
                 android:background="@drawable/custom_edittext"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
+                android:textColor="@color/black" />
+
         </LinearLayout>
     </LinearLayout>
 
@@ -198,14 +183,11 @@
             android:orientation="vertical">
 
             <TextView
+                style="@style/text_view"
                 android:id="@+id/total_exp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="Total Expirence"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+         />
 
             <EditText
                 android:id="@+id/totalexp_text"
@@ -213,11 +195,14 @@
                 android:layout_height="40dp"
                 android:enabled="false"
                 android:textSize="@dimen/dimen_15dp"
+                android:hint="@string/in_year"
+                android:inputType="number"
+                android:nextFocusRight="@id/Department_text"
                 android:imeOptions="actionNext"
                 android:paddingStart="15dp"
                 android:background="@drawable/custom_edittext"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
+                android:textColor="@color/black" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -228,14 +213,11 @@
             android:orientation="vertical">
 
             <TextView
+                style="@style/text_view"
                 android:id="@+id/Department"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="Department"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+              />
 
             <EditText
                 android:id="@+id/Department_text"
@@ -244,11 +226,12 @@
                 android:enabled="false"
                 android:textSize="@dimen/dimen_15dp"
                 android:imeOptions="actionNext"
+                android:nextFocusDown="@id/noticePeriod_text"
                 android:layout_weight="0"
                 android:paddingStart="15dp"
                 android:background="@drawable/custom_edittext"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
+                android:textColor="@color/black" />
+
         </LinearLayout>
     </LinearLayout>
 
@@ -268,14 +251,11 @@
             android:orientation="vertical">
 
             <TextView
+                style="@style/text_view"
                 android:id="@+id/notice_period"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="Notice Period(in Months"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+              />
 
             <EditText
                 android:id="@+id/noticePeriod_text"
@@ -285,10 +265,11 @@
                 android:textSize="@dimen/dimen_15dp"
                 android:imeOptions="actionNext"
                 android:enabled="false"
+                android:nextFocusRight="@id/gap_in_workExp"
                 android:paddingStart="15dp"
                 android:background="@drawable/custom_edittext"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
+                android:textColor="@color/black" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -299,15 +280,11 @@
             android:orientation="vertical">
 
             <TextView
+                style="@style/text_view"
                 android:id="@+id/gap_in_work_textview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="Gap in work expirence(in Months)"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
+             />
             <EditText
                 android:id="@+id/gap_in_workExp"
                 android:layout_width="match_parent"
@@ -315,12 +292,12 @@
                 android:layout_height="40dp"
                 android:imeOptions="actionNext"
                 android:enabled="false"
+                android:nextFocusDown="@id/currentCTC_text"
                 android:textSize="@dimen/dimen_15dp"
-                android:hint="in Months"
+                android:hint="@string/in_months"
                 android:layout_weight="0"
                 android:background="@drawable/custom_edittext"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
+                android:textColor="@color/black"  />
         </LinearLayout>
     </LinearLayout>
 
@@ -340,14 +317,11 @@
             android:orientation="vertical">
 
             <TextView
+                style="@style/text_view"
                 android:id="@+id/currentCTC"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="Current CTC"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+           />
 
             <EditText
                 android:id="@+id/currentCTC_text"
@@ -356,6 +330,7 @@
                 android:layout_marginTop="@dimen/dimen_10dp"
                 android:paddingStart="15dp"
                 android:enabled="false"
+                android:nextFocusRight="@id/ExpectedCTC_text"
                 android:textSize="@dimen/dimen_15dp"
                 android:imeOptions="actionNext"
                 android:background="@drawable/custom_edittext"
@@ -373,7 +348,7 @@
             <TextView
                 android:id="@+id/ExpectedCTC"
                 android:layout_width="match_parent"
-                android:layout_height="29dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="Expected CTC"
                 android:textColor="@color/black"
@@ -387,6 +362,7 @@
                 android:layout_weight="0"
                 android:enabled="false"
                 android:textSize="@dimen/dimen_15dp"
+                android:layout_marginTop="@dimen/dimen_10dp"
                 android:imeOptions="actionDone"
                 android:paddingStart="15dp"
                 android:background="@drawable/custom_edittext"
@@ -408,11 +384,12 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/previous_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dimen_40dp"
                 android:layout_gravity="center"
                 android:layout_marginEnd="@dimen/dimen_10dp"
                 android:visibility="invisible"
+                android:textAllCaps="false"
                 android:layout_weight="1"
                 android:background="@drawable/previous_button"
                 android:text="Previous"
@@ -420,28 +397,60 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/next_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dimen_40dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/dimen_10dp"
                 android:layout_weight="1"
+                android:textAllCaps="false"
                 android:visibility="invisible"
                 android:background="@drawable/update_button"
                 android:text="Next"
                 android:textColor="@color/white" />
         </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
+        <FrameLayout
             android:id="@+id/updatebutton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/dimen_100dp"
+            android:layout_height="@dimen/dimen_40dp"
+            android:layout_weight="0"
+            android:background="@drawable/update_button"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/dimen_5dp"
-            android:layout_weight="0"
-            android:text="Update"
+            android:layout_marginBottom="@dimen/dimen_40dp"
             android:visibility="invisible"
-            android:textColor="@color/white"
-            android:background="@drawable/update_button"/>
+            >
+            <TextView
+                android:id="@+id/update_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="16sp"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:text = "@string/update"
+                />
+            <ProgressBar
+                android:id="@+id/prg_bar"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="@dimen/dimen_30dp"
+                android:layout_height="@dimen/dimen_30dp"
+                android:indeterminateDrawable="@drawable/progressbar_xml"
+                android:layout_gravity="center"
+                android:visibility="invisible" />
+        </FrameLayout>
+
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/updatebutton"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--           -->
+<!--            android:layout_weight="0"-->
+<!--            android:text="Update"-->
+<!--            android:visibility="invisible"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:background="@drawable/update_button"/>-->
 
     </LinearLayout>
 

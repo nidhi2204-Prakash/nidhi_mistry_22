@@ -29,6 +29,9 @@ class SessionManager {
         const val KEY_GENDER = "gender"
         const val KEY_PHONE = "phone"
         const val USER_TOKEN = "user_token"
+        const val KEY_VACANCY_ID = "vacancy_id"
+        const val  KEY_COMPANY_INFO_ID = "companyInfoId"
+        const val KEY_EDUCATION_INFO_ID = "educationinfoid"
         const val KEY_FLAG ="Isloggedin"
 
 }

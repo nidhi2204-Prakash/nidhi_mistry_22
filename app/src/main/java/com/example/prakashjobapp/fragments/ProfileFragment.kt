@@ -14,7 +14,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.prakashjobapp.R
+import com.example.prakashjobapp.SessionManager
 import com.example.prakashjobapp.activity.CompanyInfo
 import com.example.prakashjobapp.activity.EducationInfo
 import com.example.prakashjobapp.activity.LoginActivity
@@ -40,12 +42,12 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     lateinit var Set_Profile: CircleImageView
     lateinit var people_Name :TextView
     private var mUri: Uri? = null
-//    var imagevalue = 0
+    private lateinit var sessionManager :SessionManager
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-
 
         }
     }
@@ -67,6 +69,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         education_infoCard = view.findViewById(R.id.education_infoCard)
         Set_Profile = view.findViewById(R.id.Set_Profile)
         people_Name = view.findViewById(R.id.people_name)
+        var sessionManager = SessionManager(requireActivity())
 
 //        val mUri = requireArguments().getString("image", mUri.toString())
 ////       Picasso.with(activity).load(mUri).into(Set_Profile)
@@ -79,36 +82,9 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         Log.d("bhoot3",args.toString())
         Log.d("bhoot2", args?.get("bhoot_image").toString())
 
-           Set_Profile.setImageURI(imageUri as Uri?)
+        Set_Profile.setImageURI(imageUri as Uri?)
 
 
-//        val b = Bundle()
-//        val imagePath: String? = b?.getString("image")
-//        val myUri = Uri.parse(imagePath)
-//        val stream = ByteArrayOutputStream()
-//        Set_Profile.setImageURI(myUri)
-
-//        if (imagePath != null) {
-//            val imageUri = Uri.parse(imagePath)
-//        }
-//         val byteArray = stream.toByteArray()
-
-
-   //     val bundle : Bundle = intent.extras!!
-     //   val imagePath: String? = bundle.getString("image")
-    //    val myUri = Uri.parse(imagePath)
-      //  Set_Profile.setImageURI(myUri)
-//        val stream = ByteArrayOutputStream()
-      //  bmp.compress(Bitmap.CompressFormat.PNG, 100, stream)
-//        val byteArray = stream.toByteArray()
-
-//        val b = Bundle()
-//        b.putByteArray("image", byteArray)
-        // Demo exp
-//        val imageUri = "https://blobstorageprakashjobs.blob.core.windows.net/blobstorageprakashjobs/ecabc4e1-cd35-46ec-8ab3-cf4c505602fc-sunflower.jpg"
-
-//        Log.d("nidhi","ImagePath")
-//        Log.d("nidhi",   imageUri)
 
         personal_InfoCard.setOnClickListener {
             val intent = Intent(this.context, PersonalInfo::class.java)
@@ -164,34 +140,52 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         }
 
     fun displayApi(){
-        RetrofitBuilder.JsonServices.jsonInstance.displayProfile(128).enqueue(object :
+//        val id = sessionManager.getString(KeyClass.KEY_ID)
+//        val id1 = id.toString()
+        sessionManager = SessionManager(requireActivity())
+        val id: String? = sessionManager.getString(SessionManager.KEY_ID)
+
+        // Int Converted
+        val id1 : Int = id!!.toInt()
+        RetrofitBuilder.JsonServices.jsonInstance.displayProfile(id1).enqueue(object :
             Callback<DisplayUser?> {
             @SuppressLint("StringFormatMatches")
             override fun onResponse(call: Call<DisplayUser?>, response: Response<DisplayUser?>) {
-                Log.d("TAG", "Display User " + response.body()!!.Data)
+             Log.d("TAG", "Display User " + response.body()!!.Data)
 
                 try {
 
                     val user1 = response.body()
-
                     if (user1 !=null&& response.code() == 200){
+                        val profileImage = user1.Data!!.ProfilePhoto
                         val firstName =user1.Data.Firstname
                         val lastName = user1.Data.Lastname
 
-//                        People_Name.setText("$firstName,$lastName")
-//                        People_Name.setText("$firstName,$lastName")
-                    //    People_Name.setText("firstname,$firstName+lastname")
-                   ///    People_Name.setText("firstname,$firstName + lastname,$lastName")
                         people_Name.text = firstName + " " + lastName
 
+                        Glide.with(activity!!).load(profileImage)
+                            .into(Set_Profile)
+//                       if (profileImage == null ){
+//                           val myOptions = RequestOptions()
+//                               .override(5, 5)
+//
+//                           Glide.with(activity!!).load(R.drawable.ic_baseline_person_pin_24)
+//                               .apply { myOptions }
+//                               .into(Set_Profile);
+//                        }
+//                        else {
 
+//                       }
                      //   Set_Profile.setImageURI(imageUri as Uri?)
 //                      Profile_Button.setImageResource(user1.Data.ProfilePhoto)
                     }
 
                 }catch (e: JSONException){
                     e.printStackTrace()
+                }
 
+                catch (e :NullPointerException){
+                    e.printStackTrace()
                 }
             }
             override fun onFailure(call: Call<DisplayUser?>, t: Throwable) {

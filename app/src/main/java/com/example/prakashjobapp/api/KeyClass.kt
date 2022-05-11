@@ -1,10 +1,13 @@
 package com.example.prakashjobapp.api
 
-class KeyClass {
-    companion object{
+import android.content.SharedPreferences
 
+class KeyClass {
+    lateinit var edior: SharedPreferences.Editor
+
+    companion object{
+        const val KEY_ID = "User_id"//USER_ID
         const val KEY_COMPANY_NAME = "companyName"
-        const val KEY_CURRENT_DESGINATION = "currentDesignation"
         const val KEY_JOB_TITLE = "jobTitle"
         const val KEY_JOB_POSTED_DATE = "jobPostedDate"
         const val KEY_REQUIRED_YEAR_EXPIRENCE = "requiredYearExpirence"
@@ -31,6 +34,7 @@ class KeyClass {
         const val KEY_BIRTH_DATE = "date_of_birth"
         const val KEY_PROFILE_IMAGE= "profileImage"
         const val KEY_GENDER = "gender"
+        const val KEY_SKILL = "skill"
         const val KEY_COMPANY_NAMECI = "companyNameCI"
         const val KEY_CURRENT_DESIGNINATION = "currentDesignination"
         const val KEY_JOBTYPE_CI = "jobTypeCI"
@@ -41,6 +45,10 @@ class KeyClass {
         const val KEY_DEPARTMENT = "department"
         const val KEY_NOTICE_PERIOD_CI = "noticePeriod"
         const val KEY_EMPLOYMENTTYPE_CI = "employmentType"
+        const val KEY_COMPANY_INFO_ID = "companyInfoId"
+        const val KEY_EDUCATION_INFO_ID = "educationInfoId"
+        const val KEY_COMPANY_ID = "CompanyId"
+        const val KEY_VACANCY_ID = "vacancyId"
         //For DataClass
         const val PERSONAL_INFO_DATA = "PersonalInfoData"
         const val COMPANY_INFO_DATA = "companyinfodata"
@@ -49,5 +57,9 @@ class KeyClass {
 
         const val KEY_PROFILE_FRAGMENT = "Profile Fragment"
 
+    }
+    fun putString(key_name :String , value : String){
+        edior.putString(key_name,value)
+        edior.apply()
     }
 }

@@ -6,9 +6,8 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
 import android.util.Patterns
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
+import android.view.View
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.prakashjobapp.R
 import com.example.prakashjobapp.SessionManager
@@ -16,7 +15,6 @@ import com.example.prakashjobapp.api.RetrofitBuilder
 import com.example.prakashjobapp.helper.Constant
 import com.example.prakashjobapp.models.Login
 import com.example.prakashjobapp.models.ProfileStatusData
-import com.google.gson.GsonBuilder
 import okhttp3.ResponseBody
 import org.json.JSONException
 import org.json.JSONObject
@@ -27,7 +25,7 @@ import com.google.android.material.textfield.TextInputEditText as TextInputEditT
 
 class LoginActivity : AppCompatActivity() {
 
-    lateinit var login_button: Button
+    lateinit var login_button: FrameLayout
     lateinit var Sign_up: TextView
     lateinit var email_phone: TextInputEditText1
     lateinit var forgot_password :TextView
@@ -38,6 +36,9 @@ class LoginActivity : AppCompatActivity() {
     lateinit var strPassword :String
     lateinit var strPhone :String
     lateinit var google_logo: Button
+    lateinit var progressBar : ProgressBar
+    private lateinit var sessionManager :SessionManager
+    lateinit var loginText :TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +49,9 @@ class LoginActivity : AppCompatActivity() {
         password = findViewById(R.id.password) as TextInputEditText1
         login_button = findViewById(R.id.login_button)
         forgot_password = findViewById(R.id.forgot_password)
+        progressBar = findViewById(R.id.progressBar)
         Sign_up = findViewById(R.id.Sign_up)
+        loginText = findViewById(R.id.login_textview)
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         editor = sharedPreferences.edit()
     //   checkSharedPreference()
@@ -56,9 +59,13 @@ class LoginActivity : AppCompatActivity() {
         login_button.setOnClickListener {
 //            val intent = Intent(this, DashboardActivity::class.java)
 //            startActivity(intent)
-         ValidationRules()
+            progressBar.visibility = View.VISIBLE
+            loginText.visibility = View.GONE
+            ValidationRules()
+            }
+
 //            userProfileStatus()
-        }
+
         Sign_up.setOnClickListener {
             val intent = Intent(this, RegistrationActivity::class.java)
             startActivity(intent)
@@ -71,7 +78,6 @@ class LoginActivity : AppCompatActivity() {
 //            val intent = Intent(this, DashboardActivity::class.java)
 //            startActivity(intent)
         }
-
     }
 
     fun ValidationRules() {
@@ -97,7 +103,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         else{
-           Toast.makeText(getApplicationContext(),resources.getString(R.string.API_call) ,Toast.LENGTH_SHORT).show()
+          // Toast.makeText(getApplicationContext(),resources.getString(R.string.API_call) ,Toast.LENGTH_SHORT).show()
             LoginApi()
         }
     }
@@ -158,10 +164,6 @@ class LoginActivity : AppCompatActivity() {
                                 java.lang.String.valueOf(password)
                             )
 
-//                            sessionManager.putString(
-//                                SessionManager.USER_TOKEN,
-//                                java.lang.String.valueOf(token)
-//                            )
                                 CallAuthentication()
 
                         } else {
@@ -198,32 +200,43 @@ class LoginActivity : AppCompatActivity() {
         user.enqueue(object : Callback<ResponseBody?> {
             override fun onResponse(call: Call<ResponseBody?>, response: Response<ResponseBody?>) {
                 try {
-                    val gson = GsonBuilder().setPrettyPrinting().create()
+//                    val gson = GsonBuilder().setPrettyPrinting().create()
                     val sessionManager = SessionManager(this@LoginActivity)
-                    val jsonparams = response.body()
-                    val jsonString = jsonparams!!.string()
-                    val constant = Constant()
-                    val jsonObject = JSONObject(jsonString)
-                    val token =jsonObject.getString("access_token")
-                    sessionManager.putString(SessionManager.USER_TOKEN ,token)
-                    sessionManager.putBoolean(SessionManager.KEY_USER_LOGIN, true)
+                    val authToken = response.body()
+//                    val jsonString = authToken!!.string()
+////                    val constant = Constant()
+//                    val jsonObject = JSONObject(jsonString)
+//                    val token =jsonObject.getString("access_token")
+//                    sessionManager.putString(SessionManager.USER_TOKEN ,token)
+//                    sessionManager.putBoolean(SessionManager.KEY_USER_LOGIN, true)
 //                    constant.putBoolean(Constant.KEY_FLAG,true)
 
-                    if (jsonparams != null && response.code() == 200 ){
-                        var dashActivity  = Intent(this@LoginActivity,DashboardActivity::class.java)
-                        dashActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                        startActivity(dashActivity)
-                        finish()
+                    if (authToken != null && response.code() == 200 ){
+
+                        val jsonString = response.body()!!.string()
+                        val jsonObject = JSONObject(jsonString)
+                        val token =jsonObject.getString("access_token")
+//                        sessionManager.putBoolean(SessionManager.KEY_USER_LOGIN, true)
+//                        sessionManager.putString(SessionManager.USER_TOKEN ,java.lang.String.valueOf(token))
+                        sessionManager.putString(SessionManager.USER_TOKEN,token)
+
+//                        sessionManager.putString(SessionManager.USER_TOKEN, java.lang.String.valueOf(token)) // Save Token in SharedPreferences
+//                        var dashActivity  = Intent(this@LoginActivity,DashboardActivity::class.java)
+//                        dashActivity.putExtra("token",token)
+//                        dashActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                        progressBar.visibility = View.VISIBLE
+//                        startActivity(dashActivity)
+//                        finish()
                         userProfileStatus()
                     }
                  else{
-                        startActivity(Intent(this@LoginActivity,PersonalInfo::class.java))
-                        startActivity(intent)
+                        Toast.makeText(this@LoginActivity, "Something Went Wrong", Toast.LENGTH_SHORT).show()
+
                     }
-
-                   // intent.addFlags(constant.putBoolean(Constant.KEY_FLAG,true))
-
                 }catch (e: JSONException){
+                    e.printStackTrace()
+                }
+                catch (e :NullPointerException){
                     e.printStackTrace()
                 }
             }
@@ -239,14 +252,18 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun userProfileStatus(){
-        RetrofitBuilder.JsonServices.jsonInstance.userProfileStatus(128).enqueue(object : Callback<ProfileStatusData?> {
+        sessionManager = SessionManager(this)
+        val id = sessionManager.getString(SessionManager.KEY_ID).toString()
+        val id1 = id.toInt()
+        RetrofitBuilder.JsonServices.jsonInstance.userProfileStatus(id1).enqueue(object : Callback<ProfileStatusData?> {
             override fun onResponse(
                 call: Call<ProfileStatusData?>,
                 response: Response<ProfileStatusData?>
             ) {
                 try {
                     val profileStatus = response.body()
-                    if (profileStatus != null && response.code() == 200){
+                    if (profileStatus!!.Status == 200 && profileStatus.Data == true){
+                        sessionManager.putBoolean(SessionManager.KEY_USER_LOGIN, true)
                         startActivity(Intent(this@LoginActivity,DashboardActivity::class.java))
                     }
                     else {
@@ -267,49 +284,3 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 }
-
-
-//        RetrofitBuilder.JsonServices.jsonInstance.fetchToken(TokenBody().authenticateUser(username = userName,
-//            password = password)).enqueue(object : Callback<Token?> {
-//            override fun onResponse(call: Call<Token?>, response: Response<Token?>) {
-//                try {
-//
-//                    val jsonParams = response.body()
-//                    //  val tokenbody = TokenBody()
-//                    val constant = Constant()
-//                    val sessionManager = SessionManager(this@LoginActivity)
-//
-//                    if (jsonParams!=null){
-//                        val token = jsonParams?.toString()
-//                        Log.d("Nidhi", jsonParams.access_token)
-//                        sessionManager.putString(
-//                                SessionManager.USER_TOKEN,
-//                                 java.lang.String.valueOf(token)
-//                           )
-//                        sessionManager.putBoolean(SessionManager.KEY_USER_LOGIN, true)
-//
-//
-//
-//            }catch (eX :Exception){
-//                    eX.printStackTrace()
-//
-//                }catch (e :JSONException){
-//                e.printStackTrace()
-//
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<Token?>, t: Throwable) {
-//
-//            }
-//        })
-        //                    if (jsonparams!= null&& response.code() == 200){
-////                        val userName: JSONObject = obj.getJSONObject("user_name")
-////                        val password: JSONObject = obj.getJSONObject("password")
-//
-//                    }
-
-
-
-
-

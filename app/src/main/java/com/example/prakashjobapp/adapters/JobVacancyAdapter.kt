@@ -10,7 +10,7 @@ import com.example.prakashjobapp.R
 import com.example.prakashjobapp.models.VacancyData
 
 
-class JobVacancyAdapter(val context : Context, val jobVacancyList: List<VacancyData>): RecyclerView.Adapter<JobVacancyAdapter.MyViewHolder>() {
+class JobVacancyAdapter(val context : Context, var jobVacancyList: List<VacancyData>): RecyclerView.Adapter<JobVacancyAdapter.MyViewHolder>() {
 
     private lateinit var mlistener:OnItemClickListener
     var post_date : String = String()
@@ -18,22 +18,50 @@ class JobVacancyAdapter(val context : Context, val jobVacancyList: List<VacancyD
         fun onItemClick(position: Int)
     }
 
+//    fun filter(filterString: String) {
+//        var filterString = filterString
+//        filterString = filterString.toLowerCase(Locale.getDefault())
+//        ArrayList<VacancyData>.clear()
+//        if (filterString.length == 0) {
+//            arraylist.addAll(toDoArrayList)
+//        } else {
+//            for (toDO in toDoArrayList) {
+//                if (toDO.getYourSearchValue().toLowerCase(Locale.getDefault())
+//                        .contains(filterString)
+//                ) {
+//                    arraylist.add(toDO)
+//                }
+//            }
+//        }
+//        notifyDataSetChanged()
+//    }
+//    fun filterList(filteredList: ArrayList<VacancyData>) {
+//        filteredList.also { it.also { jobVacancyList = it } }
+//        notifyDataSetChanged()
+//    }
     fun setOnItemClickListener(listener :OnItemClickListener){
         mlistener = listener
+    }
+    fun filterList(filteredList: ArrayList<VacancyData>) {
+        filteredList.also { it.also { jobVacancyList = it } }
+        notifyDataSetChanged()
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val inflater : LayoutInflater = LayoutInflater.from(parent.context)
         val View = inflater.inflate(R.layout.job_vacancy,parent,false)
         return MyViewHolder(View,mlistener)
     }
-
+    fun getDate(date: String): String {
+        val input = date
+        val output = input.substring(0, 10) // Output : 2012/01/20
+        return output.toString()
+    }
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 //        holder.bindItems(jobVacancyList[position])
           val vacancy = jobVacancyList[position]
-        holder.vacancy.text = vacancy.job_title
-        holder.post_date.text = vacancy.job_posted_date
-        holder.Location_1.text = vacancy.location
-
+           holder.vacancy.text = vacancy.job_title
+           holder.post_date.text = getDate(vacancy.job_posted_date)
+           holder.Location_1.text = vacancy.location
     }
 
     override fun getItemCount(): Int {

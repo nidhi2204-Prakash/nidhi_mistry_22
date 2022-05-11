@@ -1,6 +1,10 @@
 package com.example.prakashjobapp.models
 
-data class PersonalInfoData(
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class PersonalInfoData (
     val profilePhoto :String?,
     val firstName :String? ,
     val lastName :String?,
@@ -16,8 +20,11 @@ data class PersonalInfoData(
     val skills :String?,
     val gapInEducation :String?,
     val knownlanguage :String?,
-    val resume :String?,
-    //Company Data
+    val resume :String?
+)  : Parcelable
+
+@Parcelize
+data class CompanyInfoData(
     val companyName :String?,
     val currentDesignation :String?,
     val jobType:String?,
@@ -27,14 +34,15 @@ data class PersonalInfoData(
     val noticePeriod :String?,
     val gapInWorkExpirence :String?,
     val expectedCTC :String?,
-    val currentCTC :String?,
-    // Education info Data
+    val currentCTC :String?
+) : Parcelable
+
+data class EducationInfoData(
     val Qualification :String?,
     val boardUniversity :String?,
     val passingYear :String?,
     val percentage :String?
 )
-
 data class JobApplyData(
     val firstname :String?,
     val lastname : String?,

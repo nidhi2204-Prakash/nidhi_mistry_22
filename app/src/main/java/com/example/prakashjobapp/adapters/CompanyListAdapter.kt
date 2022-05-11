@@ -11,16 +11,16 @@ import com.example.prakashjobapp.models.CompanyData
 
 //class CompanyListAdapter(val Listner: OnItemClickListner, val companyList: List<CompanyData>) :
 //    RecyclerView.Adapter<CompanyListAdapter.MyViewHolder>() {
-class CompanyListAdapter(val context :Context, val companyList: List<CompanyData>) : RecyclerView.Adapter<CompanyListAdapter.MyViewHolder>() {
+class CompanyListAdapter(val context :Context, var companyList: ArrayList<CompanyData>) : RecyclerView.Adapter<CompanyListAdapter.MyViewHolder>() {
     private lateinit var mlistener:OnItemClickListener
+
     interface OnItemClickListener{
         fun onItemClick(position: Int)
     }
-
+   
     fun setOnItemClickListener(listener :OnItemClickListener){
         mlistener = listener
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val inflater : LayoutInflater = LayoutInflater.from(parent.context)
@@ -36,7 +36,20 @@ class CompanyListAdapter(val context :Context, val companyList: List<CompanyData
     override fun getItemCount(): Int {
         return companyList.size
     }
-
+//    fun filterList(filteredList: ArrayList<CompanyData>) {
+//        filteredList.also { it.also { CompanyData = it } }
+//        notifyDataSetChanged()
+//    }
+    fun filterList(filteredList: ArrayList<CompanyData>) {
+    filteredList.also { it.also { companyList = it } }
+    notifyDataSetChanged()
+    // below line is to notify our adapter
+    // as change in recycler view data.
+}
+//    fun filterList(filteredList: ArrayList<CompanyData>) {
+//     filteredList.also { it.also { companyList = it } }
+//        notifyDataSetChanged()
+//    }
 
     inner class MyViewHolder(itemview: View , listner: OnItemClickListener)  : RecyclerView.ViewHolder(itemview)
       {

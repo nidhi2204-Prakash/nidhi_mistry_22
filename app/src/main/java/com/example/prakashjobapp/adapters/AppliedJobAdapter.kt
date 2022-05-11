@@ -24,7 +24,9 @@ class AppliedJobAdapter(val context: Context, val appliedJobList: List<AppliedJo
     }
 
     override fun getItemCount(): Int {
+
        return appliedJobList.size
+
     }
 
     class MyViewHolder(itemview: View):RecyclerView.ViewHolder(itemview) {

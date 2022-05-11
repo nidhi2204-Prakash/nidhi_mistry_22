@@ -10,18 +10,19 @@ import com.example.prakashjobapp.fragments.ProfileFragment
 import com.example.prakashjobapp.homefragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
+
 class DashboardActivity : AppCompatActivity() {
     private var homefragment = homefragment()
     private var AppliedFragment = AppliedFragment()
     private var ProfileFragment = ProfileFragment()
+    lateinit var token_string: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dashboard)
 
         val bottom_navigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
-
-
+        token_string = intent.getStringExtra("token").toString()
         bottom_navigation.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> replaceFragment(homefragment)
@@ -31,7 +32,9 @@ class DashboardActivity : AppCompatActivity() {
             true
         }
         replaceFragment(homefragment())
+
     }
+
 
 
     fun replaceFragment(fragment: Fragment) {

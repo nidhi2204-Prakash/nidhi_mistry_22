@@ -20,7 +20,7 @@ interface ApiInterface {
 
     //VacancyList
     @GET("api/vacancy/searchvacancy")
-    fun vacancyData(@Query("companyid")companyId : Int): Call<Vacancy>
+    fun vacancyData(@Query("companyid") companyId: Int): Call<Vacancy>
 
     //SignUp
     @POST("api/login/signup")
@@ -53,8 +53,6 @@ interface ApiInterface {
   //insertApi
   @POST("api/userprofile/insertuserprofile")
     fun profileSubmit(
-      @Part("profile_photo") profile_image: String,
-      @Part("resume",) resume: String,
       @Body requestBody: RequestBody?
     ):Call<InserUserData>
 
@@ -64,15 +62,16 @@ interface ApiInterface {
 
   //DisplayUserData
     @GET("api/userprofile/DisplayUserProfile?")
-    fun displayProfile(@Query("userid") userid  :Int) : Call<DisplayUser>
+    fun displayProfile(@Query("userid") userid: Int) : Call<DisplayUser>
 
    //UserDataFillStatus
     @GET("api/userprofile/UserProfileStatus?")
     fun userProfileStatus(@Query("userid") userid  :Int)  : Call<ProfileStatusData>
-    //Example
-    fun updateUser(
-        @Part("profile_photo") profile_image: RequestBody?,
-        @Part("resume") resume: RequestBody?,
-    ): Call<InserUserData?>?
+
+//    //Example
+//    fun updateUser(
+//        @Part("profile_photo") profile_image: RequestBody?,
+//        @Part("resume") resume: RequestBody?,
+//    ): Call<InserUserData?>?
 
 }

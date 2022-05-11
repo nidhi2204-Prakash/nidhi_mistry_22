@@ -1,32 +1,27 @@
 package com.example.prakashjobapp.activity
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.view.isInvisible
 import com.example.prakashjobapp.R
-import com.example.prakashjobapp.activity.EducationInfo.Companion.GapinWorkExp
-import com.example.prakashjobapp.activity.EducationInfo.Companion.companyNameCI
-import com.example.prakashjobapp.activity.EducationInfo.Companion.currentCTC
-import com.example.prakashjobapp.activity.EducationInfo.Companion.currentDesignination
-import com.example.prakashjobapp.activity.EducationInfo.Companion.department
-import com.example.prakashjobapp.activity.EducationInfo.Companion.employmentTypeCI
-import com.example.prakashjobapp.activity.EducationInfo.Companion.expectedCTC
-import com.example.prakashjobapp.activity.EducationInfo.Companion.jobTypwCI
-import com.example.prakashjobapp.activity.EducationInfo.Companion.noticePeriod
-import com.example.prakashjobapp.activity.EducationInfo.Companion.totalExp
+import com.example.prakashjobapp.SessionManager
 import com.example.prakashjobapp.api.KeyClass
 import com.example.prakashjobapp.api.RequestParameters
 import com.example.prakashjobapp.api.RetrofitBuilder
-import com.example.prakashjobapp.models.DisplayUser
-import com.example.prakashjobapp.models.PersonalInfoData
+import com.example.prakashjobapp.models.*
+import com.google.gson.Gson
 import org.json.JSONException
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 class CompanyInfo : AppCompatActivity() {
     lateinit var back_Arrow_2 :ImageView
@@ -43,15 +38,22 @@ class CompanyInfo : AppCompatActivity() {
     lateinit var gap_in_workExp :EditText
     lateinit var currentCTC_text :EditText
     lateinit var ExpectedCTC_text :EditText
-    lateinit var updatebutton :AppCompatButton
+    lateinit var updatebutton :FrameLayout
     lateinit var next_button :AppCompatButton
+    lateinit var update_textView : TextView
+    lateinit var prg_bar :ProgressBar
+    private lateinit var sessionManager: SessionManager
+    private lateinit var objPersonalInfoData: PersonalInfoData
+    private lateinit var objCompanyInfoData: CompanyInfoData
+    private lateinit var objEducationInfoData: EducationInfoData
+
 
     companion object{
 
-      lateinit  var fName: String
-      lateinit  var lName :String
-      lateinit  var email :String
-      lateinit var password :String
+        lateinit  var fName: String
+        lateinit  var lName :String
+        lateinit  var email :String
+        lateinit var password :String
         lateinit var mobileNo :String
         lateinit var address  :String
         lateinit var city :String
@@ -63,17 +65,6 @@ class CompanyInfo : AppCompatActivity() {
         lateinit var knownLanguage:String
         lateinit var ProfileImage :String
         lateinit var uploadResume :String
-
-//        lateinit var companyNameCI :String
-//        lateinit var currentDesignination :String
-//        lateinit var jobTypwCI : String
-//        lateinit var employmentTypeCI  : String
-//        lateinit var totalExp  : String
-//        lateinit var department  : String
-//        lateinit  var noticePeriod  : String
-//        lateinit var GapInEduCi  : String
-//        lateinit var currentCTC  : String
-//        lateinit var expectedCTC  : String
         var qualification :String = String()
         var board_university :String = String()
         var passingYear :String = String()
@@ -87,7 +78,31 @@ class CompanyInfo : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_company_info)
+        fName = String()
+        lName = String()
+        email = String()
+        password = String()
+        mobileNo = String()
+        address = String()
+        city = String()
+        state = String()
+        country = String()
+        dateOfBirth  = String()
+        gapInedu  = String()
+        gender  = String()
+        knownLanguage = String()
+        ProfileImage  = String()
+         uploadResume =  String()
+         qualification  = String()
+         board_university  = String()
+         passingYear  = String()
+         percentage  = String()
+         skill1  = String()
+         skill2  = String()
+         skill3  = String()
 
+        prg_bar = findViewById(R.id.prg_bar)
+        update_textView = findViewById(R.id.update_textview)
         companyName_text = findViewById(R.id.companyName_text)
         current_desig_text = findViewById(R.id.current_desig_text)
         jobtype_text = findViewById(R.id.jobtype_text)
@@ -107,41 +122,183 @@ class CompanyInfo : AppCompatActivity() {
 
         val bundle = intent.extras
         if (bundle != null) {
-            fName = bundle.getString(KeyClass.KEY_FIRST_NAMEPI, fName)
-            lName = bundle.getString(KeyClass.KEY_LAST_NAMEPI, lName)
-            password = bundle.getString(KeyClass.KEY_PASSWORDPI,password)
-            email = bundle.getString(KeyClass.KEY_EMAIL, email)
-            mobileNo = bundle.getString(KeyClass.KEY_MOBILENO_PI, mobileNo)
-            address = bundle.getString(KeyClass.KEY_ADDRESS, address)
-            gender = bundle.getString(KeyClass.KEY_GENDER, gender)
-            city = bundle.getString(KeyClass.KEY_CITY, city)
-            state = bundle.getString(KeyClass.KEY_STATE,state)
-            country = bundle.getString(KeyClass.KEY_COUNTRY, country)
-            dateOfBirth = bundle.getString(KeyClass.KEY_BIRTH_DATE, dateOfBirth)
-            gapInedu = bundle.getString(KeyClass.KEY_GAP_IN_EDU_PI, gapInedu)
-            knownLanguage = bundle.getString(KeyClass.KEY_KNOWN_LANGUAGES, knownLanguage)
-            ProfileImage = bundle.getString(KeyClass.KEY_PROFILE_IMAGE, ProfileImage)
-            uploadResume = bundle.getString(KeyClass.KEY_RESUME_UPLOAD, uploadResume)
+            fName = bundle.getString(KeyClass.KEY_FIRST_NAMEPI)!!
+            lName = bundle.getString(KeyClass.KEY_LAST_NAMEPI)!!
+            password = bundle.getString(KeyClass.KEY_PASSWORDPI)!!
+            email = bundle.getString(KeyClass.KEY_EMAIL)!!
+            mobileNo = bundle.getString(KeyClass.KEY_MOBILENO_PI)!!
+            address = bundle.getString(KeyClass.KEY_ADDRESS)!!
+            gender = bundle.getString(KeyClass.KEY_GENDER)!!
+            city = bundle.getString(KeyClass.KEY_CITY)!!
+            state = bundle.getString(KeyClass.KEY_STATE)!!
+            country = bundle.getString(KeyClass.KEY_COUNTRY)!!
+            dateOfBirth = bundle.getString(KeyClass.KEY_BIRTH_DATE)!!
+            gapInedu = bundle.getString(KeyClass.KEY_GAP_IN_EDU_PI)!!
+            knownLanguage = bundle.getString(KeyClass.KEY_KNOWN_LANGUAGES)!!
+            ProfileImage = bundle.getString(KeyClass.KEY_PROFILE_IMAGE)!!
+            uploadResume = bundle.getString(KeyClass.KEY_RESUME_UPLOAD)!!
 
         }
 //        val bundle : Bundle = intent.extras!!
-
+        var objPersonalInfoData = bundle?.getParcelable<PersonalInfoData>(KeyClass.PERSONAL_INFO_DATA)
 
         back_Arrow_2.setOnClickListener {
-
-            onBackPressed()
-
+            if (editbutton_2.isInvisible ){
+                onBackPressed()
+            }else{
+                AlertDialog()
+            }
         }
+
         previous_button.setOnClickListener {
             val intent = Intent(this, PersonalInfo::class.java)
             startActivity(intent)
 
         }
 
-//        companyinfo_layout.alpha = 0.5f
+//       companyinfo_layout.alpha = 0.5f
+
+//        editbutton_2.setOnClickListener {
+//            companyinfo_layout.alpha = 1.0f
+//
+//            companyinfo_layout.isFocusable = true
+//            companyName_text.isEnabled= true
+//            current_desig_text.isEnabled = true
+//            jobtype_text.isEnabled = true
+//            employment_type_text.isEnabled = true
+//            totalexp_text.isEnabled = true
+//            Department_text.isEnabled = true
+//            noticePeriod_text.isEnabled = true
+//            gap_in_workExp.isEnabled = true
+//            currentCTC_text.isEnabled = true
+//            ExpectedCTC_text.isEnabled = true
+//            next_button.isEnabled = true
+//
+//        }
+        next_button.setOnClickListener {
+
+           //            if(validationCompanyInfo()){
+//                val companyNameCI = etCompanyNameCI.text.toString()
+//                val currentDesignationCI = etCurrentDesCI.text.toString()
+//                val jobTypeCI = etJobTypeCI.text.toString()
+//                val employmentTypeCI = etEmploymentTypeCI.text.toString()
+//                val totalExperienceCI = etTotalExp.text.toString()
+//                val departmentCI = etDepartmentCI.text.toString()
+//                val noticePeriodCI = etNoticePeriodCI.text.toString()
+//                val gapInWorkExperience = etGapWorkExpCI.text.toString()
+//                val currentCTCCI = etCurrentCTCCI.text.toString()
+//                val expectedCTCCI = expectedCTC.text.toString()
+//
+//                val objPersonalInfoData = bundle.getParcelable<PersonalInfoData>(KeyClass.KEY_PERSONAL_INFO_DATA)
+//                objCompanyInfoData = CompanyInfoData(
+//                    companyName = companyNameCI,
+//                    currentDesignation = currentDesignationCI,
+//                    jobType = jobTypeCI,
+//                    employmentType = employmentTypeCI,
+//                    totalExp = totalExperienceCI,
+//                    department = departmentCI,
+//                    noticePeriod = noticePeriodCI,
+//                    gapInWorkExpirence = gapInWorkExperience,
+//                    currentCTC = currentCTCCI,
+//                    expectedCTC = expectedCTCCI
+//                )
+
+                val companyNameCI = companyName_text.text.toString()
+                val currentDesignination = current_desig_text.text.toString()
+                val jobTypeCI = jobtype_text.text.toString()
+                val employmentTypeCI = employment_type_text.text.toString()
+                val totalExp = totalexp_text.text.toString()
+                val department = Department_text.text.toString()
+                val noticePeriod = noticePeriod_text.text.toString()
+                val gapinWorkExp = gap_in_workExp.text.toString()
+                val currentCTC = currentCTC_text.text.toString()
+                val expectedCTC = ExpectedCTC_text.text.toString()
+                val objCompanyInfoData = CompanyInfoData(
+                    companyName = companyNameCI,
+                    currentDesignation = currentDesignination,
+                    jobType = jobTypeCI,
+                    employmentType = employmentTypeCI,
+                    totalExp = totalExp,
+                    department = department,
+                   noticePeriod = noticePeriod,
+                    gapInWorkExpirence = gapinWorkExp,
+                    currentCTC = currentCTC,
+                    expectedCTC = expectedCTC
+                )
+            val gsonG = Gson()
+            var jsonString = gsonG.toJson(objCompanyInfoData)
+                val bundle = Bundle()
+                bundle.putString(KeyClass.KEY_COMPANY_NAMECI,companyNameCI)
+                bundle.putString(KeyClass.KEY_CURRENT_DESIGNINATION,currentDesignination)
+                bundle.putString(KeyClass.KEY_JOBTYPE_CI,jobTypeCI)
+                bundle.putString(KeyClass.KEY_EMPLOYMENTTYPE_CI,employmentTypeCI)
+                bundle.putString(KeyClass.KEY_TOTAL_EXPIRENCE_CI,totalExp)
+                bundle.putString(KeyClass.KEY_DEPARTMENT,department)
+                bundle.putString(KeyClass.KEY_NOTICE_PERIOD_CI,noticePeriod)
+                bundle.putString(KeyClass.KEY_WORK_EXPRIENCE,gapinWorkExp)
+                bundle.putString(KeyClass.KEY_CURRENTCTC_CI,currentCTC)
+                bundle.putString(KeyClass.KEY_EXPECTEDCTC_CI,expectedCTC)
+                // Personalinfodata
+                bundle.putString(KeyClass.KEY_FIRST_NAMEPI, fName)
+                bundle.putString(KeyClass.KEY_LAST_NAMEPI, lName)
+                bundle.putString(KeyClass.KEY_EMAIL, email)
+                bundle.putString(KeyClass.KEY_PASSWORDPI, password)
+                bundle.putString(KeyClass.KEY_MOBILENO_PI, mobileNo)
+                bundle.putString(KeyClass.KEY_ADDRESS, address)
+                bundle.putString(KeyClass.KEY_CITY, city)
+                bundle.putString(KeyClass.KEY_STATE, state)
+                bundle.putString(KeyClass.KEY_COUNTRY, country)
+                bundle.putString(KeyClass.KEY_BIRTH_DATE, dateOfBirth)
+                bundle.putString(KeyClass.KEY_GAP_IN_EDU_PI, gapInedu)
+                bundle.putString(KeyClass.KEY_GENDER, gender)
+                bundle.putString(KeyClass.KEY_KNOWN_LANGUAGES, knownLanguage)
+                bundle.putString(KeyClass.KEY_RESUME_UPLOAD, uploadResume)
+                bundle.putString(KeyClass.KEY_PROFILE_IMAGE, ProfileImage)
+             val gson = Gson()
+             val objPersonalInfoData  = gson.fromJson(KeyClass.PERSONAL_INFO_DATA, objPersonalInfoData!!::class.java)
+
+//            val objPersonalInfoData = bundle.getParcelable<PersonalInfoData>(KeyClass.PERSONAL_INFO_DATA)
+                val intent = Intent(this, EducationInfo::class.java)
+                intent.putExtras(bundle)
+                intent.putExtra(KeyClass.PERSONAL_INFO_DATA,objPersonalInfoData)
+                intent.putExtra(KeyClass.COMPANY_INFO_DATA,jsonString)
+                startActivity(intent)
+                ValidationCompany()
+
+        }
+        updatebutton.setOnClickListener {
+
+            prg_bar .visibility = View.VISIBLE
+            update_textView.visibility = View.GONE
+//            objPersonalInfoData = PersonalInfoData(
+//                ProfileImage, fName, lName, email, password, mobileNo, dateOfBirth, address, city, state, country, gapInedu, gender, knownLanguage, skill1, uploadResume)
+            objPersonalInfoData = PersonalInfoData(profilePhoto = EducationInfo.ProfileImage, firstName = EducationInfo.fName
+                , lastName = EducationInfo.lName, email = EducationInfo.email, password = EducationInfo.password, mobileNo = EducationInfo.mobileNo, dateOfBirth = EducationInfo.dateOfBirth, address = EducationInfo.address, city = EducationInfo.city, state = EducationInfo.state, country = EducationInfo.country, gapInEducation = EducationInfo.gapInedu, gender = EducationInfo.gender, knownlanguage = EducationInfo.knownLanguage, skills = EducationInfo.skill1,
+                resume = EducationInfo.uploadResume)
+            objCompanyInfoData = CompanyInfoData(companyName = EducationInfo.companyNameCI, currentDesignation = EducationInfo.currentDesignination, jobType = JobDescription.jobType, employmentType = JobDescription.employmentType, totalExp = EducationInfo.totalExp, department = EducationInfo.department, noticePeriod = EducationInfo.noticePeriod, gapInWorkExpirence = EducationInfo.GapinWorkExp,
+                currentCTC = EducationInfo.currentCTC, expectedCTC = EducationInfo.expectedCTC)
+
+            updateProfile()
+//           companyNameCI = companyName_text.text.toString()
+//            currentDesignination = current_desig_text.text.toString()
+//            jobTypwCI =jobtype_text.text.toString()
+//            employmentTypeCI =employment_type_text.text.toString()
+//            noticePeriod =noticePeriod_text.text.toString()
+//            department = Department_text.text.toString()
+//            currentCTC =currentCTC_text.text.toString()
+//            expectedCTC = ExpectedCTC_text.text.toString()
+//            totalExp =totalexp_text.text.toString()
+//            GapinWorkExp =gap_in_workExp.text.toString()
+
+        }
+        displayUser()
+    }
+    fun fieldEnableCI(){
+        companyinfo_layout.alpha = 0.5f
 
         editbutton_2.setOnClickListener {
-//            companyinfo_layout.alpha = 1.0f
+            companyinfo_layout.alpha = 1.0f
+
 
             companyinfo_layout.isFocusable = true
             companyName_text.isEnabled= true
@@ -157,98 +314,8 @@ class CompanyInfo : AppCompatActivity() {
             next_button.isEnabled = true
 
         }
-        next_button.setOnClickListener {
-
-            val companyNameCI = companyName_text.getText().toString().trim()
-           val currentDesignination = current_desig_text.getText().toString().trim()
-            val jobTypeCI = jobtype_text.getText().toString().trim()
-            val employmentTypeCI = employment_type_text.getText().toString().trim()
-           val totalExp = totalexp_text.getText().toString().trim()
-            val department = Department_text.getText().toString().trim()
-           val noticePeriod = noticePeriod_text.getText().toString().trim()
-            val gapinWorkExp = gap_in_workExp.getText().toString().trim()
-            val currentCTC = currentCTC_text.getText().toString().trim()
-            val expectedCTC = ExpectedCTC_text.getText().toString().trim()
-
-
-            val bundle = Bundle()
-            bundle.putString(KeyClass.KEY_COMPANY_NAMECI,companyNameCI)
-            bundle.putString(KeyClass.KEY_CURRENT_DESIGNINATION,currentDesignination)
-            bundle.putString(KeyClass.KEY_JOBTYPE_CI,jobTypeCI)
-            bundle.putString(KeyClass.KEY_EMPLOYMENTTYPE_CI,employmentTypeCI)
-            bundle.putString(KeyClass.KEY_TOTAL_EXPIRENCE_CI,totalExp)
-            bundle.putString(KeyClass.KEY_DEPARTMENT,department)
-            bundle.putString(KeyClass.KEY_NOTICE_PERIOD_CI,noticePeriod)
-            bundle.putString(KeyClass.KEY_WORK_EXPRIENCE,gapinWorkExp)
-            bundle.putString(KeyClass.KEY_CURRENTCTC_CI,currentCTC)
-            bundle.putString(KeyClass.KEY_EXPECTEDCTC_CI,expectedCTC)
-            // Personalinfodata
-            bundle.putString(KeyClass.KEY_FIRST_NAMEPI, fName)
-            bundle.putString(KeyClass.KEY_LAST_NAMEPI, lName)
-            bundle.putString(KeyClass.KEY_EMAIL, email)
-            bundle.putString(KeyClass.KEY_PASSWORDPI, password)
-            bundle.putString(KeyClass.KEY_MOBILENO_PI, mobileNo)
-            bundle.putString(KeyClass.KEY_ADDRESS, address)
-            bundle.putString(KeyClass.KEY_CITY, city)
-            bundle.putString(KeyClass.KEY_STATE, state)
-            bundle.putString(KeyClass.KEY_COUNTRY, country)
-            bundle.putString(KeyClass.KEY_BIRTH_DATE, dateOfBirth)
-            bundle.putString(KeyClass.KEY_GAP_IN_EDU_PI, gapInedu)
-            bundle.putString(KeyClass.KEY_GENDER, gender)
-            bundle.putString(KeyClass.KEY_KNOWN_LANGUAGES, knownLanguage)
-            bundle.putString(KeyClass.KEY_RESUME_UPLOAD, uploadResume)
-            bundle.putString(KeyClass.KEY_PROFILE_IMAGE,ProfileImage)
-
-            val intent = Intent(this, EducationInfo::class.java)
-//            intent.putExtra(Constant.KEY_COMPANY_NAMECI,companyNameCI)
-//           intent.putExtra(Constant.KEY_CURRENT_DESIGNINATION,currentDesignination)
-//           intent.putExtra(Constant.KEY_JOBTYPE_CI,jobTypeCI)
-//           intent.putExtra(Constant.KEY_EMPLOYMENTTYPE_CI,employmentTypeCI)
-//           intent.putExtra(Constant.KEY_TOTAL_EXPIRENCE_CI,totalExp)
-//            intent.putExtra(Constant.KEY_DEPARTMENT,department)
-//            intent.putExtra(Constant.KEY_NOTICE_PERIOD_CI,noticePeriod)
-//           intent.putExtra(Constant.KEY_WORK_EXPRIENCE,gapinWorkExp)
-//            intent.putExtra(Constant.KEY_CURRENTCTC_CI,currentCTC)
-//            intent.putExtra(Constant.KEY_EXPECTEDCTC_CI,expectedCTC)
-//            intent.putExtra(Constant.KEY_FIRST_NAMEPI, firstNamePI)
-//            intent.putExtra(Constant.KEY_LAST_NAMEPI, lastNamePI)
-//            intent.putExtra(Constant.KEY_PASSWORDPI, passwordPI)
-//            intent.putExtra(Constant.KEY_EMAIL, emailPI)
-//            intent.putExtra(Constant.KEY_MOBILENO_PI, mobileNo)
-//            intent.putExtra(Constant.KEY_CITY, city)
-//            intent.putExtra(Constant.KEY_STATE, state)
-//            intent.putExtra(Constant.KEY_COUNTRY, country)
-//            intent.putExtra(Constant.KEY_KNOWN_LANGUAGES, knownLanguage)
-//            intent.putExtra(Constant.KEY_GAP_IN_EDU_PI, gapInedu)
-//            intent.putExtra(Constant.KEY_BIRTH_DATE, dateOfBirth)
-//            intent.putExtra(Constant.KEY_PROFILE_IMAGE, ProfileImage)
-//            intent.putExtra(Constant.KEY_RESUME_UPLOAD, uploadResume)
-
-           startActivity(intent)
-            ValidationCompany()
-
-        }
-        updatebutton.setOnClickListener {
-            companyNameCI = companyName_text.text.toString()
-            currentDesignination = current_desig_text.text.toString()
-            jobTypwCI =jobtype_text.text.toString()
-            employmentTypeCI =employment_type_text.text.toString()
-            noticePeriod =noticePeriod_text.text.toString()
-            department = Department_text.text.toString()
-            currentCTC =currentCTC_text.text.toString()
-            expectedCTC = ExpectedCTC_text.text.toString()
-            totalExp =totalexp_text.text.toString()
-            GapinWorkExp =gap_in_workExp.text.toString()
-            qualification =""
-            board_university =""
-            passingYear =""
-            percentage =""
-            updateProfile()
-        }
-        displayUser()
     }
-
-    fun ValidationCompany(){
+    fun ValidationCompany()  {
         if (companyName_text.getText().toString().isEmpty()){
             Toast.makeText(
                 getApplicationContext(),
@@ -315,19 +382,17 @@ class CompanyInfo : AppCompatActivity() {
     }
     
     fun displayUser(){
-
-        RetrofitBuilder.JsonServices.jsonInstance.displayProfile(128).enqueue(object :
+        sessionManager = SessionManager(this)
+        val id: String? = sessionManager.getString(SessionManager.KEY_ID)
+        val id1 : Int = id!!.toInt()
+        RetrofitBuilder.JsonServices.jsonInstance.displayProfile(id1).enqueue(object :
             Callback<DisplayUser?> {
             override fun onResponse(call: Call<DisplayUser?>, response: Response<DisplayUser?>) {
                 Log.d("TAG", "Display User " + response.body()!!.Data)
 
                 try {
                     val userDetail = response.body()
-//                    if (user1 == null) {
-//                        editbutton_2.isVisible = true
-//                    } else {
-//                        editbutton_2.isVisible = false
-//                    }
+
                     if (userDetail !=null&& response.code() == 200){
                         companyName_text.setText( userDetail.Data.Companyname)
                         current_desig_text.setText( userDetail.Data.Designation)
@@ -340,27 +405,29 @@ class CompanyInfo : AppCompatActivity() {
                         currentCTC_text.setText(userDetail.Data.Current_CTC.toString())
                         ExpectedCTC_text.setText(userDetail.Data.Expected_CTC.toString())
 
-                        if (userDetail.Data != null) {
-                            editbutton_2.visibility = View.INVISIBLE
+                        if (userDetail.Data.DateOfBirth != null ) {
+                            fieldEnableCI()
+                            editbutton_2.visibility = View.VISIBLE
                             updatebutton.visibility = View.VISIBLE
                         }else{
-                            editbutton_2.visibility = View.VISIBLE
+                            companyinfo_layout.isFocusable = true
+                            companyName_text.isEnabled= true
+                            current_desig_text.isEnabled = true
+                            jobtype_text.isEnabled = true
+                            employment_type_text.isEnabled = true
+                            totalexp_text.isEnabled = true
+                            Department_text.isEnabled = true
+                            noticePeriod_text.isEnabled = true
+                            gap_in_workExp.isEnabled = true
+                            currentCTC_text.isEnabled = true
+                            ExpectedCTC_text.isEnabled = true
+                            next_button.isEnabled = true
+                            //buttons visiblle
+                            editbutton_2.visibility = View.INVISIBLE
                             next_button.visibility = View.VISIBLE
                             previous_button.visibility = View.VISIBLE
+
                         }
-//                        intent.putExtra("LastNamePI",lastNamePI)
-//                        intent.putExtra("Email",emailPI)
-//                        intent.putExtra("Password",passwordPI)
-//                        intent.putExtra("Mobile No",mobileNo)
-//                        intent.putExtra("Address",addressPI)
-//                        intent.putExtra("City",city)
-//                        intent.putExtra("State",state)
-//                        intent.putExtra("Country",country)
-//                        intent.putExtra("gapInEducation",gapInEdu)
-//                        intent.putExtra("uploadResumePI",uploadResume)
-//                        intent.putExtra("BirthDate",birthDate)
-//                        intent.putExtra("knowonLanguage",knowNlanguages)
-//                        intent.putExtra("ProfileImage",profileImage)
                         }
 
                 }catch (e: JSONException){
@@ -380,57 +447,113 @@ class CompanyInfo : AppCompatActivity() {
     }
 
     fun updateProfile(){
-//        Log.d("Update_Image",EducationInfo.ProfileImage)
-        RetrofitBuilder.JsonServices.jsonInstance.updateProfile(  RequestParameters().userProfileUpdate(128,personalinfo = PersonalInfoData(
-       fName, lName, email, password, mobileNo, city, state, country, address,
-            knownLanguage, companyNameCI, currentDesignination, jobTypwCI, employmentTypeCI, department,
-            expectedCTC, currentCTC, passingYear, qualification, percentage, skill1,skill2,skill3,
-            uploadResume, ProfileImage, gapInedu, board_university, totalExp,
-            gapInedu, percentage ))).enqueue(object : Callback<DisplayUser?> {
+        var personalInfoData: PersonalInfoData =
+            PersonalInfoData("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")
+        var companyInfoData: CompanyInfoData =
+            CompanyInfoData("", "", "", "", "", "", "", "", "", "")
+        var educationInfoData: EducationInfoData = EducationInfoData("", "", "", "")
+        val    companyNameCI = companyName_text.text.toString()
+        val    currentDesignination = current_desig_text.text.toString()
+        val    jobTypwCI =jobtype_text.text.toString()
+        val   employmentTypeCI =employment_type_text.text.toString()
+        val   noticePeriod =noticePeriod_text.text.toString()
+        val   department = Department_text.text.toString()
+        val   currentCTC =currentCTC_text.text.toString()
+        val   expectedCTC = ExpectedCTC_text.text.toString()
+        val   totalExp =totalexp_text.text.toString()
+        val   GapinWorkExp =gap_in_workExp.text.toString()
+
+        companyInfoData = CompanyInfoData(
+            companyName = companyNameCI, currentDesignation = currentDesignination,
+            jobType = jobTypwCI, employmentType = employmentTypeCI, noticePeriod = noticePeriod,
+            department = department, currentCTC = currentCTC,
+            expectedCTC = expectedCTC, totalExp = totalExp, gapInWorkExpirence = GapinWorkExp
+        )
+
+        val objPersonalInfoData = PersonalInfoData(
+            profilePhoto = ProfileImage,
+            firstName = fName,
+            lastName = lName,
+            email = email,
+            password = password,
+            mobileNo = mobileNo,
+            gender = EducationInfo.gender,
+            dateOfBirth = dateOfBirth,
+            address = address,
+            city = city,
+            state = state,
+            country = country,
+            gapInEducation = gapInedu,
+            knownlanguage = knownLanguage,
+            skills = skill1,
+            resume = uploadResume
+        )
+        personalInfoData = objPersonalInfoData
+        val objEducationInfoData = EducationInfoData(
+         Qualification = qualification,
+         boardUniversity = board_university,
+         passingYear = passingYear,
+         percentage = percentage
+        )
+      educationInfoData = objEducationInfoData
+        sessionManager = SessionManager(this)
+        val id: String? = sessionManager.getString(SessionManager.KEY_ID)
+        val id1 : Int = id!!.toInt()
+       Log.d("Update_Image",ProfileImage)
+        RetrofitBuilder.JsonServices.jsonInstance.updateProfile(  RequestParameters().userProfileUpdate(id1,
+            personalinfo = personalInfoData, companyInfo = companyInfoData, eduationInfo = educationInfoData
+      )).enqueue(object : Callback<DisplayUser?> {
             override fun onResponse(call: Call<DisplayUser?>, response: Response<DisplayUser?>) {
+                Log.d("TAG", "Display User " + response.body()!!.Data)
+
                 try {
-                    val update = response.body()
-                    if (update != null){
+                        val userUpdate = response.body()
+                        if (userUpdate != null && response.code() == 200) {
 
-//                        companyName_text.setText(update.Data.Companyname)
-//                        current_desig_text.setText(update.Data.Designation)
-//                        jobtype_text.setText(update.Data.Jobtype)
-//                        employment_type_text.setText(update.Data.EmploymentType)
-//                        noticePeriod_text.setText(update.Data.Noticeperiod)
-//                        Department_text.setText(update.Data.Department)
-//                        gap_in_workExp.setText(update.Data.GapInExp)
-//                        totalexp_text.setText(update.Data.TotalExp)
-//                        currentCTC_text.setText(update.Data.Current_CTC.toString())
-//                        ExpectedCTC_text.setText(update.Data.Expected_CTC.toString())
+                            userUpdate.Data.UserCompanyInfoId
+                            userUpdate.Data.UserEducationId
+                            companyName_text.setText(userUpdate.Data.Companyname)
+                            current_desig_text.setText(userUpdate.Data.Designation)
+                            jobtype_text.setText(userUpdate.Data.Jobtype)
+                            employment_type_text.setText(userUpdate.Data.EmploymentType)
+                            noticePeriod_text.setText(userUpdate.Data.Noticeperiod)
+                            Department_text.setText(userUpdate.Data.Department)
+                            gap_in_workExp.setText(userUpdate.Data.GapInExp)
+                            totalexp_text.setText(userUpdate.Data.TotalExp)
+                            currentCTC_text.setText(userUpdate.Data.Current_CTC.toString())
+                            ExpectedCTC_text.setText(userUpdate.Data.Expected_CTC.toString())
+                            startActivity(Intent(this@CompanyInfo,DashboardActivity ::class.java))
+                            Toast.makeText(
+                                getApplicationContext(),
+                                "Data Updated  successfully",
+                                Toast.LENGTH_SHORT
+                            ).show()
 
-                    //    editbutton_2.visibility = View.VISIBLE
-                        updatebutton.alpha = 0.7f
-                        editbutton_2.visibility = View.VISIBLE
-                        updatebutton.alpha = 1.0f
-
-                        Toast.makeText(getApplicationContext(),"Data Updated  successfully", Toast.LENGTH_SHORT).show()
-
-//                        if (update != null) {
-//
-//                            updatebutton.visibility = View.VISIBLE
-//                            Toast.makeText(applicationContext, "visible", Toast.LENGTH_SHORT).show()
-//                        }
-//                        else {
-//                            next_button.visibility = View.VISIBLE
-//                            previous_button.visibility = View.VISIBLE
-//                            Toast.makeText(applicationContext, "Visible", Toast.LENGTH_SHORT).show()
-//                        }
+                        } else {
+                            Toast.makeText(this@CompanyInfo, "Try Again", Toast.LENGTH_SHORT).show()
+                        }
+                    } catch (e: JSONException) {
+                        e.printStackTrace()
+                    } catch (e: java.lang.NullPointerException) {
+                        e.printStackTrace()
                     }
-
-                }catch (e : JSONException){
-                    e.printStackTrace()
-                }
             }
-
             override fun onFailure(call: Call<DisplayUser?>, t: Throwable) {
 
                 Log.d("TAG", " Got Error " + t.localizedMessage)
             }
         })
+    }
+
+    private fun AlertDialog(){
+        val profileAlertDialog: AlertDialog.Builder = AlertDialog.Builder(this)
+        profileAlertDialog.setTitle("Alert")
+        profileAlertDialog.setMessage(R.string.alert_message)
+        profileAlertDialog.setPositiveButton(("yes"), DialogInterface.OnClickListener { dialog, item ->
+            onBackPressed()
+        }).setNegativeButton(("no"), DialogInterface.OnClickListener { dialog, item ->
+            dialog.dismiss()
+        })
+        profileAlertDialog.show()
     }
 }

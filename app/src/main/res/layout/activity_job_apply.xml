@@ -85,7 +85,7 @@
                    android:paddingStart="@dimen/dimen_15dp"
                    android:background="@drawable/custom_edittext"
                    android:textColor="@color/black"
-                   android:textStyle="bold" />
+                 />
            </LinearLayout>
 
         <LinearLayout
@@ -113,7 +113,7 @@
                 android:layout_weight="0"
                 android:background="@drawable/custom_edittext"
                 android:textColor="@color/black"
-                android:textStyle="bold" />
+                 />
         </LinearLayout>
         </LinearLayout>
 
@@ -201,7 +201,7 @@
                     android:paddingStart="@dimen/dimen_15dp"
                     android:background="@drawable/custom_edittext"
                     android:textColor="@color/black"
-                    android:textStyle="bold" />
+                  />
             </LinearLayout>
 
             <LinearLayout
@@ -229,7 +229,7 @@
                     android:layout_weight="0"
                     android:background="@drawable/custom_edittext"
                     android:textColor="@color/black"
-                    android:textStyle="bold" />
+                   />
             </LinearLayout>
         </LinearLayout>
         <LinearLayout
@@ -263,7 +263,7 @@
                     android:layout_height="40dp"
                     android:background="@drawable/custom_edittext"
                     android:textColor="@color/black"
-                    android:textStyle="bold" />
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -291,7 +291,7 @@
                     android:layout_weight="0"
                     android:background="@drawable/custom_edittext"
                     android:textColor="@color/black"
-                    android:textStyle="bold" />
+                  />
             </LinearLayout>
         </LinearLayout>
         <LinearLayout
@@ -318,35 +318,43 @@
             android:layout_marginTop="5dp"
             android:layout_marginHorizontal="@dimen/dimen_20dp"
             android:orientation="horizontal">
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
             <com.google.android.material.chip.Chip
                 android:id="@+id/Skill_1"
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:enabled="false"
-                android:layout_height="@dimen/dimen_50dp"
+                android:layout_height="wrap_content"
                 android:textAlignment="center"
+                android:text="PHP"
                 android:background="@drawable/custom_edittext"
                 android:textColor="@color/black" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/Skill_2"
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:enabled="false"
-                android:layout_height="@dimen/dimen_50dp"
+                android:layout_height="wrap_content"
+                android:text="java"
                 android:layout_marginStart="10dp"
                 android:textAlignment="center"
                 android:background="@drawable/custom_edittext"
-                android:textColor="@color/black"
-                />
+                android:textColor="@color/black" />
+
             <com.google.android.material.chip.Chip
                 android:id="@+id/Skill_3"
-                android:layout_width="100dp"
-                android:layout_height="@dimen/dimen_50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:enabled="false"
                 android:layout_marginStart="@dimen/dimen_10dp"
+                android:text=".Net"
                 android:textAlignment="center"
                 android:background="@drawable/custom_edittext"
-                android:textColor="@color/black"
-                />
+                android:textColor="@color/black" />
+            </com.google.android.material.chip.ChipGroup>
         </LinearLayout>
 
         <LinearLayout
@@ -373,7 +381,7 @@
                 android:enabled="false"
                 android:backgroundTint="#869C9A9A"
                 android:textColor="@color/black"
-                android:textStyle="bold" />
+                />
         </LinearLayout>
 
 

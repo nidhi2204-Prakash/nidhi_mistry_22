@@ -10,11 +10,16 @@ import android.util.Log
 import android.util.Patterns
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.children
 import com.example.prakashjobapp.R
+import com.example.prakashjobapp.SessionManager
+import com.example.prakashjobapp.api.KeyClass
 import com.example.prakashjobapp.api.RequestParameters
 import com.example.prakashjobapp.api.RetrofitBuilder
 import com.example.prakashjobapp.models.DisplayUser
 import com.example.prakashjobapp.models.jobApply
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 import org.json.JSONException
 import retrofit2.Call
 import retrofit2.Callback
@@ -36,23 +41,26 @@ class JobApply : AppCompatActivity() {
     lateinit var Joby_Apply_Button :Button
     lateinit var uploadhere_button : Button
     lateinit var job_apply_layout :LinearLayout
+    lateinit var chipGroup :ChipGroup
+    private lateinit var sessionManager: SessionManager
 
     companion object{
-      lateinit  var Firstname :String
+        var vacancyId : Int = 0
+        lateinit  var Firstname :String
       lateinit  var lastname :String
       lateinit  var email :String
       lateinit var contactNo :String
-    lateinit  var currentCTC :String
+      lateinit  var currentCTC :String
      lateinit   var expectedctc : String
      lateinit var noticeperiod : String
      lateinit   var resumeUpload : String
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_job_apply)
 
+        sessionManager = SessionManager(this)
         Joby_Apply_Button = findViewById(R.id.Joby_Apply_Button)
         FirstName_editText = findViewById(R.id.FirstName_editText)
         Last_Name_2_editText = findViewById(R.id.Last_Name_2_editText)
@@ -66,10 +74,12 @@ class JobApply : AppCompatActivity() {
         back_Arrow_2 = findViewById(R.id.back_Arrow_2)
         editbutton_2 = findViewById(R.id.editbutton_2)
         uploadhere_button = findViewById(R.id.uploadhere_button)
-
+        chipGroup = findViewById(R.id.chipGroup)
+        addChipCode()
         back_Arrow_2.setOnClickListener {
-            val intent = Intent(this, JobDescription::class.java)
-            startActivity(intent)
+//            val intent = Intent(this, JobDescription::class.java)
+//            startActivity(intent)
+            onBackPressed()
         }
 
         uploadhere_button.setOnClickListener {
@@ -85,12 +95,14 @@ class JobApply : AppCompatActivity() {
         }
         Joby_Apply_Button.setOnClickListener {
 
-            val intent = Intent(this, DashboardActivity::class.java)
-            startActivity(intent)
-            jobApply()
+//            val intent = Intent(this, DashboardActivity::class.java)
+//            startActivity(intent)
+            validateJobapply()
             insertUser()
 
         }
+        val bundle : Bundle = intent.extras!!
+        vacancyId = bundle.getInt(KeyClass.KEY_VACANCY_ID)
 
         job_apply_layout.alpha = 0.5f
 
@@ -111,12 +123,22 @@ class JobApply : AppCompatActivity() {
         }
         DisplayUserDetail()
     }
+    fun addChipCode(){
 
-    fun jobApply() {
+        val genres = arrayOf(".net","c++", "C#", "Java","phthon","Android","Flutter","Kotlin","Communication")
+        for (genre in genres) {
+            val chip = Chip(chipGroup.context)
+            chip.text = genre
+            chip.isCheckable = true
+            chip.isEnabled = false
+            chipGroup.addView(chip)
+            chipGroup.checkedChipId
+        }
+    }
+    fun validateJobapply() {
 
         val ContactNo = (Regex("^(?:(?:\\+|0{0,2})91(\\s*[\\-]\\s*)?|[0]?)?[789]\\d{9}"))
-        val emailAddress =
-            Patterns.EMAIL_ADDRESS.matcher(YourEmail_text.text.toString()).matches()
+        val emailAddress = Patterns.EMAIL_ADDRESS.matcher(YourEmail_text.text.toString()).matches()
 
         if (FirstName_editText.getText().toString().isEmpty()) {
             Toast.makeText(
@@ -227,7 +249,10 @@ class JobApply : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data);
     }
     fun DisplayUserDetail(){
-        RetrofitBuilder.JsonServices.jsonInstance.displayProfile(128).enqueue(object : Callback<DisplayUser?> {
+        val id: String? = sessionManager.getString(SessionManager.KEY_ID)
+        val id1 : Int = id!!.toInt()
+
+        RetrofitBuilder.JsonServices.jsonInstance.displayProfile(id1).enqueue(object : Callback<DisplayUser?> {
             override fun onResponse(call: Call<DisplayUser?>, response: Response<DisplayUser?>) {
                 try {
                     val userDetali = response.body()
@@ -239,6 +264,9 @@ class JobApply : AppCompatActivity() {
                           currentCTC_Edittext.setText(userDetali.Data.Current_CTC.toString())
                           ExpectedCTC_Edittext.setText(userDetali.Data.Expected_CTC.toString())
                           noticeperiod_text.setText(userDetali.Data.Noticeperiod)
+                        for (chip in chipGroup.children) {
+                            chip.isEnabled = true
+                        }
                          // timeslot_text.setText(userDetali.Data.)
                     }
                 } catch (e : JSONException){
@@ -251,13 +279,17 @@ class JobApply : AppCompatActivity() {
             }
         })
     }
+
    //InsertApi
     fun insertUser(){
+       val id: String? = sessionManager.getString(SessionManager.KEY_ID)
+       val id1 : Int = id!!.toInt()
         RetrofitBuilder.JsonServices.jsonInstance.jobApply(resume = resumeUpload,RequestParameters().jobApply(Firstname = Firstname, Lastname = lastname
-            , contactNo = contactNo, currenctCTC = currentCTC, expectedCTC = expectedctc, noticePeriod = noticeperiod, Email = email, user_id = 128 )).enqueue(object : Callback<jobApply?> {
+            , contactNo = contactNo, currenctCTC = currentCTC, expectedCTC = expectedctc, noticePeriod = noticeperiod, Email = email, user_id = id1 )).enqueue(object : Callback<jobApply?> {
             override fun onResponse(call: Call<jobApply?>, response: Response<jobApply?>) {
-                try {
-                    if (response.body()?.Status!!.equals("200")){
+                try{
+                     val insertUser = response.body()
+                     if(insertUser != null && response.code() == 200){
                         startActivity(Intent(this@JobApply,DashboardActivity::class.java))
                         finish()
                     }else if (response.body()?.Status!!.equals(201)){
@@ -266,8 +298,6 @@ class JobApply : AppCompatActivity() {
                     {
                         Toast.makeText(this@JobApply, "try again", Toast.LENGTH_SHORT).show()
                     }
-
-
 
                 }catch (e :JSONException){
                     e.printStackTrace()
@@ -280,5 +310,4 @@ class JobApply : AppCompatActivity() {
             }
         })
     }
-
 }

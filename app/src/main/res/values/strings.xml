@@ -1,0 +1,105 @@
+<resources>
+    <string name="app_name">Prakash Group</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="FirstName">First Name</string>
+    <string name="lastName">Last Name</string>
+    <string name="Email">Email</string>
+    <string name="Phone">Phone</string>
+    <string name="Email_or_phone">Email or Phone</string>
+    <string name="Password">Password</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="log_in">Log in</string>
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="fill_your_details_or_continue">Fill your details or continue</string>
+    <string name="with_social_media">with social media</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="login">LOGIN</string>
+    <string name="Welcome">Welcome</string>
+    <string name="or_continue_with">-----Or continue with----</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="signup_now">SignUp Now</string>
+    <string name="popular_jobs">Popular Jobs</string>
+    <string name="group_company_list">Group Company List</string>
+    <string name="find_a_perfect">Find a perfect</string>
+    <string name="job_match">Job Match</string>
+    <string name="find_your_dream_job_with_us_at">Find your dream job with us at</string>
+    <string name="prakash_group_of_companies">Prakash Group of Companies</string>
+    <string name="let_s_get_started"><![CDATA[Let\'s get started ->]]></string>
+    <string name="prakash_software_solution_pvt_ltd">Prakash Software Solution Pvt Ltd</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="company_name">Company Name</string>
+    <string name="_20_jobs_oppurnity">20 Jobs Oppurnity</string>
+    <string name="job_vacancy_1">/job_vacancy 1</string>
+    <string name="job_title">Job Title</string>
+    <string name="no_of_position">No of Position</string>
+    <string name="full_time_part_time">Full Time Part Time</string>
+    <string name="job_description">Job Description</string>
+    <string name="required_years_expirence">Required Years Expirence</string>
+    <string name="skill_required">Skill Required</string>
+    <string name="job_type">Job Type</string>
+    <string name="API_call">API call</string>
+    <string name="Applied_Job_1">Applied Job</string>
+    <string name="register_account">Register Account</string>
+    <string name="Invalid_Password">Invalid Password</string>
+    <string name="Email_phone_invalid"> Enter valid email or phone number</string>
+    <string name="First_Name_should_not_be_emptied">First Name should not be emptied</string>
+    <string name="Last_Name_should_not_be_emptied">Last Name should not be emptied</string>
+    <string name="password_valid">Password should contain: \n• at least 1 digit \n• at least 1 lower case letter \n• at least 1 upper case latter \n• at least 1 special character [@#$%^+=]
+        \n• at least 8 characters</string>
+    //Search Bar
+    <string name="minimum_3_characters_are_required_to_search">Minimum 3 characters are required to search</string>
+    //Education Info
+    <string name="Qualification_should_not_be_emptied">Qualification should not be emptied</string>
+    <string name="University_should_not_be_emptied">University should not be emptied</string>
+    <string name="Passing_year_should_not_be_emptied">Passing Year should not be emptied</string>
+    <string name="Percentage_should_not_be_emptied">Percentage should not be emptied</string>
+    //Company Info
+    <string name="Company_Name_should_not_be_emptied">Company name should not be emptied</string>
+    <string name="Current_Designation_should_not_be_emptied">Current Designation should not be emptied</string>
+    <string name="Job_Type_should_not_be_emptied">Job Type should not be emptied</string>
+    <string name="Employment_Type_should_not_be_emptied">Employment Type should not be emptied</string>
+    <string name="Total_Expirence_should_not_be_emptied">Total Expirence should not be emptied</string>
+    <string name="Department_should_not_be_emptied">Department should not be emptied</string>
+    <string name="Notice_Period_should_not_be_emptied">Notice Period should not be emptied</string>
+    <string name="Current_CTC_should_not_be_emptied">Current CTC should not be emptied</string>
+    <string name="Expected_CTC_should_not_be_emptied">Expected CTC should not be emptied</string>
+
+    //Personal Info
+    <string name="Please_Enter_Valid_Date">Please Enter Valid Date</string>
+    <string name="Address_Should_not_be_emptied">Address should not be emptied</string>
+    <string name="City_should_not_be_emptied">City should not be emptied</string>
+    <string name="State_should_not_be_emptied">State should not be emptied   </string>
+    <string name="Country_should_not_be_emptied">Country should not be emptied   </string>
+    <string name="Language_should_not_be_emptied">State should not be emptied   </string>
+    <string name="Phone_number_should_contain_only_nimber">Phone number should contain only number</string>
+    <string name="Phone_number_should_not_be_emptied">Phone number should not be emptied</string>
+    <string name="Please_enter_a_valid_email">Please enter a valid email</string>
+    <string name="Email_should_not_be_emptied">Email should not be emptied</string>
+
+    //Job Apply
+    <string name="Please_enter_valid_email">Your email</string>
+    <string name="there_are_not_characters_entered_with_email_field"> there are not characters entered with Email field
+- Email should not be emptied</string>
+    <string name="Contact_number_should_contain_only_numbers">contact number should contain only numbers</string>
+    <string name="Contact_number_should_should_not_be_emptied">contact number should not be emptied  </string>
+
+    <string name="Time_slot_should_not_be_emptied">time slot should not be emptied  </string>
+    <string name="jobtitle">Jobtitle</string>
+    <string name="jobtile">JobTile</string>
+    <string name="company_info">Company Info</string>
+    <string name="education_info">Education Info</string>
+    <string name="total_vacancy">Total Vacancy -</string>
+    <string name="firstname">firstname -</string>
+    <string name="lastname">lastname -</string>
+    <string name="posted_date">posted Date</string>D
+    <string name="welcome_messages">Hello, %1$firstname!  %2$lastname! You have %2$d new messages.</string>
+    <string name="home">Home</string>
+    <string name="applied">Applied</string>
+    <string name="update">Update</string>
+    <string name="submit">Submit</string>
+    <string name="previous">Previous</string>
+    <string name="alert_message">Are you sure you want to discad changes</string>
+    <string name="in_months">in Months</string>
+    <string name="in_year">In Year</string>
+</resources>

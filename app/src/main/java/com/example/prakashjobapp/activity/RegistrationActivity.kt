@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Patterns
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.prakashjobapp.R
@@ -19,13 +20,15 @@ import retrofit2.Response
 import java.util.*
 
 class RegistrationActivity : AppCompatActivity() {
-    lateinit var signup: Button
-    lateinit var Login: TextView
+    lateinit var signup: FrameLayout
+    lateinit var Login_text: TextView
     lateinit var email_phone_layout: TextInputEditText
     lateinit var password_Layout: TextInputEditText
     lateinit var firstname: TextInputEditText
     lateinit var lastname: TextInputEditText
     private lateinit var genderRadioGroup: RadioGroup
+    lateinit var progressBar1 :ProgressBar
+     lateinit var sign_up_textview :TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,18 +39,20 @@ class RegistrationActivity : AppCompatActivity() {
         lastname = findViewById(R.id.lastname) as TextInputEditText
         email_phone_layout = findViewById(R.id.email_phone_layout) as TextInputEditText
         password_Layout = findViewById(R.id.password_Layout) as TextInputEditText
-        Login = findViewById(R.id.Login)
+        Login_text = findViewById(R.id.Login_text)
+        progressBar1= findViewById(R.id.progressBar)
+        sign_up_textview = findViewById(R.id.sign_up_textview)
         signup = findViewById(R.id.signup)
         signup.setOnClickListener {
-            //val intent = Intent(this, DashboardActivity::class.java)
-            //startActivity(intent)
+
+            progressBar1.visibility = View.VISIBLE
+            sign_up_textview.visibility = View.GONE
             ValidationRules()
         }
-        Login.setOnClickListener {
-            finish()
-
+        Login_text.setOnClickListener {
+            val  intent = Intent(this,LoginActivity ::class.java)
+            startActivity(intent)
         }
-
     }
 
     var emailAddress: Boolean = false
