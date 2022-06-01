@@ -3,6 +3,7 @@ import android.text.TextUtils
 import android.util.Log
 import com.example.prakashjobapp.models.CompanyInfoData
 import com.example.prakashjobapp.models.EducationInfoData
+import com.example.prakashjobapp.models.JobApplyData
 import com.example.prakashjobapp.models.PersonalInfoData
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -314,43 +315,41 @@ class RequestParameters {
         return body
     }
 
+   fun applyJob(user_id: Int?, jobApply : JobApplyData)  : RequestBody?    {
+        var body: RequestBody? = null
+        try {
+          val builder = MultipartBody.Builder().setType(MultipartBody.FORM)
+        builder.addFormDataPart("user_id", user_id.toString())
+        builder.addFormDataPart("firstname",jobApply.firstname !!)
+        builder.addFormDataPart("lastName",jobApply.lastname!!)
+        builder.addFormDataPart("email_id",jobApply.email!!)
+        builder.addFormDataPart("contactNo",jobApply.contactno!!)
+        builder.addFormDataPart("currentCTC",jobApply.currentCTC!!)
+        builder.addFormDataPart("expectedCTC",jobApply.expectedCTC!!)
 
-
-//    fun profileStatus(user_id: Int?, jobApply :JobApplyData)  : RequestBody?    {
-//        var body: RequestBody? = null
-//        try {
-//            val builder = MultipartBody.Builder().setType(MultipartBody.FORM)
-//            builder.addFormDataPart("user_id", user_id.toString())
-//            builder.addFormDataPart("firstname",jobApply.firstname !!)
-//            builder.addFormDataPart("lastName",jobApply.lastname!!)
-//            builder.addFormDataPart("email_id",jobApply.email!!)
-//            builder.addFormDataPart("contactNo",jobApply.contactno!!)
-//            builder.addFormDataPart("currentCTC",jobApply.currentCTC!!)
-//            builder.addFormDataPart("expectedCTC",jobApply.expectedCTC!!)
-//
-//            if (TextUtils.isEmpty(jobApply.resumeUpload)){
-//                val docFile = File(jobApply.resumeUpload!!)
-//                if (docFile.exists())
-//                {
-//                    builder.addFormDataPart("resume",docFile.name, RequestBody.create(MultipartBody.FORM,docFile))
-//                }
-//            }
-//            body = builder.build()
-//            Log.d("TAG", "resume uploaded : $body")
-//        }catch (e : Exception){
-//            e.printStackTrace()
-//        }
-//        return body
-//    }
-    fun jobApply(  Firstname: String?,
-                   Lastname: String?,
-                   Email: String?,
-                   contactNo: String?,
-                   currenctCTC:String?,
-                   expectedCTC :String?,
-                   noticePeriod :String?,
-//                   resume :String?,
-                    user_id: Int??,
+           if (TextUtils.isEmpty(jobApply.resumeUpload)){
+              val docFile = File(jobApply.resumeUpload!!)
+                if (docFile.exists())
+               {
+                    builder.addFormDataPart("resume",docFile.name, RequestBody.create(MultipartBody.FORM,docFile))
+                }
+            }
+            body = builder.build()
+            Log.d("TAG", "resume uploaded : $body")
+        }catch (e : Exception){
+            e.printStackTrace()
+        }
+        return body
+   }
+    fun jobApply(Firstname: String?,
+                 Lastname: String?,
+                 Email: String?,
+                 contactNo: String,
+                 currenctCTC:String?,
+                 expectedCTC:String?,
+                 noticePeriod:String?,
+                 resume:String?,
+                 user_id: Int??,
                    ) :RequestBody{
         val jsonObject = JSONObject()
 

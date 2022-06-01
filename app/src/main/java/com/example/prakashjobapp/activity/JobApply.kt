@@ -17,7 +17,7 @@ import com.example.prakashjobapp.api.KeyClass
 import com.example.prakashjobapp.api.RequestParameters
 import com.example.prakashjobapp.api.RetrofitBuilder
 import com.example.prakashjobapp.models.DisplayUser
-import com.example.prakashjobapp.models.jobApply
+import com.example.prakashjobapp.models.JobApplyData
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import org.json.JSONException
@@ -26,10 +26,9 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
 
-
 class JobApply : AppCompatActivity() {
     lateinit var back_Arrow_2:ImageView
-    lateinit var editbutton_2 :ImageView
+//    lateinit var editbutton_2 :ImageView
     lateinit var FirstName_editText:EditText
     lateinit var Last_Name_2_editText:EditText
     lateinit var YourEmail_text :EditText
@@ -43,23 +42,32 @@ class JobApply : AppCompatActivity() {
     lateinit var job_apply_layout :LinearLayout
     lateinit var chipGroup :ChipGroup
     private lateinit var sessionManager: SessionManager
+    private lateinit var objJobApply : JobApplyData
 
     companion object{
         var vacancyId : Int = 0
         lateinit  var Firstname :String
-      lateinit  var lastname :String
-      lateinit  var email :String
-      lateinit var contactNo :String
-      lateinit  var currentCTC :String
-     lateinit   var expectedctc : String
-     lateinit var noticeperiod : String
-     lateinit   var resumeUpload : String
+        lateinit  var lastname :String
+        lateinit  var email :String
+        lateinit var contactNo :String
+        lateinit  var currentCTC :String
+        lateinit   var expectedctc : String
+        lateinit var noticeperiod : String
+        lateinit   var resumeUpload : String
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_job_apply)
 
+        Firstname = String()
+        lastname = String()
+        email = String()
+        contactNo = String()
+        currentCTC = String()
+        expectedctc = String()
+        noticeperiod = String()
+        resumeUpload = String()
         sessionManager = SessionManager(this)
         Joby_Apply_Button = findViewById(R.id.Joby_Apply_Button)
         FirstName_editText = findViewById(R.id.FirstName_editText)
@@ -72,7 +80,7 @@ class JobApply : AppCompatActivity() {
         timeslot_text = findViewById(R.id.timeslot_text)
         job_apply_layout = findViewById(R.id.job_apply_layout)
         back_Arrow_2 = findViewById(R.id.back_Arrow_2)
-        editbutton_2 = findViewById(R.id.editbutton_2)
+//        editbutton_2 = findViewById(R.id.editbutton_2)
         uploadhere_button = findViewById(R.id.uploadhere_button)
         chipGroup = findViewById(R.id.chipGroup)
         addChipCode()
@@ -97,30 +105,39 @@ class JobApply : AppCompatActivity() {
 
 //            val intent = Intent(this, DashboardActivity::class.java)
 //            startActivity(intent)
+            objJobApply = JobApplyData(
+                firstname = Firstname,
+                lastname = lastname,
+                email = email,
+                currentCTC = currentCTC,
+                expectedCTC = expectedctc,
+                noticePeriod = noticeperiod,
+                contactno = contactNo,
+                resumeUpload = resumeUpload
+            )
             validateJobapply()
-            insertUser()
-
+//            insertUser()
         }
         val bundle : Bundle = intent.extras!!
         vacancyId = bundle.getInt(KeyClass.KEY_VACANCY_ID)
 
-        job_apply_layout.alpha = 0.5f
+//        job_apply_layout.alpha = 0.5f
 
-        editbutton_2.setOnClickListener {
-
-            job_apply_layout.alpha = 1.0f
-            job_apply_layout.isFocusable = true
-            FirstName_editText.isEnabled = true
-            Last_Name_2_editText.isEnabled = true
-            YourEmail_text.isEnabled = true
-            contact_no_text.isEnabled = true
-            currentCTC_Edittext.isEnabled = true
-            ExpectedCTC_Edittext.isEnabled = true
-            noticeperiod_text.isEnabled = true
-            timeslot_text.isEnabled = true
-            Joby_Apply_Button.isEnabled = true
-            uploadhere_button.isEnabled = true
-        }
+//        editbutton_2.setOnClickListener {
+//
+//            job_apply_layout.alpha = 1.0f
+//            job_apply_layout.isFocusable = true
+//            FirstName_editText.isEnabled = true
+//            Last_Name_2_editText.isEnabled = true
+//            YourEmail_text.isEnabled = true
+//            contact_no_text.isEnabled = true
+//            currentCTC_Edittext.isEnabled = true
+//            ExpectedCTC_Edittext.isEnabled = true
+//            noticeperiod_text.isEnabled = true
+//            timeslot_text.isEnabled = true
+//            Joby_Apply_Button.isEnabled = true
+//            uploadhere_button.isEnabled = true
+//        }
         DisplayUserDetail()
     }
     fun addChipCode(){
@@ -141,75 +158,78 @@ class JobApply : AppCompatActivity() {
         val emailAddress = Patterns.EMAIL_ADDRESS.matcher(YourEmail_text.text.toString()).matches()
 
         if (FirstName_editText.getText().toString().isEmpty()) {
-            Toast.makeText(
-                getApplicationContext(),
-                resources.getString(R.string.First_Name_should_not_be_emptied),
-                Toast.LENGTH_SHORT
-            ).show()
+                Toast.makeText(
+                    getApplicationContext(),
+                    resources.getString(R.string.First_Name_should_not_be_emptied),
+                    Toast.LENGTH_SHORT
+                ).show()
         } else if (Last_Name_2_editText.getText().toString().isEmpty()) {
-            Toast.makeText(
-                getApplicationContext(),
-                resources.getString(R.string.Last_Name_should_not_be_emptied),
-                Toast.LENGTH_SHORT
-            ).show()
-        } else if (emailAddress) {
-            Toast.makeText(
-                getApplicationContext(),
-                resources.getString(R.string.Please_enter_a_valid_email),
-                Toast.LENGTH_SHORT
-            ).show()
-        } else {
+                Toast.makeText(
+                    getApplicationContext(),
+                    resources.getString(R.string.Last_Name_should_not_be_emptied),
+                    Toast.LENGTH_SHORT
+                ).show()
+        }
+//       else if (!emailAddress) {
+//               Toast.makeText(
+//                  getApplicationContext(),
+//                   resources.getString(R.string.Please_enter_a_valid_email),
+//                  Toast.LENGTH_SHORT
+//               ).show()
+//       }
+        else  if (YourEmail_text.getText().toString().isEmpty()) {
             Toast.makeText(
                 getApplicationContext(),
                 resources.getString(R.string.there_are_not_characters_entered_with_email_field),
                 Toast.LENGTH_SHORT
             ).show()
         }
-         if (ContactNo.containsMatchIn(contact_no_text.text.toString())) {
-             Toast.makeText(
-                 getApplicationContext(),
-                 resources.getString(R.string.Contact_number_should_contain_only_numbers),
-                 Toast.LENGTH_SHORT
-             ).show()
-         }
-             else
-             {
-                 Toast.makeText(
-                     getApplicationContext(),
-                     resources.getString(R.string.Contact_number_should_should_not_be_emptied),
-                     Toast.LENGTH_SHORT
-                 ).show()
+//        } else  if (!ContactNo.containsMatchIn(contact_no_text.text.toString())) {
+//                 Toast.makeText(
+//                    getApplicationContext(),
+//                   resources.getString(R.string.Contact_number_should_contain_only_numbers),
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//         }
+        else if(contact_no_text.getText().toString().isEmpty()) {
+                     Toast.makeText(
+                         getApplicationContext(),
+                         resources.getString(R.string.Contact_number_should_should_not_be_emptied),
+                         Toast.LENGTH_SHORT
+                     ).show()
              }
-
-         if (currentCTC_Edittext.getText().toString().isEmpty()){
-            Toast.makeText(
-                getApplicationContext(),
-                resources.getString(R.string.Current_CTC_should_not_be_emptied),
-                Toast.LENGTH_SHORT
-            ).show()
+       else  if (currentCTC_Edittext.getText().toString().isEmpty()){
+                Toast.makeText(
+                    getApplicationContext(),
+                    resources.getString(R.string.Current_CTC_should_not_be_emptied),
+                    Toast.LENGTH_SHORT
+                ).show()
         }
-
         else if (ExpectedCTC_Edittext.getText().toString().isEmpty()){
-            Toast.makeText(
-                getApplicationContext(),
-                resources.getString(R.string.Expected_CTC_should_not_be_emptied),
-                Toast.LENGTH_SHORT
-            ).show()
+                Toast.makeText(
+                    getApplicationContext(),
+                    resources.getString(R.string.Expected_CTC_should_not_be_emptied),
+                    Toast.LENGTH_SHORT
+                ).show()
         }
         else if (noticeperiod_text.getText().toString().isEmpty()){
-            Toast.makeText(
-                getApplicationContext(),
-                resources.getString(R.string.Notice_Period_should_not_be_emptied),
-                Toast.LENGTH_SHORT
-            ).show()
+                Toast.makeText(
+                    getApplicationContext(),
+                    resources.getString(R.string.Notice_Period_should_not_be_emptied),
+                    Toast.LENGTH_SHORT
+                ).show()
         }
         else if (timeslot_text.getText().toString().isEmpty()){
-            Toast.makeText(
-                getApplicationContext(),
-                resources.getString(R.string.Time_slot_should_not_be_emptied),
-                Toast.LENGTH_SHORT
-            ).show()
+                Toast.makeText(
+                    getApplicationContext(),
+                    resources.getString(R.string.Time_slot_should_not_be_emptied),
+                    Toast.LENGTH_SHORT
+                ).show()
         }
+        else {
+            insertUser()
+        }
+
 }
 
     @SuppressLint("Range")
@@ -249,6 +269,7 @@ class JobApply : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data);
     }
     fun DisplayUserDetail(){
+
         val id: String? = sessionManager.getString(SessionManager.KEY_ID)
         val id1 : Int = id!!.toInt()
 
@@ -264,6 +285,7 @@ class JobApply : AppCompatActivity() {
                           currentCTC_Edittext.setText(userDetali.Data.Current_CTC.toString())
                           ExpectedCTC_Edittext.setText(userDetali.Data.Expected_CTC.toString())
                           noticeperiod_text.setText(userDetali.Data.Noticeperiod)
+                            uploadhere_button.setText(userDetali.Data.ResumeUpload)
                         for (chip in chipGroup.children) {
                             chip.isEnabled = true
                         }
@@ -282,19 +304,28 @@ class JobApply : AppCompatActivity() {
 
    //InsertApi
     fun insertUser(){
+       var jobApplyData :JobApplyData = JobApplyData("","","","","","","","")
+       jobApplyData = objJobApply
        val id: String? = sessionManager.getString(SessionManager.KEY_ID)
        val id1 : Int = id!!.toInt()
-        RetrofitBuilder.JsonServices.jsonInstance.jobApply(resume = resumeUpload,RequestParameters().jobApply(Firstname = Firstname, Lastname = lastname
-            , contactNo = contactNo, currenctCTC = currentCTC, expectedCTC = expectedctc, noticePeriod = noticeperiod, Email = email, user_id = id1 )).enqueue(object : Callback<jobApply?> {
-            override fun onResponse(call: Call<jobApply?>, response: Response<jobApply?>) {
+        RetrofitBuilder.JsonServices.jsonInstance.jobApply(RequestParameters().applyJob( user_id = id1 , jobApply =jobApplyData ))
+            .enqueue(object : Callback<DisplayUser?> {
+            override fun onResponse(call: Call<DisplayUser?>, response: Response<DisplayUser?>) {
                 try{
-                     val insertUser = response.body()
-                     if(insertUser != null && response.code() == 200){
+                     val user = response.body()
+                     if(user != null && response.code() == 200){
+                         Toast.makeText(this@JobApply,
+                             "Job Applied successfully",
+                             Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this@JobApply,DashboardActivity::class.java))
                         finish()
-                    }else if (response.body()?.Status!!.equals(201)){
-                        Toast.makeText(this@JobApply, response.body()?.Message, Toast.LENGTH_SHORT).show()
-                    }else
+                    }else if (response.body()?.Status?.equals("201") == true) {
+                         Toast.makeText(
+                             this@JobApply,
+                             response.body()?.Message,
+                             Toast.LENGTH_SHORT
+                         ).show()
+                     }else
                     {
                         Toast.makeText(this@JobApply, "try again", Toast.LENGTH_SHORT).show()
                     }
@@ -304,7 +335,7 @@ class JobApply : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<jobApply?>, t: Throwable) {
+            override fun onFailure(call: Call<DisplayUser?>, t: Throwable) {
 
                 Log.d("TAG", " Got Error " + t.localizedMessage)
             }

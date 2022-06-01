@@ -5,10 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/job_apply_layout"
-    android:focusable="false"
     android:orientation="vertical"
     tools:context=".activity.JobApply">
-
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -37,14 +35,15 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/editbutton_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_20dp"
-                android:layout_alignParentEnd="true"
-                android:src="@drawable/edit" />
+<!--            <ImageView-->
+<!--                android:id="@+id/editbutton_2"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:layout_marginTop="@dimen/dimen_20dp"-->
+<!--                android:src="@drawable/edit" />-->
         </RelativeLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -58,6 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:paddingTop="@dimen/dimen_20dp"
             android:layout_marginHorizontal="30dp"
             android:weightSum="2"
             android:orientation="horizontal">
@@ -69,20 +69,21 @@
                android:layout_marginEnd="@dimen/dimen_10dp"
                android:orientation="vertical">
                <TextView
-                   android:id="@+id/FirstName"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
                    android:layout_marginBottom="8dp"
+                   android:id="@+id/FirstName"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
                    android:text="First Name"
                    android:textColor="@color/black"
-                   android:textSize="16sp"
+                   android:textSize="@dimen/dimen_14dp"
                    android:textStyle="bold" />
                <EditText
                    android:id="@+id/FirstName_editText"
                    android:layout_width="match_parent"
                    android:layout_height="40dp"
-                   android:enabled="false"
                    android:paddingStart="@dimen/dimen_15dp"
+                   android:imeOptions="actionNext"
+                   android:nextFocusRight="@id/Last_Name_2_editText"
                    android:background="@drawable/custom_edittext"
                    android:textColor="@color/black"
                  />
@@ -101,15 +102,16 @@
                 android:layout_marginBottom="8dp"
                 android:text="Last Name"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="@dimen/dimen_14dp"
                 android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/Last_Name_2_editText"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:enabled="false"
                 android:paddingStart="@dimen/dimen_15dp"
+                android:imeOptions="actionNext"
+                android:nextFocusDown="@id/YourEmail_text"
                 android:layout_weight="0"
                 android:background="@drawable/custom_edittext"
                 android:textColor="@color/black"
@@ -118,10 +120,11 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginHorizontal="@dimen/dimen_30dp">
+            style="@style/linear_layout">
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:layout_marginHorizontal="@dimen/dimen_30dp">-->
         <TextView
             android:id="@+id/YourEmail"
             android:layout_width="match_parent"
@@ -129,43 +132,47 @@
             android:layout_marginTop="10dp"
             android:text="Your Email"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="@dimen/dimen_14dp"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/YourEmail_text"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:enabled="false"
+            android:nextFocusDown="@id/contact_no_text"
             android:paddingStart="@dimen/dimen_15dp"
             android:layout_marginTop="10dp"
+            android:imeOptions="actionNext"
             android:background="@drawable/custom_edittext"
             android:textColor="@color/black" />
         </LinearLayout>
 
           <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginHorizontal="@dimen/dimen_30dp"
-            >
+              style="@style/linear_layout">
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:layout_marginHorizontal="@dimen/dimen_30dp"-->
+<!--            >-->
         <TextView
             android:id="@+id/Contact_no"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="Contact No"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="@dimen/dimen_14dp"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/contact_no_text"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:enabled="false"
             android:paddingStart="@dimen/dimen_15dp"
+            android:imeOptions="actionNext"
+            android:nextFocusDown="@id/currentCTC_edittext"
             android:layout_marginTop="10dp"
+            android:inputType="phone"
             android:background="@drawable/custom_edittext"
             android:textColor="@color/black"  />
           </LinearLayout>
@@ -186,19 +193,21 @@
                 android:orientation="vertical">
                 <TextView
                     android:id="@+id/currentCTC"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:text="Current CTC"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/dimen_14dp"
                     android:textStyle="bold" />
                 <EditText
                     android:id="@+id/currentCTC_edittext"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:enabled="false"
                     android:paddingStart="@dimen/dimen_15dp"
+                    android:inputType="number"
+                    android:imeOptions="actionNext"
+                    android:nextFocusRight="@id/ExpectedCTC_edittext"
                     android:background="@drawable/custom_edittext"
                     android:textColor="@color/black"
                   />
@@ -217,16 +226,18 @@
                     android:layout_marginBottom="8dp"
                     android:text="Expected CTC"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/dimen_14dp"
                     android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/ExpectedCTC_edittext"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:enabled="false"
                     android:paddingStart="@dimen/dimen_15dp"
                     android:layout_weight="0"
+                    android:inputType="number"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@id/noticeperiod_text"
                     android:background="@drawable/custom_edittext"
                     android:textColor="@color/black"
                    />
@@ -248,19 +259,21 @@
                 android:orientation="vertical">
                 <TextView
                     android:id="@+id/notice_period"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:text="Notice Period"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/dimen_14dp"
                     android:textStyle="bold" />
                 <EditText
                     android:id="@+id/noticeperiod_text"
                     android:layout_width="match_parent"
                     android:paddingStart="@dimen/dimen_15dp"
-                    android:enabled="false"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
                     android:layout_height="40dp"
+                    android:nextFocusRight="@id/timeslot_text"
                     android:background="@drawable/custom_edittext"
                     android:textColor="@color/black"
                     />
@@ -273,20 +286,18 @@
                 android:layout_marginStart="@dimen/dimen_10dp"
                 android:orientation="vertical">
                 <TextView
+                    style="@style/text_view"
                     android:id="@+id/time_slot"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:text="Time Slot"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/dimen_14dp"
+                  />
 
                 <EditText
                     android:id="@+id/timeslot_text"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:enabled="false"
+                    android:imeOptions="actionNext"
                     android:paddingStart="@dimen/dimen_15dp"
                     android:layout_weight="0"
                     android:background="@drawable/custom_edittext"
@@ -309,7 +320,7 @@
                 android:layout_marginBottom="5dp"
                 android:text="Skills"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="@dimen/dimen_14dp"
                 android:textStyle="bold" />
         </LinearLayout>
         <LinearLayout
@@ -318,6 +329,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginHorizontal="@dimen/dimen_20dp"
             android:orientation="horizontal">
+
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/chipGroup"
                 android:layout_width="wrap_content"
@@ -361,16 +373,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginHorizontal="@dimen/dimen_30dp"
-            >
+            android:layout_marginHorizontal= "@dimen/dimen_30dp"  >
             <TextView
                 android:id="@+id/cv"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="CV"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="@dimen/dimen_14dp"
                 android:textStyle="bold" />
 
             <Button
@@ -378,12 +389,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_50dp"
                 android:text="Upload Here"
-                android:enabled="false"
+                android:imeOptions="actionDone"
                 android:backgroundTint="#869C9A9A"
                 android:textColor="@color/black"
                 />
         </LinearLayout>
-
 
         <Button
             android:id="@+id/Joby_Apply_Button"
@@ -397,7 +407,6 @@
             android:background="@drawable/update_button"
             android:layout_gravity="center"
             />
-
 
     </LinearLayout>
     </ScrollView>

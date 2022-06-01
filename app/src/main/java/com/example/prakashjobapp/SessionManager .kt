@@ -29,37 +29,37 @@ class SessionManager {
         const val KEY_GENDER = "gender"
         const val KEY_PHONE = "phone"
         const val USER_TOKEN = "user_token"
-        const val KEY_VACANCY_ID = "vacancy_id"
-        const val  KEY_COMPANY_INFO_ID = "companyInfoId"
-        const val KEY_EDUCATION_INFO_ID = "educationinfoid"
-        const val KEY_FLAG ="Isloggedin"
+        const val KEY_FLAG = "Isloggedin"
 
-}
+        //For try
+        const val PERSONAL_INFO = "PersonalInfoData"
+        var JSONPersonal = "PersonalInfoData"
+    }
+
     fun putString(Key_name: String, value: String) {
-
         edior.putString(Key_name, value)
         edior.putString(Key_name, value)
         edior.apply()
     }
+
     fun putBoolean(Key_name: String, isLoggedIn: Boolean) {
         edior.putBoolean(Key_name, isLoggedIn)
         edior.apply()
     }
-    fun isLoggedIn(): Boolean {
-        return pref.getBoolean(KEY_USER_LOGIN,false)
-         return pref.getBoolean(KEY_FLAG,false)
 
+    fun isLoggedIn(): Boolean {
+        return pref.getBoolean(KEY_USER_LOGIN, false)
+        return pref.getBoolean(KEY_FLAG, false)
     }
+
     fun fetchAuthToken(): String? {
         return pref.getString(USER_TOKEN, null)
     }
-    fun getString(key_name: String):String?{
-        return pref.getString(key_name,null)
+
+    fun getString(key_name: String): String? {
+        return pref.getString(key_name, null)
     }
 }
-
-
-
 
 //    companion object {
 //        const val KEY_USERID = "Key_userData"
@@ -78,7 +78,7 @@ class SessionManager {
 //    var PREF_FILE = "PrakashJobApp"
 //    var pref = context.getSharedPreferences(PREF_FILE, privateMode)
 //    var prefEditor = pref.edit()
-//
+
 //    fun putString(Key_name: String, value: String) {
 //        prefEditor.putString(Key_name, value)
 //        prefEditor.apply()
@@ -87,7 +87,6 @@ class SessionManager {
 //    fun putBoolean(Key_name: String, isLoggedIn: Boolean) {
 //        prefEditor.putBoolean(Key_name, isLoggedIn)
 //        prefEditor.apply()
-//
 //    }
 //
 //    fun isLoggedIn(): Boolean {

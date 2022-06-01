@@ -69,9 +69,11 @@
     <string name="Please_Enter_Valid_Date">Please Enter Valid Date</string>
     <string name="Address_Should_not_be_emptied">Address should not be emptied</string>
     <string name="City_should_not_be_emptied">City should not be emptied</string>
-    <string name="State_should_not_be_emptied">State should not be emptied   </string>
-    <string name="Country_should_not_be_emptied">Country should not be emptied   </string>
-    <string name="Language_should_not_be_emptied">State should not be emptied   </string>
+    <string name="State_should_not_be_emptied">State should not be emptied</string>
+    <string name="Country_should_not_be_emptied">Country should not be emptied</string>
+    <string name="gap_should_not_be_emptied">Gap should not be empty</string>
+    <string name="known_language_should_not_be_emptied">Known Language should not be empty</string>
+    <string name="Language_should_not_be_emptied">State should not be emptied</string>
     <string name="Phone_number_should_contain_only_nimber">Phone number should contain only number</string>
     <string name="Phone_number_should_not_be_emptied">Phone number should not be emptied</string>
     <string name="Please_enter_a_valid_email">Please enter a valid email</string>
@@ -87,7 +89,6 @@
     <string name="Time_slot_should_not_be_emptied">time slot should not be emptied  </string>
     <string name="jobtitle">Jobtitle</string>
     <string name="jobtile">JobTile</string>
-    <string name="company_info">Company Info</string>
     <string name="education_info">Education Info</string>
     <string name="total_vacancy">Total Vacancy -</string>
     <string name="firstname">firstname -</string>
@@ -102,4 +103,6 @@
     <string name="alert_message">Are you sure you want to discad changes</string>
     <string name="in_months">in Months</string>
     <string name="in_year">In Year</string>
+    <string name="data_not_found">Data Not Found</string>
+    <string name="company_info">Company Info</string>
 </resources>

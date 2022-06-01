@@ -5,6 +5,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -50,7 +51,7 @@ class EducationInfo : AppCompatActivity() {
     private var year = 0
     private var month = 0
     private var day = 0
-    private lateinit var calendar: Calendar
+//    private lateinit var calendar: Calendar
     protected lateinit var sessionManager: SessionManager
     private lateinit var objectPersonalInfoData: PersonalInfoData
     private lateinit var objectCompanyInfoData: CompanyInfoData
@@ -90,22 +91,9 @@ class EducationInfo : AppCompatActivity() {
         lateinit var skill1: String
         lateinit var skill2: String
         lateinit var skill3: String
+        lateinit var personaldata :String
+        lateinit var companydata :String
 
-        //     lateinit var firstNamePI: String
-//            lateinit  var lastNamePI :String
-//            lateinit   var passsword :String
-//            lateinit   var emailPI  :String
-//            lateinit    var mobileNo :String
-//            lateinit   var address  :String
-//            lateinit   var city :String
-//            lateinit    var state :String
-//            lateinit    var country :String
-//            lateinit   var dateOfBirth :String
-//            lateinit   var gapInedu :String
-//            lateinit   var gender :String
-//            lateinit   var knownLanguage:String
-//            lateinit   var ProfileImage :String
-//            lateinit   var uploadResume :String
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -113,6 +101,9 @@ class EducationInfo : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_education_info)
 
+        val bundle = intent.extras
+//        personaldata = bundle!!.getString(KeyClass.PERSONAL_INFO_DATA)!!
+//        companydata = bundle!!.getString(KeyClass.COMPANY_INFO_DATA)!!
         fName = String()
         lName = String()
         password = String()
@@ -164,63 +155,64 @@ class EducationInfo : AppCompatActivity() {
 //        picker_year = findViewById(R.id.picker_year)
 
         //NumberPicker
-        passing_year_text.setOnClickListener {
-
-//            calendar = Calendar.getInstance()
-//            year = calendar.get(Calendar.YEAR)
-//            month = calendar.get(Calendar.MONTH)
-//            day = calendar.get(Calendar.DAY_OF_MONTH)
-//            val year: Int = calendar.get(Calendar.YEAR)
-//            picker_year.setMinValue(1900)
-//            picker_year.setMaxValue(3500)
-//            picker_year.setValue(year)
-//            val dialog = DatePickerDialog(this, { _, year, month, day_of_month ->
-//                calendar[Calendar.YEAR] = year
-//                calendar[Calendar.MONTH] = month
-//                calendar[Calendar.DAY_OF_MONTH] = day_of_month
-//                val myFormat = "yyy"
-//                val sdf = SimpleDateFormat(myFormat, Locale.US)
-//                passing_year_text.setText(sdf.format(calendar.time))
-//            }, calendar[Calendar.YEAR], calendar[Calendar.MONTH], calendar[Calendar.DAY_OF_MONTH])
-//            dialog.datePicker.maxDate = calendar.timeInMillis
-//            dialog.show()
-
-            createDialogWithoutDateField().show()
-            passing_year_text.setShowSoftInputOnFocus(false)
-//            picker_year.visibility = View.VISIBLE
-        }
-        val bundle = intent.extras
-        if (bundle != null) {
-            fName = bundle.getString(KeyClass.KEY_FIRST_NAMEPI)!!
-            lName = bundle.getString(KeyClass.KEY_LAST_NAMEPI)!!
-            password = bundle.getString(KeyClass.KEY_PASSWORDPI)!!
-            email = bundle.getString(KeyClass.KEY_EMAIL)!!
-            mobileNo = bundle.getString(KeyClass.KEY_MOBILENO_PI)!!
-            address = bundle.getString(KeyClass.KEY_ADDRESS)!!
-            gender = bundle.getString(KeyClass.KEY_GENDER)!!
-            city = bundle.getString(KeyClass.KEY_CITY)!!
-            state = bundle.getString(KeyClass.KEY_STATE)!!
-            country = bundle.getString(KeyClass.KEY_COUNTRY)!!
-            dateOfBirth = bundle.getString(KeyClass.KEY_BIRTH_DATE)!!
-            gapInedu = bundle.getString(KeyClass.KEY_GAP_IN_EDU_PI)!!
-            knownLanguage = bundle.getString(KeyClass.KEY_KNOWN_LANGUAGES)!!
-            ProfileImage = bundle.getString(KeyClass.KEY_PROFILE_IMAGE)!!
-            uploadResume = bundle.getString(KeyClass.KEY_RESUME_UPLOAD)!!
-            companyNameCI = bundle.getString(KeyClass.KEY_COMPANY_NAMECI)!!
-            currentDesignination = bundle.getString(KeyClass.KEY_CURRENT_DESIGNINATION)!!
-            jobTypwCI = bundle.getString(KeyClass.KEY_JOBTYPE_CI)!!
-            employmentTypeCI = bundle.getString(KeyClass.KEY_EMPLOYMENTTYPE_CI)!!
-            totalExp = bundle.getString(KeyClass.KEY_TOTAL_EXPIRENCE_CI)!!
-            department = bundle.getString(KeyClass.KEY_DEPARTMENT)!!
-            noticePeriod = bundle.getString(KeyClass.KEY_NOTICE_PERIOD_CI)!!
-            GapinWorkExp = bundle.getString(KeyClass.KEY_WORK_EXPRIENCE)!!
-            currentCTC = bundle.getString(KeyClass.KEY_CURRENTCTC_CI)!!
-            expectedCTC = bundle.getString(KeyClass.KEY_EXPECTEDCTC_CI)!!
-            objectPersonalInfoData =
-                bundle.getParcelable<PersonalInfoData>(KeyClass.PERSONAL_INFO_DATA)!!
-            objectCompanyInfoData =
-                bundle.getParcelable<CompanyInfoData>(KeyClass.COMPANY_INFO_DATA)!!
-        }
+//        passing_year_text.setOnClickListener {
+//
+////            calendar = Calendar.getInstance()
+////            year = calendar.get(Calendar.YEAR)
+////            month = calendar.get(Calendar.MONTH)
+////            day = calendar.get(Calendar.DAY_OF_MONTH)
+////            val year: Int = calendar.get(Calendar.YEAR)
+////            picker_year.setMinValue(1900)
+////            picker_year.setMaxValue(3500)
+////            picker_year.setValue(year)
+////            val dialog = DatePickerDialog(this, { _, year, month, day_of_month ->
+////                calendar[Calendar.YEAR] = year
+////                calendar[Calendar.MONTH] = month
+////                calendar[Calendar.DAY_OF_MONTH] = day_of_month
+////                val myFormat = "yyy"
+////                val sdf = SimpleDateFormat(myFormat, Locale.US)
+////                passing_year_text.setText(sdf.format(calendar.time))
+////            }, calendar[Calendar.YEAR], calendar[Calendar.MONTH], calendar[Calendar.DAY_OF_MONTH])
+////            dialog.datePicker.maxDate = calendar.timeInMillis
+////            dialog.show()
+//
+////            createDialogWithoutDateField().show()
+//            passing_year_text.setShowSoftInputOnFocus(false)
+////            picker_year.visibility = View.VISIBLE
+//        }
+        //Data from Personal info and Company info
+//       val bundle = intent.extras
+//       if (bundle != null) {
+//            fName = bundle.getString(KeyClass.KEY_FIRST_NAMEPI)!!
+//           lName = bundle.getString(KeyClass.KEY_LAST_NAMEPI)!!
+//           password = bundle.getString(KeyClass.KEY_PASSWORDPI)!!
+//           email = bundle.getString(KeyClass.KEY_EMAIL)!!
+//           mobileNo = bundle.getString(KeyClass.KEY_MOBILENO_PI)!!
+//            address = bundle.getString(KeyClass.KEY_ADDRESS)!!
+//           gender = bundle.getString(KeyClass.KEY_GENDER)!!
+//           city = bundle.getString(KeyClass.KEY_CITY)!!
+//           state = bundle.getString(KeyClass.KEY_STATE)!!
+//            country = bundle.getString(KeyClass.KEY_COUNTRY)!!
+//           dateOfBirth = bundle.getString(KeyClass.KEY_BIRTH_DATE)!!
+//           gapInedu = bundle.getString(KeyClass.KEY_GAP_IN_EDU_PI)!!
+//            knownLanguage = bundle.getString(KeyClass.KEY_KNOWN_LANGUAGES)!!
+//           ProfileImage = bundle.getString(KeyClass.KEY_PROFILE_IMAGE)!!
+//          uploadResume = bundle.getString(KeyClass.KEY_RESUME_UPLOAD)!!
+//          companyNameCI = bundle.getString(KeyClass.KEY_COMPANY_NAMECI)!!
+//            currentDesignination = bundle.getString(KeyClass.KEY_CURRENT_DESIGNINATION)!!
+//           jobTypwCI = bundle.getString(KeyClass.KEY_JOBTYPE_CI)!!
+//            employmentTypeCI = bundle.getString(KeyClass.KEY_EMPLOYMENTTYPE_CI)!!
+//           totalExp = bundle.getString(KeyClass.KEY_TOTAL_EXPIRENCE_CI)!!
+//            department = bundle.getString(KeyClass.KEY_DEPARTMENT)!!
+//            noticePeriod = bundle.getString(KeyClass.KEY_NOTICE_PERIOD_CI)!!
+//            GapinWorkExp = bundle.getString(KeyClass.KEY_WORK_EXPRIENCE)!!
+//           currentCTC = bundle.getString(KeyClass.KEY_CURRENTCTC_CI)!!
+//            expectedCTC = bundle.getString(KeyClass.KEY_EXPECTEDCTC_CI)!!
+//           objectPersonalInfoData =
+//                bundle.getParcelable<PersonalInfoData>(KeyClass.PERSONAL_INFO_DATA)!!
+//           objectCompanyInfoData =
+//              bundle.getParcelable<CompanyInfoData>(KeyClass.COMPANY_INFO_DATA)!!
+//       }
 
         backarrow_edit.setOnClickListener {
             if (editbutton.isInvisible) {
@@ -234,57 +226,18 @@ class EducationInfo : AppCompatActivity() {
             val intent = Intent(this, CompanyInfo::class.java)
             startActivity(intent)
         }
-
+        //SubmitButton
         submit_button.setOnClickListener {
-            progress_bar.visibility = View.VISIBLE
-            submit_textview.visibility = View.GONE
+//            progress_bar.visibility = View.VISIBLE
+//            submit_textview.visibility = View.GONE
+            personaldata = bundle!!.getString(KeyClass.PERSONAL_INFO_DATA)!!
+            companydata = bundle!!.getString(KeyClass.COMPANY_INFO_DATA)!!
             objectEducationInfoData = EducationInfoData(Qualification = qualification,
                 boardUniversity = board_university,
                 passingYear = passingYear,
                 percentage = percentage)
-            val gson1 = Gson()
-            var objPersonalInfoData  = gson1.fromJson(KeyClass.PERSONAL_INFO_DATA, objectPersonalInfoData!!::class.java)
-            objPersonalInfoData = PersonalInfoData(profilePhoto = ProfileImage,
-                firstName = fName,
-                lastName = lName,
-                email = email,
-                password = password,
-                mobileNo = mobileNo,
-                dateOfBirth = dateOfBirth,
-                address = address,
-                city = city,
-                state = state,
-                country = country,
-                gapInEducation = gapInedu,
-                gender = gender,
-                knownlanguage = knownLanguage,
-                skills = skill1,
-                resume = uploadResume)
-            val gson = Gson()
-            var objCompanyInfoData =gson.fromJson(KeyClass.COMPANY_INFO_DATA,objectCompanyInfoData !!::class.java)
-            objCompanyInfoData = CompanyInfoData(companyName = companyNameCI,
-                currentDesignation = currentDesignination,
-                jobType = jobType,
-                employmentType = employmentType,
-                totalExp = totalExp,
-                department = department,
-                noticePeriod = noticePeriod,
-                gapInWorkExpirence = GapinWorkExp,
-                currentCTC = currentCTC,
-                expectedCTC = expectedCTC)
-            ValidEducation()
-            userInsert()
-        }
-        update_button.setOnClickListener {
-            progressBar.visibility = View.VISIBLE
-            update_textview.visibility = View.GONE
-            passingYear = passing_year_text.text.toString()
-            qualification = qualification_text.text.toString()
-            percentage = percent_text.text.toString()
-            board_university = board_university_text.text.toString()
-//            objectPersonalInfoData = PersonalInfoData(ProfileImage ,
-//                fName , lName, email, password, mobileNo, dateOfBirth, address, city, state, country, gapInedu, gender, knownLanguage, skill1,
-//                uploadResume)
+          val gson1 = Gson()
+          gson1.fromJson(KeyClass.PERSONAL_INFO_DATA, personaldata::class.java)
             objectPersonalInfoData = PersonalInfoData(profilePhoto = ProfileImage,
                 firstName = fName,
                 lastName = lName,
@@ -301,6 +254,8 @@ class EducationInfo : AppCompatActivity() {
                 knownlanguage = knownLanguage,
                 skills = skill1,
                 resume = uploadResume)
+           val gson = Gson()
+          gson.fromJson(KeyClass.COMPANY_INFO_DATA, companydata::class.java)
             objectCompanyInfoData = CompanyInfoData(companyName = companyNameCI,
                 currentDesignation = currentDesignination,
                 jobType = jobType,
@@ -311,11 +266,49 @@ class EducationInfo : AppCompatActivity() {
                 gapInWorkExpirence = GapinWorkExp,
                 currentCTC = currentCTC,
                 expectedCTC = expectedCTC)
-            ValidEducation()
-            updateProfile()
+            ValidEducation(true)
+        }
+
+        //UpdateButton
+        update_button.setOnClickListener {
+            progressBar.visibility = View.VISIBLE
+            update_textview.visibility = View.GONE
+            passingYear = passing_year_text.text.toString()
+            qualification = qualification_text.text.toString()
+            percentage = percent_text.text.toString()
+            board_university = board_university_text.text.toString()
+
+            objectPersonalInfoData = PersonalInfoData(
+                profilePhoto = ProfileImage,
+                firstName = fName,
+                lastName = lName,
+                email = email,
+                password = password,
+                mobileNo = mobileNo,
+                dateOfBirth = dateOfBirth,
+                address = address,
+                city = city,
+                state = state,
+                country = country,
+                gapInEducation = gapInedu,
+                gender = gender,
+                knownlanguage = knownLanguage,
+                skills = skill1,
+                resume = uploadResume)
+            objectCompanyInfoData = CompanyInfoData(
+                companyName = companyNameCI,
+                currentDesignation = currentDesignination,
+                jobType = jobType,
+                employmentType = employmentType,
+                totalExp = totalExp,
+                department = department,
+                noticePeriod = noticePeriod,
+                gapInWorkExpirence = GapinWorkExp,
+                currentCTC = currentCTC,
+                expectedCTC = expectedCTC)
+            ValidEducation(false)
         }
     }
-
 
     private fun enabledField() {
         EducationInfo_Layout.alpha = 0.5f
@@ -335,38 +328,65 @@ class EducationInfo : AppCompatActivity() {
         displayUserProfile()
     }
 
-    fun ValidEducation() {
-
-        if (qualification_text.getText().toString().isEmpty()) {
-            Toast.makeText(
-                getApplicationContext(),
+    fun ValidEducation(isInsert : Boolean) {
+        if (TextUtils.isEmpty(qualification_text.toString())) {
+            Toast.makeText(this,
                 resources.getString(R.string.Qualification_should_not_be_emptied),
-                Toast.LENGTH_SHORT
-            ).show()
-        } else if (board_university_text.getText().toString().isEmpty()) {
-            Toast.makeText(
-                getApplicationContext(),
-                resources.getString(R.string.University_should_not_be_emptied),
-                Toast.LENGTH_SHORT
-            ).show()
-        } else if (passing_year_text.getText().toString().isEmpty()) {
-            Toast.makeText(
-                getApplicationContext(),
-                resources.getString(R.string.Passing_year_should_not_be_emptied),
-                Toast.LENGTH_SHORT
-            ).show()
-        } else if (percent_text.getText().toString().isEmpty()) {
-            Toast.makeText(
-                getApplicationContext(),
-                resources.getString(R.string.Percentage_should_not_be_emptied),
-                Toast.LENGTH_SHORT
-            ).show()
+                Toast.LENGTH_SHORT).show()
         }
+        else if (TextUtils.isEmpty(board_university_text.toString())) {
+            Toast.makeText(this,
+                resources.getString(R.string.University_should_not_be_emptied),
+                Toast.LENGTH_SHORT).show()
+        } else if (TextUtils.isEmpty(passing_year_text.toString())) {
+            Toast.makeText(this,
+                resources.getString(R.string.Passing_year_should_not_be_emptied),
+                Toast.LENGTH_SHORT).show()
+        } else if (TextUtils.isEmpty(percent_text.toString())) {
+            Toast.makeText(this,
+                resources.getString(R.string.Percentage_should_not_be_emptied),
+                Toast.LENGTH_SHORT).show()
+        }
+        else {
+            if(isInsert){
+                userInsert()
+                progress_bar.visibility = View.VISIBLE
+                submit_textview.visibility = View.GONE
+            }else {
+                updateProfile()
+                progressBar.visibility = View.VISIBLE
+                update_textview.visibility = View.GONE
+            }
+        }
+    //       if (qualification_text.getText().toString().isEmpty()) {
+//            Toast.makeText(
+//                this,
+//                resources.getString(R.string.Qualification_should_not_be_emptied),
+//                Toast.LENGTH_SHORT
+//            ).show()
+//        } else if (board_university_text.getText().toString().isEmpty()) {
+//            Toast.makeText(
+//                this,
+//                resources.getString(R.string.University_should_not_be_emptied),
+//                Toast.LENGTH_SHORT
+//            ).show()
+//        } else if (passing_year_text.getText().toString().isEmpty()) {
+//            Toast.makeText(
+//                this,
+//                resources.getString(R.string.Passing_year_should_not_be_emptied),
+//                Toast.LENGTH_SHORT
+//            ).show()
+//        } else if (percent_text.getText().toString().isEmpty()) {
+//            Toast.makeText(
+//                this,
+//                resources.getString(R.string.Percentage_should_not_be_emptied),
+//                Toast.LENGTH_SHORT
+//            ).show()
+//        }
     }
 
     // UserInsert
     fun userInsert() {
-
         var personalInfoData: PersonalInfoData =
             PersonalInfoData("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")
         var companyInfoData: CompanyInfoData =
@@ -382,10 +402,10 @@ class EducationInfo : AppCompatActivity() {
             personalinfo = personalInfoData,
             companyInfo = companyInfoData,
             educationInfo = educationInfoData
-        )).enqueue(object : Callback<InserUserData?> {
+        )).enqueue(object : Callback<DisplayUser?> {
             override fun onResponse(
-                call: Call<InserUserData?>,
-                response: Response<InserUserData?>,
+                call: Call<DisplayUser?>,
+                response: Response<DisplayUser?>,
             ) {
                 try {
                     val insertUser = response.body()
@@ -414,7 +434,7 @@ class EducationInfo : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<InserUserData?>, t: Throwable) {
+            override fun onFailure(call: Call<DisplayUser?>, t: Throwable) {
 
                 Log.d("TAG", " Got Error " + t.localizedMessage)
             }
@@ -438,12 +458,11 @@ class EducationInfo : AppCompatActivity() {
                         board_university_text.setText(user1.Data.Board_University)
                         passing_year_text.setText(user1.Data.PassingYear.toString())
                         percent_text.setText(user1.Data.Percentage.toString())
-                        if (user1.Data.DateOfBirth != null) {
-                            editbutton.visibility = View.VISIBLE
-                            enabledField()
-                            update_button.visibility = View.VISIBLE
-
-                        } else {
+                        if (user1.Data != null && user1.Data.DateOfBirth.isNullOrEmpty()) {
+//                            editbutton.visibility = View.VISIBLE
+//                            enabledField()
+//                            update_button.visibility = View.VISIBLE
+                            //for check
                             EducationInfo_Layout.alpha = 1.0f
                             EducationInfo_Layout.isFocusable = true
                             qualification_text.isEnabled = true
@@ -453,6 +472,19 @@ class EducationInfo : AppCompatActivity() {
                             editbutton.visibility = View.INVISIBLE
                             submit_button.visibility = View.VISIBLE
                             previous_button_edu.visibility = View.VISIBLE
+                        } else {
+                            editbutton.visibility = View.VISIBLE
+                            enabledField()
+                            update_button.visibility = View.VISIBLE
+//                            EducationInfo_Layout.alpha = 1.0f
+//                            EducationInfo_Layout.isFocusable = true
+//                            qualification_text.isEnabled = true
+//                            board_university_text.isEnabled = true
+//                            passing_year_text.isEnabled = true
+//                            percent_text.isEnabled = true
+//                            editbutton.visibility = View.INVISIBLE
+//                            submit_button.visibility = View.VISIBLE
+//                            previous_button_edu.visibility = View.VISIBLE
                         }
                     }
 
@@ -463,9 +495,7 @@ class EducationInfo : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<DisplayUser?>, t: Throwable) {
-
                 Log.d("TAG", " Got Error " + t.localizedMessage)
-
             }
         })
     }
@@ -526,10 +556,6 @@ class EducationInfo : AppCompatActivity() {
                         if (userUpdate != null && response.code() == 200) {
                             userUpdate.Data.UserCompanyInfoId
                             userUpdate.Data.UserEducationId
-                            passing_year_text.setText(userUpdate.Data.PassingYear.toString())
-                            qualification_text.setText(userUpdate.Data.Qualification)
-                            percent_text.setText(userUpdate.Data.Percentage.toString())
-                            board_university_text.setText(userUpdate.Data.Board_University)
                             startActivity(Intent(this@EducationInfo, DashboardActivity::class.java))
                             Toast.makeText(
                                 getApplicationContext(),
@@ -576,8 +602,7 @@ class EducationInfo : AppCompatActivity() {
     private fun createDialogWithoutDateField(): DatePickerDialog {
         val dpd = DatePickerDialog(this ,null, 2014, 1, 24)
         dpd.datePicker.spinnersShown =  true
-
-//        com.example.prakashjobapp.YearPicker()
+        print("Spinner Mode")
 
         try {
             val datePickerDialogFields = dpd.javaClass.declaredFields
@@ -593,6 +618,7 @@ class EducationInfo : AppCompatActivity() {
                             datePickerField.isAccessible = true
                             val dayPicker = datePickerField[datePicker]
                             (dayPicker as View).visibility = View.GONE
+
                         }
                     }
                 }
@@ -600,34 +626,9 @@ class EducationInfo : AppCompatActivity() {
         } catch (ex: Exception) {
             ex.printStackTrace()
         }
+        catch (e :JSONException){
+            e.printStackTrace()
+        }
         return dpd
     }
 }
-
-// public class MonthYearPickerDialog : DialogFragment() {
-//    private var listener: DatePickerDialog.OnDateSetListener? = null
-//   fun setListener(listener: DatePickerDialog.OnDateSetListener?) {
-//        this.listener = listener
-//   }
-//
-//   @SuppressLint("ResourceAsColor")
-//    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-//        val builder = AlertDialog.Builder(requireContext())
-//        val inflater: LayoutInflater = getActivity()?.getLayoutInflater() ?: layoutInflater
-//       val cal = Calendar.getInstance()
-//       val dialog: View = inflater.inflate(R.layout.activity_education_info, null)
-//
-//       val yearPicker = dialog?.findViewById<View>(R.id.picker_year) as NumberPicker
-//
-//       val year = cal[Calendar.YEAR]
-//        yearPicker.minValue = 1900
-//      yearPicker.maxValue = 3500
-//        yearPicker.value = year
-//        builder.setView(dialog).setPositiveButton(Html.fromHtml("<font color='#FF4081'>Ok</font>")
-//        ) { dialog, id -> listener!!.onDateSet(null, yearPicker.value,1,0) }
-//
-//           .setNegativeButton(Html.fromHtml("<font color='#FF4081'>Cancel</font>")
-//            ) { dialog, id -> this@MonthYearPickerDialog.getDialog()?.cancel() }
-//        return builder.create()
-//   }
-//}}

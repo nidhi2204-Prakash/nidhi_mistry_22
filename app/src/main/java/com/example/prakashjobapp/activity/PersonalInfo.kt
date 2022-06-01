@@ -82,6 +82,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class PersonalInfo : AppCompatActivity() {
+
     lateinit var personal_info_backarrow: ImageView
     lateinit var Update_btn: FrameLayout
     lateinit var update_textview: TextView
@@ -125,14 +126,106 @@ class PersonalInfo : AppCompatActivity() {
     private val pickImage = 100
     private var imageUri: Uri? = null
     private var imageByte: String? = null
-    private lateinit var objpersonalInfoData: PersonalInfoData
+
 
     companion object {
         private const val CAMERA_PERMISSION_CODE = 100
         private const val STORAGE_PERMISSION_CODE = 101
-//        private val REQUEST_PERMISSION = 100
         private val REQUEST_IMAGE_CAPTURE = 1
         private val REQUEST_PICK_IMAGE = 2
+    }
+
+
+    fun updateProfileValidation(){
+
+        val patternPassword = Regex("(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@\$%^&*-]).{8,}")
+        val patternPhone = (Regex("^(?:(?:\\+|0{0,2})91(\\s*[\\-]\\s*)?|[0]?)?[789]\\d{9}"))
+//        val emailAddress =  Patterns.EMAIL_ADDRESS.matcher(email_id.text.toString()).matches()
+
+        if (FirstName_Text.getText().toString().isEmpty()) {
+            Toast.makeText(
+                this,
+                resources.getString(R.string.First_Name_should_not_be_emptied),
+                Toast.LENGTH_SHORT
+            ).show()
+        } else if (Last_Name_2_Text.getText().toString().isEmpty()) {
+            Toast.makeText(
+                this,
+                resources.getString(R.string.Last_Name_should_not_be_emptied),
+                Toast.LENGTH_SHORT
+            ).show()
+        } else if (email_id.getText().toString().isEmpty()) {
+            Toast.makeText(
+                this,
+                resources.getString(R.string.Email_should_not_be_emptied),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        else if (!patternPassword.matches(password_edit.text.toString())) {
+            Toast.makeText(
+                this,
+                resources.getString(R.string.password_valid),
+                Toast.LENGTH_SHORT
+            ).show()
+        } else if (mobile_no_text.getText().toString().isEmpty()) {
+            Toast.makeText(
+                this,
+                resources.getString(R.string.Phone_number_should_not_be_emptied),
+                Toast.LENGTH_SHORT
+            ).show()
+        } else if (Date_of_birth_edit.getText().toString().isEmpty()) {
+            Toast.makeText(
+                this,
+                resources.getString(R.string.Please_Enter_Valid_Date),
+                Toast.LENGTH_SHORT
+            ).show()
+        } else if (address_text.getText().toString().isEmpty()) {
+            Toast.makeText(
+                this,
+                resources.getString(R.string.Address_Should_not_be_emptied),
+                Toast.LENGTH_SHORT
+            ).show()
+        } else if (city_text.getText().toString().isEmpty()) {
+            Toast.makeText(
+                this,
+                resources.getString(R.string.City_should_not_be_emptied),
+                Toast.LENGTH_SHORT
+            ).show()
+        } else if (state_text.getText().toString().isEmpty()) {
+            Toast.makeText(
+                this,
+                resources.getString(R.string.State_should_not_be_emptied),
+                Toast.LENGTH_SHORT
+            ).show()
+        } else if (country_text.getText().toString().isEmpty()) {
+            Toast.makeText(
+                this,
+                resources.getString(R.string.Country_should_not_be_emptied),
+                Toast.LENGTH_SHORT
+            ).show()
+        }else if (gap_in_edu_text.getText().toString().isEmpty()) {
+            Toast.makeText(
+                this,
+                resources.getString(R.string.gap_should_not_be_emptied),
+                Toast.LENGTH_SHORT
+            ).show()
+        } else if (known_language_text.getText().toString().isEmpty()) {
+            Toast.makeText(
+                this,
+                resources.getString(R.string.known_language_should_not_be_emptied),
+                Toast.LENGTH_SHORT
+            ).show()
+        } else if (uploadResume_button.getText().toString().isEmpty()) {
+            Toast.makeText(
+                this,
+                resources.getString(R.string.Country_should_not_be_emptied),
+                Toast.LENGTH_SHORT
+            ).show()
+        } else{
+            progressBar1.visibility = View.VISIBLE
+            update_textview.visibility = View.GONE
+            updateProfile()
+        }
     }
 
     @SuppressLint("ResourceAsColor")
@@ -173,32 +266,6 @@ class PersonalInfo : AppCompatActivity() {
         progressBar1 = findViewById(R.id.progressBar1)
         addChipCode()
 
-//        personal_info_layout.alpha = 0.5f
-//        editbutton_edit.setOnClickListener {
-////            iv_camera.setColorFilter(getResources().getColor(R.color.orange))
-////            personal_info_layout.alpha = 1.0f
-//            personal_info_layout.isFocusable = true
-//            FirstName_Text.isEnabled = true
-//            Last_Name_2_Text.isEnabled = true
-////            email_id.isEnabled = true
-//            password_edit.isEnabled = true
-////            mobile_no_text.isEnabled = true
-//            address_text.isEnabled = true
-//            city_text.isEnabled = true
-//            state_text.isEnabled = true
-//            country_text.isEnabled = true
-//            gap_in_edu_text.isEnabled = true
-//            uploadResume_button.isEnabled = true
-//            known_language_text.isEnabled = true
-//            Update_btn.isEnabled = true
-//            Date_of_birth_edit.isEnabled = true
-//            Profile_Button.isEnabled = true
-//            chip_1.isEnabled = true
-//            chip_2.isEnabled = true
-//            chip_3.isEnabled = true
-//        }
-
-
         personal_info_backarrow.setOnClickListener {
             if (editbutton_edit.isInvisible) {
                 onBackPressed()
@@ -206,11 +273,8 @@ class PersonalInfo : AppCompatActivity() {
                 alertDialog()
             }
         }
-
+    //UpdateButton
         Update_btn.setOnClickListener {
-
-            progressBar1.visibility = View.VISIBLE
-            update_textview.visibility = View.GONE
 
             fName = FirstName_Text.text.toString()
             lName = Last_Name_2_Text.text.toString()
@@ -248,7 +312,10 @@ class PersonalInfo : AppCompatActivity() {
             board_university = ""
             passingYear = ""
             percentage = ""
-            updateProfile()
+            updateProfileValidation()
+            objPersonalInfoData = PersonalInfoData(firstName = fName, lastName = lName, email = email, password = password, mobileNo = mobileNo
+            , dateOfBirth = dateOfBirth, city = city, state = state, country = country, gapInEducation = gapInedu, resume = uploadResume, knownlanguage = knownLanguage
+            , address = address, gender = gender, profilePhoto = ProfileImage, skills = skill1)
             objCompanyInfoData = CompanyInfoData(companyName = companyNameCI,
                 currentDesignation = currentDesignination,
                 jobType = jobTypwCI,
@@ -260,12 +327,13 @@ class PersonalInfo : AppCompatActivity() {
                 currentCTC = currentCTC,
                 expectedCTC = expectedCTC)
             objEducationInfoData = EducationInfoData(
-                 Qualification = qualification,
+                Qualification = qualification,
                 boardUniversity = board_university,
                 passingYear = passingYear,
                 percentage = percentage)
-        }
 
+        }
+        //NextButton
         next_button.setOnClickListener {
 
             val fName: String = FirstName_Text.text.toString()
@@ -294,7 +362,7 @@ class PersonalInfo : AppCompatActivity() {
             } else {
                 gender = "F"
             }
-            val objPersonalInfo = PersonalInfoData(
+            val objPersonalInfoData = PersonalInfoData(
                 profilePhoto = profileimage,
                 firstName = fName,
                 lastName = lNAme,
@@ -312,8 +380,8 @@ class PersonalInfo : AppCompatActivity() {
                 skills = skill,
                 resume = uploadresume
             )
-            var gson = Gson()
-            var jsonString = gson.toJson(objPersonalInfo)
+            val gson = Gson()
+            val jsonString = gson.toJson(objPersonalInfoData)
 //            val bundle = Bundle()
 //            bundle.putString(KeyClass.KEY_FIRST_NAMEPI, fName)
 //            bundle.putString(KeyClass.KEY_LAST_NAMEPI, lNAme)
@@ -331,30 +399,7 @@ class PersonalInfo : AppCompatActivity() {
 //            bundle.putString(KeyClass.KEY_RESUME_UPLOAD, uploadresume)
 //            bundle.putString(KeyClass.KEY_SKILL, skill)
 //            bundle.putString(KeyClass.KEY_PROFILE_IMAGE, profileimage)
-            val intent = Intent(this, CompanyInfo::class.java)
-            intent.putExtra(KeyClass.PERSONAL_INFO_DATA, jsonString)
-//            intent.putExtras(bundle)
-            startActivity(intent)
-
-//            val firstNamePI  = FirstName_Text.text.toString()
-//            val lastNamePI = Last_Name_2_Text.text.toString()
-//            val emailPI = email_id.text.toString()
-//            val passwordPI = password_edit.text.toString()
-//            val mobileNo = mobile_no_text.text.toString()
-//            val addressPI = address_text.text.toString()
-//            val city =  city_text.text.toString()
-//            val state = state_text.text.toString()
-//            val country = country_text.text.toString()
-//            val gapInEdu = gap_in_edu_text.text.toString()
-//            val uploadResume = uploadResume_button.text.toString()
-//            val birthDate = Date_of_birth_edit.text.toString()
-//            val knowNlanguages = known_language_text.text.toString()
-//            val profileImage = Profile_Button.imageAlpha.toString()
-//            val skill1 = chip_1.text.toString()
-//            val skill2 = chip_2.text.toString()
-//            val skill3 = chip_3.text.toString()
-
-            ValidPersonalInfo()
+            ValidPersonalInfo(jsonString)
         }
 
         iv_camera.setOnClickListener {
@@ -365,7 +410,6 @@ class PersonalInfo : AppCompatActivity() {
 //            openCamera()
 //            openGallery()
             selectImage()
-
 //            startActivityForResult(gallery, pickImage)
         }
         uploadResume_button.setOnClickListener {
@@ -376,7 +420,7 @@ class PersonalInfo : AppCompatActivity() {
             val extraMimeTypes = arrayOf("application/docs", "application/doc", "application/pdf")
             intent.putExtra(Intent.EXTRA_MIME_TYPES, extraMimeTypes)
             startActivityForResult(intent, 12)
-
+//            startActivityForResult(Intent.createChooser(intent, "Select a file"), 111)
         }
 
         Date_of_birth_edit.setOnClickListener {
@@ -384,17 +428,12 @@ class PersonalInfo : AppCompatActivity() {
             year = calendar.get(Calendar.YEAR)
             month = calendar.get(Calendar.MONTH)
             day = calendar.get(Calendar.DAY_OF_MONTH)
-//            Date_of_birth_edit.setShowSoftInputOnFocus(false);
-//            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
-//            Date_of_birth_edit.setInputType(InputType.TYPE_NULL);
             Date_of_birth_edit.setShowSoftInputOnFocus(false)
-//            Date_of_birth_edit.showSoftInputOnFocus = false
             val dialog = DatePickerDialog(this, { _, year, month, day_of_month ->
                 calendar[Calendar.YEAR] = year
                 calendar[Calendar.MONTH] = month
                 calendar[Calendar.DAY_OF_MONTH] = day_of_month
-                val myFormat = "dd/MM/yyyy"
+                val myFormat = "yyy/MM/dd"
                 val sdf = SimpleDateFormat(myFormat, Locale.US)
                 Date_of_birth_edit.setText(sdf.format(calendar.time))
                 val input = "2012/01/20 12:05:10.321"
@@ -405,11 +444,13 @@ class PersonalInfo : AppCompatActivity() {
         }
         displayUser()
     }
-    fun fieldEnabled(){
+
+    fun fieldEnabled() {
 
         personal_info_layout.alpha = 0.5f
         editbutton_edit.setOnClickListener {
-            val unwrappedDrawable = AppCompatResources.getDrawable(this, R.drawable.ic_baseline_camera_alt_24)
+            val unwrappedDrawable =
+                AppCompatResources.getDrawable(this, R.drawable.ic_baseline_camera_alt_24)
             val wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable!!)
             DrawableCompat.setTint(wrappedDrawable, resources.getColor(R.color.orange))
             personal_info_layout.alpha = 1.0f
@@ -424,7 +465,7 @@ class PersonalInfo : AppCompatActivity() {
             state_text.isEnabled = true
             country_text.isEnabled = true
             gap_in_edu_text.isEnabled = true
-            uploadResume_button.isEnabled = true
+            uploadResume_button.isFocusable = true
             known_language_text.isEnabled = true
             Update_btn.isEnabled = true
             Date_of_birth_edit.isEnabled = true
@@ -434,7 +475,8 @@ class PersonalInfo : AppCompatActivity() {
             chip_3.isEnabled = true
         }
     }
-    fun ValidPersonalInfo() {
+
+    fun ValidPersonalInfo(jsonString: String) {
 
         val patternPassword = Regex("(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@\$%^&*-]).{8,}")
         val patternPhone = (Regex("^(?:(?:\\+|0{0,2})91(\\s*[\\-]\\s*)?|[0]?)?[789]\\d{9}"))
@@ -442,19 +484,19 @@ class PersonalInfo : AppCompatActivity() {
 
         if (FirstName_Text.getText().toString().isEmpty()) {
             Toast.makeText(
-                getApplicationContext(),
+                this,
                 resources.getString(R.string.First_Name_should_not_be_emptied),
                 Toast.LENGTH_SHORT
             ).show()
         } else if (Last_Name_2_Text.getText().toString().isEmpty()) {
             Toast.makeText(
-                getApplicationContext(),
+                this,
                 resources.getString(R.string.Last_Name_should_not_be_emptied),
                 Toast.LENGTH_SHORT
             ).show()
         } else if (email_id.getText().toString().isEmpty()) {
             Toast.makeText(
-                getApplicationContext(),
+                this,
                 resources.getString(R.string.Email_should_not_be_emptied),
                 Toast.LENGTH_SHORT
             ).show()
@@ -468,60 +510,75 @@ class PersonalInfo : AppCompatActivity() {
 //        }
         else if (!patternPassword.matches(password_edit.text.toString())) {
             Toast.makeText(
-                getApplicationContext(),
+                this,
                 resources.getString(R.string.password_valid),
                 Toast.LENGTH_SHORT
             ).show()
         } else if (mobile_no_text.getText().toString().isEmpty()) {
             Toast.makeText(
-                getApplicationContext(),
+                this,
                 resources.getString(R.string.Phone_number_should_not_be_emptied),
                 Toast.LENGTH_SHORT
             ).show()
         }
-//        else if (patternPhone.containsMatchIn(mobile_no_text.text.toString())){
-//            Toast.makeText(
-//                getApplicationContext(),
-//                resources.getString(R.string.Phone_number_should_contain_only_nimber),
-//                Toast.LENGTH_SHORT
-//            ).show()
-//        }
-        else if (Date_of_birth_edit.getText().toString().isEmpty()) {
+        else if (patternPhone.containsMatchIn(mobile_no_text.text.toString())){
             Toast.makeText(
                 getApplicationContext(),
+                resources.getString(R.string.Phone_number_should_contain_only_nimber),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        else if (Date_of_birth_edit.getText().toString().isEmpty()) {
+            Toast.makeText(
+                this,
                 resources.getString(R.string.Please_Enter_Valid_Date),
                 Toast.LENGTH_SHORT
             ).show()
         } else if (address_text.getText().toString().isEmpty()) {
             Toast.makeText(
-                getApplicationContext(),
+                this,
                 resources.getString(R.string.Address_Should_not_be_emptied),
                 Toast.LENGTH_SHORT
             ).show()
         } else if (city_text.getText().toString().isEmpty()) {
             Toast.makeText(
-                getApplicationContext(),
+                this,
                 resources.getString(R.string.City_should_not_be_emptied),
                 Toast.LENGTH_SHORT
             ).show()
         } else if (state_text.getText().toString().isEmpty()) {
             Toast.makeText(
-                getApplicationContext(),
+                this,
                 resources.getString(R.string.State_should_not_be_emptied),
                 Toast.LENGTH_SHORT
             ).show()
         } else if (country_text.getText().toString().isEmpty()) {
             Toast.makeText(
-                getApplicationContext(),
+                this,
                 resources.getString(R.string.Country_should_not_be_emptied),
                 Toast.LENGTH_SHORT
             ).show()
-        } else if (known_language_text.getText().toString().isEmpty()) {
+        }
+        else if (gap_in_edu_text.getText().toString().isEmpty()) {
             Toast.makeText(
-                getApplicationContext(),
-                resources.getString(R.string.Language_should_not_be_emptied),
+                this,
+                resources.getString(R.string.gap_should_not_be_emptied),
                 Toast.LENGTH_SHORT
             ).show()
+        }
+
+        else if (uploadResume_button.getText().toString().isEmpty()) {
+            Toast.makeText(
+                this,
+                resources.getString(R.string.Country_should_not_be_emptied),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        else{
+            val intent = Intent(this, CompanyInfo::class.java)
+            intent.putExtra(KeyClass.PERSONAL_INFO_DATA, jsonString)
+//            intent.putExtras(bundle)
+            startActivity(intent)
         }
     }
 
@@ -561,7 +618,6 @@ class PersonalInfo : AppCompatActivity() {
             val uri: Uri = data?.data!!
             //  val uriString: String = uri.toString()
             // var pdfName: String? = null
-
             val uriString = uri.toString()
             val myFile1 = File(uriString)
             val path1 = myFile1.absolutePath
@@ -607,23 +663,23 @@ class PersonalInfo : AppCompatActivity() {
         return byteBuffer.toByteArray()
     }
 
-    private fun openCamera() {
-        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { intent ->
-            intent.resolveActivity(packageManager)?.also {
-
-                startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
-            }
-        }
-    }
-
-    private fun openGallery() {
-        Intent(Intent.ACTION_GET_CONTENT).also { intent ->
-            intent.type = "image/*"
-            intent.resolveActivity(packageManager)?.also {
-                startActivityForResult(intent, REQUEST_PICK_IMAGE)
-            }
-        }
-    }
+//    private fun openCamera() {
+//        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { intent ->
+//            intent.resolveActivity(packageManager)?.also {
+//
+//                startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
+//            }
+//        }
+//    }
+//
+//    private fun openGallery() {
+//        Intent(Intent.ACTION_GET_CONTENT).also { intent ->
+//            intent.type = "image/*"
+//            intent.resolveActivity(packageManager)?.also {
+//                startActivityForResult(intent, REQUEST_PICK_IMAGE)
+//            }
+//        }
+//    }
 
     //DisplayUserApi
     fun displayUser() {
@@ -692,11 +748,14 @@ class PersonalInfo : AppCompatActivity() {
                                 female_1.isChecked
                             }
 
-                            if (userDisplay.Data.DateOfBirth != null) {
-                                editbutton_edit.visibility = View.VISIBLE
-                                fieldEnabled()
-                                Update_btn.visibility = View.VISIBLE
-                            } else {
+                           if (userDisplay.Data != null && userDisplay.Data.DateOfBirth.isNullOrEmpty()) {
+
+//                                editbutton_edit.visibility = View.VISIBLE
+//                                fieldEnabled()
+//                                Update_btn.visibility = View.VISIBLE
+                                //for check
+                                editbutton_edit.visibility = View.INVISIBLE
+                                next_button.visibility = View.VISIBLE
                                 personal_info_layout.isFocusable = true
                                 FirstName_Text.isEnabled = true
                                 Last_Name_2_Text.isEnabled = true
@@ -706,7 +765,7 @@ class PersonalInfo : AppCompatActivity() {
                                 state_text.isEnabled = true
                                 country_text.isEnabled = true
                                 gap_in_edu_text.isEnabled = true
-                                uploadResume_button.isEnabled = true
+                                uploadResume_button.isFocusable = true
                                 known_language_text.isEnabled = true
                                 Update_btn.isEnabled = true
                                 Date_of_birth_edit.isEnabled = true
@@ -718,8 +777,34 @@ class PersonalInfo : AppCompatActivity() {
                                 for (chip in chipGroup.children) {
                                     chip.isEnabled = true
                                 }
-                                editbutton_edit.visibility = View.INVISIBLE
-                                next_button.visibility = View.VISIBLE
+                            } else {
+                                editbutton_edit.visibility = View.VISIBLE
+                                fieldEnabled()
+                                Update_btn.visibility = View.VISIBLE
+                                //for check
+//                                editbutton_edit.visibility = View.INVISIBLE
+//                                next_button.visibility = View.VISIBLE
+//                                personal_info_layout.isFocusable = true
+//                                FirstName_Text.isEnabled = true
+//                                Last_Name_2_Text.isEnabled = true
+//                                password_edit.isEnabled = true
+//                                address_text.isEnabled = true
+//                                city_text.isEnabled = true
+//                                state_text.isEnabled = true
+//                                country_text.isEnabled = true
+//                                gap_in_edu_text.isEnabled = true
+//                                uploadResume_button.isEnabled = true
+//                                known_language_text.isEnabled = true
+//                                Update_btn.isEnabled = true
+//                                Date_of_birth_edit.isEnabled = true
+//                                Profile_Button.isEnabled = true
+//                                chip_1.isEnabled = true
+//                                chip_2.isEnabled = true
+//                                chip_3.isEnabled = true
+//                                chipGroup.isEnabled = true
+//                                for (chip in chipGroup.children) {
+//                                    chip.isEnabled = true
+//                                }
                             }
                         }
                     } catch (e: JSONException) {
@@ -738,7 +823,7 @@ class PersonalInfo : AppCompatActivity() {
                 }
             })
     }
-
+    //Update Api
     fun updateProfile() {
         var personalInfoData: PersonalInfoData =
             PersonalInfoData("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")
@@ -822,7 +907,6 @@ class PersonalInfo : AppCompatActivity() {
             currentCTC = currentCTC,
             expectedCTC = expectedCTC
         )
-
         companyInfoData = objCompanyInfoData
         val objEducationInfoData = EducationInfoData(
             Qualification = qualification,
@@ -834,10 +918,6 @@ class PersonalInfo : AppCompatActivity() {
         sessionManager = SessionManager(this)
         val id: String? = sessionManager.getString(SessionManager.KEY_ID)
         val id1: Int = id!!.toInt()
-//        val companyId : String? = sessionManager.getString(KeyClass.KEY_COMPANY_INFO_ID)
-//        var cmpId : Int = companyId!! .toInt()
-//        val educationId :String? = sessionManager.getString(KeyClass.KEY_EDUCATION_INFO_ID)
-//        var educId :Int = educationId!! .toInt()
         Log.d("Update_Image", ProfileImage)
         RetrofitBuilder.JsonServices.jsonInstance.updateProfile(RequestParameters().userProfileUpdate(
             id1,
@@ -853,16 +933,16 @@ class PersonalInfo : AppCompatActivity() {
                     if (userUpdate != null && response.code() == 200) {
                         println("Goood  Evening-------------------- Hey There")
                         Toast.makeText(
-                            getApplicationContext(),
+                            this@PersonalInfo,
                             "Data Updated  successfully",
                             Toast.LENGTH_SHORT
                         ).show()
                         userUpdate.Data.UserCompanyInfoId
                         userUpdate.Data.UserEducationId
-                        personal_info_layout.alpha = 0.5f
-                        editbutton_edit.visibility = View.VISIBLE
-                        Update_btn.visibility = View.VISIBLE
-                        personal_info_layout.alpha = 1.0f
+//                        personal_info_layout.alpha = 0.5f
+//                        editbutton_edit.visibility = View.VISIBLE
+//                        Update_btn.visibility = View.VISIBLE
+//                        personal_info_layout.alpha = 1.0f
                         startActivity(Intent(this@PersonalInfo, DashboardActivity::class.java))
                     } else {
                         Toast.makeText(this@PersonalInfo, "Try Again", Toast.LENGTH_SHORT).show()
@@ -886,9 +966,10 @@ class PersonalInfo : AppCompatActivity() {
     }
 
     fun addChipCode() {
-
         val genres =
-            arrayOf(".net", "C#", "c++","Java", "Python", "Android", "Flutter", "Kotlin", "Communication")
+            arrayOf(".net", "C#", "c++",
+                "Java", "Python", "Android",
+                "Flutter", "Kotlin", "Communication")
         for (genre in genres) {
             val chip = Chip(chipGroup.context)
             chip.text = genre
@@ -906,7 +987,6 @@ class PersonalInfo : AppCompatActivity() {
         profileAlertDialog.setPositiveButton(("yes"),
             DialogInterface.OnClickListener { dialog, item ->
                 onBackPressed()
-//                Toast.makeText(this, "Data edited successfully ", Toast.LENGTH_SHORT).show()
             }).setNegativeButton(("no"), DialogInterface.OnClickListener { dialog, item ->
             dialog.dismiss()
         })
@@ -966,5 +1046,4 @@ class PersonalInfo : AppCompatActivity() {
         }
         builder.show()
     }
-
 }

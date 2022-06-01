@@ -45,8 +45,8 @@ class RegistrationActivity : AppCompatActivity() {
         signup = findViewById(R.id.signup)
         signup.setOnClickListener {
 
-            progressBar1.visibility = View.VISIBLE
-            sign_up_textview.visibility = View.GONE
+//            progressBar1.visibility = View.VISIBLE
+//            sign_up_textview.visibility = View.GONE
             ValidationRules()
         }
         Login_text.setOnClickListener {
@@ -107,6 +107,8 @@ class RegistrationActivity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
         } else {
+            progressBar1.visibility = View.VISIBLE
+            sign_up_textview.visibility = View.GONE
             // Toast.makeText(getApplicationContext(), resources.getString(R.string.API_call), Toast.LENGTH_SHORT).show()
             signUpData()
         }

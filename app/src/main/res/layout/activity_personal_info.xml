@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/personal_info_layout"
+    android:focusable="false"
     android:orientation="vertical"
     tools:context=".activity.PersonalInfo">
 
-    <LinearLayout
-        android:id="@+id/personal_info_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:focusable="false"
-        android:orientation="vertical">
+<!--    <LinearLayout-->
+<!--      -->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--     -->
+<!--        android:orientation="vertical">-->
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -51,7 +53,13 @@
                 android:src="@drawable/edit"
                 android:visibility="invisible" />
         </RelativeLayout>
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -216,8 +224,7 @@
                 style="@style/text_view"
                 android:id="@+id/moblie_no"
                 android:layout_marginTop="10dp"
-                android:text="Mobile No"
-              />
+                android:text="Mobile No" />
 
             <EditText
                 android:id="@+id/mobile_no_text"
@@ -230,8 +237,7 @@
                 android:inputType="number"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/custom_edittext"
-                android:textColor="@color/black"
-                />
+                android:textColor="@color/black" />
         </LinearLayout>
 
         <LinearLayout
@@ -241,10 +247,10 @@
                 style="@style/text_view"
                 android:id="@+id/DOB_text"
                 android:layout_marginTop="10dp"
-                android:text="Date of Birth"
-          />
+                android:text="Date of Birth" />
 
             <EditText
+
                 android:id="@+id/Date_of_birth_edit"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -268,8 +274,7 @@
                 style="@style/text_view"
                 android:id="@+id/address"
                 android:layout_marginTop="10dp"
-                android:text="Address"
-               />
+                android:text="Address" />
 
             <EditText
                 android:id="@+id/address_text"
@@ -304,8 +309,7 @@
                     android:id="@+id/city"
                     style="@style/text_view"
                     android:layout_marginBottom="8dp"
-                    android:text="City"
-                 />
+                    android:text="City" />
 
                 <EditText
                     android:id="@+id/city_text"
@@ -317,8 +321,7 @@
                     android:nextFocusRight="@id/state_text"
                     android:imeOptions="actionNext"
                     android:background="@drawable/custom_edittext"
-                    android:textColor="@color/black"
-                   />
+                    android:textColor="@color/black" />
             </LinearLayout>
 
             <LinearLayout
@@ -332,8 +335,7 @@
                     android:id="@+id/state"
                     style="@style/text_view"
                     android:layout_marginBottom="8dp"
-                    android:text="State"
-                  />
+                    android:text="State" />
 
                 <EditText
                     android:id="@+id/state_text"
@@ -345,8 +347,7 @@
                     android:textSize="@dimen/dimen_15dp"
                     android:imeOptions="actionNext"
                     android:background="@drawable/custom_edittext"
-                    android:textColor="@color/black"
-                   />
+                    android:textColor="@color/black" />
             </LinearLayout>
         </LinearLayout>
 
@@ -369,8 +370,7 @@
                     android:id="@+id/country"
                     style="@style/text_view"
                     android:layout_marginBottom="8dp"
-                    android:text="Country"
-                   />
+                    android:text="Country" />
 
                 <EditText
                     android:id="@+id/country_text"
@@ -383,8 +383,7 @@
                     android:nextFocusRight="@id/gap_in_edu_text"
                     android:textSize="@dimen/dimen_15dp"
                     android:background="@drawable/custom_edittext"
-                    android:textColor="@color/black"
-                    />
+                    android:textColor="@color/black" />
             </LinearLayout>
 
             <LinearLayout
@@ -398,8 +397,7 @@
                     style="@style/text_view"
                     android:id="@+id/gap_in_edu"
                     android:layout_marginBottom="8dp"
-                    android:text="Gap in Education(in months)"
-                />
+                    android:text="Gap in Education(in months)" />
 
                 <EditText
                     android:id="@+id/gap_in_edu_text"
@@ -409,10 +407,10 @@
                     android:imeOptions="actionNext"
                     android:nextFocusDown="@id/radioGroup"
                     android:enabled="false"
+                    android:inputType="numberDecimal"
                     android:textSize="@dimen/dimen_15dp"
                     android:background="@drawable/custom_edittext"
-                    android:textColor="@color/black"
-                   />
+                    android:textColor="@color/black" />
             </LinearLayout>
         </LinearLayout>
 
@@ -451,8 +449,7 @@
                 android:id="@+id/skills"
                 android:layout_marginStart="30dp"
                 android:layout_marginBottom="10dp"
-                android:text="Skills"
-             />
+                android:text="Skills" />
         </LinearLayout>
 
         <LinearLayout
@@ -492,8 +489,8 @@
                 android:layout_marginStart="10dp"
                 android:textAlignment="center"
                 android:background="@drawable/custom_edittext"
-                android:textColor="@color/black"
-                />
+                android:textColor="@color/black" />
+
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_3"
                 android:layout_width="wrap_content"
@@ -506,8 +503,8 @@
                 android:layout_marginStart="@dimen/dimen_10dp"
                 android:textAlignment="center"
                 android:background="@drawable/custom_edittext"
-                android:textColor="@color/black"
-                />
+                android:textColor="@color/black" />
+
         </com.google.android.material.chip.ChipGroup>
         </LinearLayout>
 
@@ -540,7 +537,7 @@
                     android:id="@+id/uploadResume_button"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:enabled="false"
+                    android:focusable="false"
                     android:textSize="@dimen/dimen_10dp"
                     android:hint="Upload File Here"
                     android:layout_marginTop="1dp"
@@ -560,8 +557,7 @@
                     style="@style/text_view"
                     android:id="@+id/known_language"
                     android:layout_marginBottom="8dp"
-                    android:text="Known Languages"
-                 />
+                    android:text="Known Languages" />
 
                 <EditText
                     android:id="@+id/known_language_text"
@@ -573,9 +569,7 @@
                     android:imeOptions="actionDone"
                     android:layout_marginTop="1dp"
                     android:background="@drawable/custom_edittext"
-                    android:textColor="@color/black"
-                   />
-
+                    android:textColor="@color/black" />
             </LinearLayout>
         </LinearLayout>
 
@@ -602,6 +596,7 @@
             android:background="@drawable/update_button"
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/dimen_40dp"  >
+
             <TextView
                 android:id="@+id/update_textview"
                 android:layout_width="wrap_content"
@@ -610,8 +605,8 @@
                 android:textSize="16sp"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:text = "@string/update"
-                />
+                android:text = "@string/update" />
+
             <ProgressBar
                 android:id="@+id/progressBar1"
                 style="?android:attr/progressBarStyleLarge"
@@ -621,13 +616,6 @@
                 android:layout_gravity="center"
                 android:visibility="invisible" />
         </FrameLayout>
-
-<!--        <androidx.appcompat.widget.AppCompatButton-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="center"-->
-<!--           -->
-<!--            android:textColor="@color/white" />-->
-
     </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</LinearLayout>

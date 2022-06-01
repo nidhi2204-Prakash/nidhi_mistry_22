@@ -46,15 +46,14 @@ interface ApiInterface {
 
     //JobApply
     @POST("api/useraccount/JobApply")
-    fun jobApply(@Part("resume",) resume: String,
-                 @Body requestBody: RequestBody?,
-    ):Call<jobApply>
+    fun jobApply(@Body requestBody: RequestBody?)
+    :Call<DisplayUser>
 
-  //insertApi
+    //insertApi
   @POST("api/userprofile/insertuserprofile")
     fun profileSubmit(
-      @Body requestBody: RequestBody?
-    ):Call<InserUserData>
+        @Body requestBody: RequestBody?,
+    ):Call<DisplayUser>
 
     //updateuserprofile
     @POST("api/userprofile/UpdateUserProfile")

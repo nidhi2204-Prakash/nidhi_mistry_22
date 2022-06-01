@@ -59,8 +59,8 @@ class LoginActivity : AppCompatActivity() {
         login_button.setOnClickListener {
 //            val intent = Intent(this, DashboardActivity::class.java)
 //            startActivity(intent)
-            progressBar.visibility = View.VISIBLE
-            loginText.visibility = View.GONE
+//            progressBar.visibility = View.VISIBLE
+//            loginText.visibility = View.GONE
             ValidationRules()
             }
 
@@ -101,11 +101,13 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(getApplicationContext(), resources.getString(R.string.Email_or_phone), Toast.LENGTH_SHORT).show()
             }
         }
-
         else{
           // Toast.makeText(getApplicationContext(),resources.getString(R.string.API_call) ,Toast.LENGTH_SHORT).show()
+            progressBar.visibility = View.VISIBLE
+            loginText.visibility = View.GONE
             LoginApi()
         }
+
     }
 
         fun LoginApi(){
@@ -163,7 +165,6 @@ class LoginActivity : AppCompatActivity() {
                                 SessionManager.KEY_PASSWORD,
                                 java.lang.String.valueOf(password)
                             )
-
                                 CallAuthentication()
 
                         } else {
@@ -175,7 +176,6 @@ class LoginActivity : AppCompatActivity() {
                             }
                         } catch (e: JSONException){
                            e.printStackTrace()
-//                        System.out.println("--------------->>> 176")
                            e.message?.let { Log.e("errorrr", it) }
 
                     }
@@ -210,7 +210,6 @@ class LoginActivity : AppCompatActivity() {
 //                    sessionManager.putString(SessionManager.USER_TOKEN ,token)
 //                    sessionManager.putBoolean(SessionManager.KEY_USER_LOGIN, true)
 //                    constant.putBoolean(Constant.KEY_FLAG,true)
-
                     if (authToken != null && response.code() == 200 ){
 
                         val jsonString = response.body()!!.string()
@@ -223,13 +222,10 @@ class LoginActivity : AppCompatActivity() {
 //                        sessionManager.putString(SessionManager.USER_TOKEN, java.lang.String.valueOf(token)) // Save Token in SharedPreferences
 //                        var dashActivity  = Intent(this@LoginActivity,DashboardActivity::class.java)
 //                        dashActivity.putExtra("token",token)
-//                        dashActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-//                        progressBar.visibility = View.VISIBLE
-//                        startActivity(dashActivity)
-//                        finish()
                         userProfileStatus()
                     }
                  else{
+
                         Toast.makeText(this@LoginActivity, "Something Went Wrong", Toast.LENGTH_SHORT).show()
 
                     }
@@ -262,7 +258,7 @@ class LoginActivity : AppCompatActivity() {
             ) {
                 try {
                     val profileStatus = response.body()
-                    if (profileStatus!!.Status == 200 && profileStatus.Data == true){
+                    if (profileStatus!!.Status == 200){
                         sessionManager.putBoolean(SessionManager.KEY_USER_LOGIN, true)
                         startActivity(Intent(this@LoginActivity,DashboardActivity::class.java))
                     }

@@ -105,25 +105,20 @@ class JobDescription : AppCompatActivity() {
 
 
         backarrow.setOnClickListener {
-//            val intent = Intent(this, JobVacancyPage::class.java)
-//            startActivity(intent)
             onBackPressed()
         }
         apply_now.setOnClickListener {
             val intent = Intent(this, JobApply::class.java)
             intent.putExtra(KeyClass.KEY_VACANCY_ID, vacancyId)
             startActivity(intent)
-
         }
         btn_description.setOnClickListener {
 //            val intent = Intent(this, JobApply::class.java)
 //           startActivity(intent)
-
         }
         btn_company.setOnClickListener {
 //            val intent = Intent(this, JobApply::class.java)
 //            startActivity(intent)
-
         }
     }
 }

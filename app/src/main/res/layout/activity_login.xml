@@ -140,7 +140,6 @@
                     android:layout_gravity="center"
                     android:visibility="invisible" />
 
-
             </FrameLayout>
 <!--            <Button-->
 <!--                android:id="@+id/login_button"-->

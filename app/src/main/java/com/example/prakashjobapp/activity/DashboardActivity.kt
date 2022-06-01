@@ -35,8 +35,6 @@ class DashboardActivity : AppCompatActivity() {
 
     }
 
-
-
     fun replaceFragment(fragment: Fragment) {
 
         val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
