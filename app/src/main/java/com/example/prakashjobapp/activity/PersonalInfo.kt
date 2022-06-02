@@ -939,10 +939,6 @@ class PersonalInfo : AppCompatActivity() {
                         ).show()
                         userUpdate.Data.UserCompanyInfoId
                         userUpdate.Data.UserEducationId
-//                        personal_info_layout.alpha = 0.5f
-//                        editbutton_edit.visibility = View.VISIBLE
-//                        Update_btn.visibility = View.VISIBLE
-//                        personal_info_layout.alpha = 1.0f
                         startActivity(Intent(this@PersonalInfo, DashboardActivity::class.java))
                     } else {
                         Toast.makeText(this@PersonalInfo, "Try Again", Toast.LENGTH_SHORT).show()
