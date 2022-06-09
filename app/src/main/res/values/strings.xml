@@ -105,4 +105,7 @@
     <string name="in_year">In Year</string>
     <string name="data_not_found">Data Not Found</string>
     <string name="company_info">Company Info</string>
+    <string name="upload_file_here">Upload File Here</string>
+    <string name="qualification">Qualification</string>
+    <string name="percentage">Percentage</string>
 </resources>

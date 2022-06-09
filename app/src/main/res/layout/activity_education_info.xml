@@ -16,89 +16,59 @@
         android:orientation="horizontal">
 
         <ImageView
+            style="@style/style_back_arrow"
             android:id="@+id/backarrow_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/back_arrow" />
+            android:layout_marginTop="@dimen/dimen_15dp" />
 
         <TextView
             android:id="@+id/edu_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/title_textView"
             android:layout_centerInParent="true"
-            android:layout_marginTop="@dimen/dimen_30dp"
-            android:text="Education Info"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:text="Education Info" />
 
         <ImageView
             android:id="@+id/editbutton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
+            style="@style/edit_pen"
             android:layout_marginEnd="@dimen/dimen_5dp"
-            android:layout_marginTop="@dimen/dimen_20dp"
-            android:src="@drawable/edit"
-            android:visibility="invisible" />
+            android:layout_marginTop="@dimen/dimen_20dp" />
     </RelativeLayout>
 
     <LinearLayout
-
         style="@style/linear_layout">
-
         <TextView
             style="@style/text_view"
             android:id="@+id/qualification"
-            android:text="Qualification"
-            android:layout_marginTop="@dimen/dimen_20dp"
-          />
+            android:text="@string/qualification"
+            android:layout_marginTop="@dimen/dimen_20dp" />
 
         <EditText
             android:id="@+id/qualification_text"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:enabled="false"
-            android:textSize="@dimen/dimen_15dp"
-            android:paddingStart="15dp"
-            android:nextFocusDown="@id/board_university"
+            style="@style/edit_text"
             android:imeOptions="actionNext"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/custom_edittext"
-            android:textColor="@color/black" />
+            android:enabled="false"
+            android:nextFocusDown="@id/board_university" />
     </LinearLayout>
 
     <LinearLayout
         style="@style/linear_layout">
-
         <TextView
             style="@style/text_view"
             android:id="@+id/board_university"
-            android:layout_marginTop="10dp"
-            android:text="Board University"
-       />
+            android:text="Board University"  />
 
         <EditText
+            style="@style/edit_text"
+            android:layout_marginTop="@dimen/dimen_10dp"
             android:id="@+id/board_university_text"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
             android:enabled="false"
-            android:layout_marginTop="10dp"
-            android:paddingStart="15dp"
-            android:textSize="@dimen/dimen_15dp"
             android:nextFocusDown="@id/passing_year_text"
-            android:imeOptions="actionNext"
-            android:background="@drawable/custom_edittext"
-            android:textColor="@color/black" />
+            android:imeOptions="actionNext" />
     </LinearLayout>
 
     <LinearLayout
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginHorizontal="30dp"
         android:weightSum="2"
         android:orientation="horizontal">
@@ -113,32 +83,16 @@
             <TextView
                 style="@style/text_view"
                 android:id="@+id/passing_year"
-                android:layout_marginBottom="8dp"
-                android:text="Passing Year"
-            />
+                android:text="Passing Year" />
 
             <EditText
+                style="@style/edit_text"
                 android:id="@+id/passing_year_text"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_40dp"
-                android:paddingStart="15dp"
-                android:textSize="@dimen/dimen_15dp"
-                android:enabled="false"
                 android:inputType="number"
+                android:layout_weight="1"
+                android:enabled="false"
                 android:nextFocusDown="@id/percent_text"
-                android:imeOptions="actionNext"
-                android:background="@drawable/custom_edittext"
-                android:textColor="@color/black"
-                />
-
-<!--            <NumberPicker-->
-<!--                android:id="@+id/picker_year"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:visibility="gone"-->
-<!--                android:datePickerMode="spinner"-->
-<!--                android:descendantFocusability="blocksDescendants"-->
-<!--               />-->
+                android:imeOptions="actionNext" />
 
         </LinearLayout>
 
@@ -150,23 +104,13 @@
             android:orientation="vertical">
             <TextView
                 style="@style/text_view"
-                android:layout_marginBottom="8dp"
-                android:text="Percentage"
-           />
-
+                android:text="@string/percentage" />
             <EditText
+                style="@style/edit_text"
                 android:id="@+id/percent_text"
-                android:layout_width="match_parent"
-                android:paddingStart="15dp"
-                android:layout_height="40dp"
-                android:layout_weight="0"
-                android:textSize="@dimen/dimen_15dp"
-                android:enabled="false"
                 android:inputType="number"
                 android:imeOptions="actionDone"
-                android:background="@drawable/custom_edittext"
-                android:textColor="@color/black"
-            />
+                android:enabled="false"  />
 
         </LinearLayout>
     </LinearLayout>
@@ -181,17 +125,9 @@
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatButton
+            style="@style/pervious_button"
             android:id="@+id/previous_button_edu"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/dimen_40dp"
-            android:layout_gravity="right"
-            android:layout_marginTop="@dimen/dimen_20dp"
-            android:visibility="invisible"
-            android:layout_weight="1"
-            android:textAllCaps="false"
-            android:text = "@string/previous"
-            android:background="@drawable/previous_button"
-            android:textColor="@color/white" />
+            android:layout_marginTop="@dimen/dimen_20dp" />
 
         <FrameLayout
             android:id="@+id/submit_button"
@@ -210,8 +146,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textColor="@color/white"
-                android:text = "@string/submit"
-                />
+                android:textStyle="bold"
+                android:text = "@string/submit" />
             <ProgressBar
                 android:id="@+id/progress_bar"
                 style="?android:attr/progressBarStyleLarge"
@@ -223,14 +159,6 @@
         </FrameLayout>
     </LinearLayout>
 
-<!--    <androidx.appcompat.widget.AppCompatButton-->
-<!--        android:id="@+id/update_button"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Update"-->
-<!--        android:visibility="invisible"-->
-<!--        android:textColor="@color/white"-->
-<!--        android:background="@drawable/update_button"/>-->
     <FrameLayout
         android:id="@+id/update_button"
         android:layout_width="@dimen/dimen_100dp"
@@ -239,17 +167,11 @@
         android:background="@drawable/update_button"
         android:layout_gravity="center"
         android:layout_marginBottom="@dimen/dimen_40dp"
-        android:visibility="invisible"
-        >
+        android:visibility="invisible">
         <TextView
+            style="@style/login_text"
             android:id="@+id/update_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="16sp"
-            android:textColor="@color/white"
-            android:text = "@string/update"
-            />
+            android:text = "@string/update" />
         <ProgressBar
             android:id="@+id/progressBar1"
             style="?android:attr/progressBarStyleLarge"

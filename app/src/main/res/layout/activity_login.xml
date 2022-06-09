@@ -54,21 +54,15 @@
 
             <com.google.android.material.textfield.TextInputLayout
 
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/style_input_text_layout"
                 android:layout_marginHorizontal="@dimen/dimen_30dp"
                 android:layout_marginBottom="@dimen/dimen_10dp"
-                android:hint="@string/Email_or_phone"
-                >
+                android:hint="@string/Email_or_phone" >
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style = "@style/text_input_edittext"
                     android:id="@+id/email_phone"
                     android:inputType="textEmailAddress"
-                    android:textColor="@color/black"
-                    android:background="#F0EDED"
                     android:nextFocusDown="@id/password"
                     android:imeOptions="actionNext"
                     android:drawableStart="@drawable/ic_baseline_email_24"
@@ -76,21 +70,15 @@
                     />
             </com.google.android.material.textfield.TextInputLayout>
 
-
             <com.google.android.material.textfield.TextInputLayout
-
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/style_input_text_layout"
                 android:layout_marginHorizontal="@dimen/dimen_30dp"
+                android:hint="@string/Password"
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    style="@style/text_input_edittext"
                     android:id="@+id/password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/Password"
-                    android:background="#F0EDED"
                     android:drawableStart="@drawable/ic_baseline_lock_24"
                     android:drawablePadding="8dp"
                     android:inputType="textPassword"
@@ -123,12 +111,8 @@
                 android:backgroundTint="#F49301">
 
                 <TextView
+                    style="@style/login_text"
                     android:id="@+id/login_textview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:textSize="16dp"
-                    android:textColor="@color/white"
                     android:text = "Log In"/>
 
                 <ProgressBar
@@ -150,21 +134,6 @@
 <!--                android:layout_marginTop="@dimen/dimen_10dp"-->
 <!--                android:layout_marginBottom="@dimen/dimen_10dp"-->
 <!--                android:layout_weight="0"-->
-<!--                android:background="@drawable/custum_button"-->
-<!--                android:backgroundTint="#F49301"-->
-<!--                android:text="@string/login"-->
-<!--                android:textAllCaps="false"-->
-<!--                android:textSize="16dp" />-->
-
-
-<!--            <ProgressBar-->
-<!--                android:id="@+id/progressBar"-->
-<!--                style="?android:attr/progressBarStyleLarge"-->
-<!--                android:layout_width="@dimen/dimen_30dp"-->
-<!--                android:layout_height="@dimen/dimen_30dp"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:visibility="invisible" />-->
-
             <TextView
                 android:id="@+id/textview"
                 android:layout_width="match_parent"

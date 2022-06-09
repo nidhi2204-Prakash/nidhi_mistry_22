@@ -386,17 +386,8 @@ class PersonalInfo : AppCompatActivity() {
 //            bundle.putString(KeyClass.KEY_FIRST_NAMEPI, fName)
 //            bundle.putString(KeyClass.KEY_LAST_NAMEPI, lNAme)
 //            bundle.putString(KeyClass.KEY_EMAIL, email)
-//            bundle.putString(KeyClass.KEY_PASSWORDPI, password)
-//            bundle.putString(KeyClass.KEY_MOBILENO_PI, mobileNo)
-//            bundle.putString(KeyClass.KEY_CITY, city)
 //            bundle.putString(KeyClass.KEY_STATE, state)
 //            bundle.putString(KeyClass.KEY_COUNTRY, country)
-//            bundle.putString(KeyClass.KEY_ADDRESS, address)
-//            bundle.putString(KeyClass.KEY_GENDER, gender)
-//            bundle.putString(KeyClass.KEY_GAP_IN_EDU_PI, gapinEdu)
-//            bundle.putString(KeyClass.KEY_BIRTH_DATE, birthdate)
-//            bundle.putString(KeyClass.KEY_KNOWN_LANGUAGES, knownLanguages)
-//            bundle.putString(KeyClass.KEY_RESUME_UPLOAD, uploadresume)
 //            bundle.putString(KeyClass.KEY_SKILL, skill)
 //            bundle.putString(KeyClass.KEY_PROFILE_IMAGE, profileimage)
             ValidPersonalInfo(jsonString)
@@ -520,15 +511,13 @@ class PersonalInfo : AppCompatActivity() {
                 resources.getString(R.string.Phone_number_should_not_be_emptied),
                 Toast.LENGTH_SHORT
             ).show()
-        }
-        else if (patternPhone.containsMatchIn(mobile_no_text.text.toString())){
+        } else if (patternPhone.containsMatchIn(mobile_no_text.text.toString())){
             Toast.makeText(
                 getApplicationContext(),
                 resources.getString(R.string.Phone_number_should_contain_only_nimber),
                 Toast.LENGTH_SHORT
             ).show()
-        }
-        else if (Date_of_birth_edit.getText().toString().isEmpty()) {
+        } else if (Date_of_birth_edit.getText().toString().isEmpty()) {
             Toast.makeText(
                 this,
                 resources.getString(R.string.Please_Enter_Valid_Date),
@@ -558,23 +547,19 @@ class PersonalInfo : AppCompatActivity() {
                 resources.getString(R.string.Country_should_not_be_emptied),
                 Toast.LENGTH_SHORT
             ).show()
-        }
-        else if (gap_in_edu_text.getText().toString().isEmpty()) {
+        } else if (gap_in_edu_text.getText().toString().isEmpty()) {
             Toast.makeText(
                 this,
                 resources.getString(R.string.gap_should_not_be_emptied),
                 Toast.LENGTH_SHORT
             ).show()
-        }
-
-        else if (uploadResume_button.getText().toString().isEmpty()) {
+        } else if (uploadResume_button.getText().toString().isEmpty()) {
             Toast.makeText(
                 this,
                 resources.getString(R.string.Country_should_not_be_emptied),
                 Toast.LENGTH_SHORT
             ).show()
-        }
-        else{
+        } else{
             val intent = Intent(this, CompanyInfo::class.java)
             intent.putExtra(KeyClass.PERSONAL_INFO_DATA, jsonString)
 //            intent.putExtras(bundle)
@@ -671,7 +656,7 @@ class PersonalInfo : AppCompatActivity() {
 //            }
 //        }
 //    }
-//
+
 //    private fun openGallery() {
 //        Intent(Intent.ACTION_GET_CONTENT).also { intent ->
 //            intent.type = "image/*"
@@ -786,22 +771,9 @@ class PersonalInfo : AppCompatActivity() {
 //                                next_button.visibility = View.VISIBLE
 //                                personal_info_layout.isFocusable = true
 //                                FirstName_Text.isEnabled = true
-//                                Last_Name_2_Text.isEnabled = true
-//                                password_edit.isEnabled = true
-//                                address_text.isEnabled = true
-//                                city_text.isEnabled = true
-//                                state_text.isEnabled = true
 //                                country_text.isEnabled = true
-//                                gap_in_edu_text.isEnabled = true
-//                                uploadResume_button.isEnabled = true
-//                                known_language_text.isEnabled = true
 //                                Update_btn.isEnabled = true
 //                                Date_of_birth_edit.isEnabled = true
-//                                Profile_Button.isEnabled = true
-//                                chip_1.isEnabled = true
-//                                chip_2.isEnabled = true
-//                                chip_3.isEnabled = true
-//                                chipGroup.isEnabled = true
 //                                for (chip in chipGroup.children) {
 //                                    chip.isEnabled = true
 //                                }

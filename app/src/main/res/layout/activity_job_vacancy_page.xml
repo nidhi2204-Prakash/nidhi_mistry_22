@@ -56,16 +56,6 @@
             android:layout_weight="1"
             app:iconifiedByDefault="false"/>
 
-<!--        <ImageButton-->
-<!--            android:id="@+id/buttonsearch"-->
-<!--            android:layout_width="50dp"-->
-<!--            android:layout_height="49dp"-->
-<!--            android:layout_marginStart="10dp"-->
-<!--            android:layout_marginEnd="@dimen/dimen_20dp"-->
-<!--            android:background="@drawable/button_search"-->
-<!--            android:contentDescription="Search"-->
-<!--            android:src="@drawable/ic_baseline_search_24"-->
-<!--            app:cardCornerRadius="10dp" />-->
     </LinearLayout>
 
     <TextView

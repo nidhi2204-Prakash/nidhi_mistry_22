@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
     <LinearLayout
@@ -38,27 +38,16 @@
             android:textStyle="bold" />
 
         <de.hdodenhof.circleimageview.CircleImageView
+            style="@style/circular_image_view"
             android:id="@+id/Set_Profile"
-            android:layout_width="@dimen/dimen_100dp"
-            android:layout_height="@dimen/dimen_100dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/dimen_10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/custum_circle" />
+            android:layout_gravity="center" />
 
         <TextView
+            style="@style/display_textView"
             android:id="@+id/people_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:text="Name"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
+            android:text="Name" />
     </LinearLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -76,35 +65,23 @@
             android:orientation="vertical">
 
             <com.google.android.material.card.MaterialCardView
+                style="@style/card_view"
                 android:id="@+id/personal_infoCard"
-                android:layout_width="@dimen/dimen_100dp"
-                android:layout_height="@dimen/dimen_100dp"
                 app:strokeColor="@color/orange"
-                android:layout_gravity="center"
                 app:strokeWidth="@dimen/dimen_3dp"
-                android:background="@color/white"
-                app:cardCornerRadius="@dimen/dimen_20dp"
-              >
+                app:cardCornerRadius="@dimen/dimen_20dp">
 
                 <ImageView
+                    style="@style/icon_image_view"
                     android:id="@+id/Personal_Icon"
-                    android:layout_width="@dimen/dimen_40dp"
-                    android:layout_height="@dimen/dimen_40dp"
-                    android:layout_gravity="center"
                     android:src="@drawable/personal_info"
                     app:tint="@color/orange" />
             </com.google.android.material.card.MaterialCardView>
 
             <TextView
+                style="@style/card_textview"
                 android:id="@+id/Personal_Info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Personal Info"
-                android:textAlignment="center"
-                android:textColor="@color/orange"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
+                android:text="Personal Info" />
         </LinearLayout>
 
         <LinearLayout
@@ -115,35 +92,24 @@
             android:orientation="vertical">
 
             <com.google.android.material.card.MaterialCardView
+                style="@style/card_view"
                 android:id="@+id/company_infoCard"
-                android:layout_width="@dimen/dimen_100dp"
-                android:layout_height="@dimen/dimen_100dp"
                 app:strokeColor="@color/orange"
                 app:strokeWidth="@dimen/dimen_3dp"
-                android:layout_gravity="center"
-                android:background="@color/white"
                 app:cardCornerRadius="@dimen/dimen_20dp">
 
                 <ImageView
+                    style="@style/icon_image_view"
                     android:id="@+id/Company_Icon"
-                    android:layout_width="@dimen/dimen_40dp"
-                    android:layout_height="@dimen/dimen_40dp"
-                    android:layout_gravity="center"
                     app:tint="@color/orange"
                     android:src="@drawable/company_info" />
             </com.google.android.material.card.MaterialCardView>
 
             <TextView
+                style ="@style/card_textview"
                 android:id="@+id/Company_Info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/company_info"
-                android:textAlignment="center"
-                android:textColor="@color/orange"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:text="@string/company_info" />
         </LinearLayout>
-
     </LinearLayout>
 
     <LinearLayout
@@ -161,35 +127,23 @@
             android:orientation="vertical">
 
             <com.google.android.material.card.MaterialCardView
+                style="@style/card_view"
                 android:id="@+id/education_infoCard"
-                android:layout_width="@dimen/dimen_100dp"
-                android:layout_height="@dimen/dimen_100dp"
                 app:strokeColor="@color/orange"
                 app:strokeWidth="@dimen/dimen_3dp"
-                android:layout_gravity="center"
-                android:background="@color/white"
                 app:cardCornerRadius="@dimen/dimen_20dp">
 
                 <ImageView
+                    style="@style/icon_image_view"
                     android:id="@+id/education_Icon"
-                    android:layout_width="@dimen/dimen_40dp"
-                    android:layout_height="@dimen/dimen_40dp"
-                    android:layout_gravity="center"
                     android:src="@drawable/education_info"
-                    app:tint="@color/orange"
-                    android:contentDescription="TODO" />
+                    app:tint="@color/orange" />
             </com.google.android.material.card.MaterialCardView>
 
             <TextView
+                style="@style/card_textview"
                 android:id="@+id/education_info_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/education_info"
-                android:textAlignment="center"
-                android:textColor="@color/orange"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
+                android:text="@string/education_info" />
         </LinearLayout>
 
         <LinearLayout
@@ -200,34 +154,23 @@
             android:orientation="vertical">
 
             <com.google.android.material.card.MaterialCardView
+                style="@style/card_view"
                 android:id="@+id/Notification_InfoCard"
-                android:layout_width="@dimen/dimen_100dp"
                 app:strokeColor="@color/orange"
                 app:strokeWidth="@dimen/dimen_3dp"
-                android:layout_gravity="center"
-                android:layout_height="@dimen/dimen_100dp"
-                android:background="@color/white"
                 app:cardCornerRadius="@dimen/dimen_20dp">
 
                 <ImageView
+                    style="@style/icon_image_view"
                     android:id="@+id/Notification_Icon"
-                    android:layout_width="@dimen/dimen_40dp"
-                    android:layout_height="@dimen/dimen_40dp"
-                    android:layout_gravity="center"
                      app:tint="@color/orange"
                     android:src="@drawable/notification_icon" />
-
             </com.google.android.material.card.MaterialCardView>
 
             <TextView
+                style="@style/card_textview"
                 android:id="@+id/notification"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Notification"
-                android:textAlignment="center"
-                android:textColor="@color/orange"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:text="Notification" />
 
         </LinearLayout>
     </LinearLayout>
