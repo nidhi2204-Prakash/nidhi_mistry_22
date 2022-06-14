@@ -64,7 +64,6 @@
     <string name="Notice_Period_should_not_be_emptied">Notice Period should not be emptied</string>
     <string name="Current_CTC_should_not_be_emptied">Current CTC should not be emptied</string>
     <string name="Expected_CTC_should_not_be_emptied">Expected CTC should not be emptied</string>
-
     //Personal Info
     <string name="Please_Enter_Valid_Date">Please Enter Valid Date</string>
     <string name="Address_Should_not_be_emptied">Address should not be emptied</string>
@@ -78,14 +77,12 @@
     <string name="Phone_number_should_not_be_emptied">Phone number should not be emptied</string>
     <string name="Please_enter_a_valid_email">Please enter a valid email</string>
     <string name="Email_should_not_be_emptied">Email should not be emptied</string>
-
     //Job Apply
     <string name="Please_enter_valid_email">Your email</string>
     <string name="there_are_not_characters_entered_with_email_field"> there are not characters entered with Email field
 - Email should not be emptied</string>
     <string name="Contact_number_should_contain_only_numbers">contact number should contain only numbers</string>
     <string name="Contact_number_should_should_not_be_emptied">contact number should not be emptied  </string>
-
     <string name="Time_slot_should_not_be_emptied">time slot should not be emptied  </string>
     <string name="jobtitle">Jobtitle</string>
     <string name="jobtile">JobTile</string>
@@ -108,4 +105,5 @@
     <string name="upload_file_here">Upload File Here</string>
     <string name="qualification">Qualification</string>
     <string name="percentage">Percentage</string>
+    <string name="closing_date">Closing Date</string>
 </resources>

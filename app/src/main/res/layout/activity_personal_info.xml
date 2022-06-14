@@ -27,7 +27,7 @@
                 android:text="Personal Info" />
 
             <ImageView
-                style="@style/edit_pen"
+                style="@style/style_edit_pen"
                 android:id="@+id/editbutton_edit"
                 android:layout_marginEnd="@dimen/dimen_5dp"
                 android:layout_marginTop="@dimen/dimen_20dp" />
@@ -63,7 +63,7 @@
 
             <TextView
                 android:id="@+id/person_Name"
-                style="@style/display_textView"
+                style="@style/user_name_textview"
                 android:layout_centerHorizontal = "true"
                 android:layout_below="@+id/iv_camera"
                 android:text="Name" />
@@ -138,7 +138,6 @@
 
         <LinearLayout
             style="@style/linear_layout">
-
             <TextView
                 style="@style/text_view"
                 android:id="@+id/password_text"
@@ -156,7 +155,6 @@
 
         <LinearLayout
             style="@style/linear_layout">
-
             <TextView
                 style="@style/text_view"
                 android:id="@+id/moblie_no"

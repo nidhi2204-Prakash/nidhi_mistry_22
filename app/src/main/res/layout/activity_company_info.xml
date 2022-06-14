@@ -30,7 +30,7 @@
 
         <ImageView
             android:id="@+id/editbutton_2"
-            style="@style/edit_pen"
+            style="@style/style_edit_pen"
             android:layout_marginTop="@dimen/dimen_20dp"
             android:layout_marginEnd="@dimen/dimen_5dp" />
     </RelativeLayout>
@@ -219,6 +219,7 @@
                 style="@style/text_view"
                 android:id="@+id/gap_in_work_textview"
                 android:text="Gap in work expirence(in Months)" />
+
             <EditText
                 style="@style/edit_text"
                 android:id="@+id/gap_in_workExp"

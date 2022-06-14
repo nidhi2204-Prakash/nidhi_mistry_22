@@ -77,7 +77,6 @@
     <style name="title_textView" parent="Widget.AppCompat.TextView">
         <item  name="android:layout_width">wrap_content</item>
         <item  name="android:layout_height">wrap_content</item>
-        <item  name="android:layout_centerInParent">true</item>
         <item  name="android:textColor">@color/black</item>
         <item name="android:textStyle">bold</item>
         <item  name="android:textSize">20sp</item>
@@ -102,7 +101,7 @@
         <item name="android:layout_alignParentStart">true</item>
         <item name="android:src">@drawable/back_arrow</item>
     </style>
-    <style name="edit_pen">
+    <style name="style_edit_pen">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_alignParentEnd">true</item>
@@ -127,7 +126,7 @@
         <item name="android:text">@string/previous</item>
         <item name="android:layout_weight">1</item>
     </style>
-    <style name="display_textView" parent="Widget.AppCompat.TextView">
+    <style name="user_name_textview" parent="Widget.AppCompat.TextView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textStyle">bold</item>
@@ -160,4 +159,14 @@
         <item name="android:background">@color/white</item>
         <item name="cardCornerRadius">@dimen/dimen_20dp</item>
     </style>
+    <style name="heading_textview" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/dimen_14dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginTop">@dimen/dimen_30dp</item>
+        <item name="android:layout_marginStart">@dimen/dimen_30dp</item>
+        <item name="android:layout_marginHorizontal">@dimen/dimen_30dp</item>
+    \</style>
 </resources>

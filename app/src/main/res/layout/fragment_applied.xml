@@ -12,7 +12,8 @@
         android:text="Applied Job"
         android:layout_marginBottom="@dimen/dimen_10dp"
         android:layout_marginTop="@dimen/dimen_30dp"
-       android:textAlignment="center"
+        android:textAlignment="center"
+        android:layout_gravity="center"
         android:textStyle="bold"
         android:textSize="@dimen/dimen_20dp"
         android:textColor="@color/black"/>
@@ -20,8 +21,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/AppliedJob_recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/data_empty"
@@ -31,6 +31,5 @@
         android:text="@string/data_not_found"
         android:layout_gravity="center"
         android:textColor="@color/black"
-        android:visibility="invisible"
-        />
+        android:visibility="invisible" />
 </LinearLayout>

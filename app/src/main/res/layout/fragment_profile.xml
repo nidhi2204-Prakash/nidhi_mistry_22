@@ -43,7 +43,7 @@
             android:layout_gravity="center" />
 
         <TextView
-            style="@style/display_textView"
+            style="@style/user_name_textview"
             android:id="@+id/people_name"
             android:layout_gravity="center"
             android:text="Name" />

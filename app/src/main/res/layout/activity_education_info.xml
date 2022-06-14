@@ -16,8 +16,8 @@
         android:orientation="horizontal">
 
         <ImageView
-            style="@style/style_back_arrow"
             android:id="@+id/backarrow_edit"
+            style="@style/style_back_arrow"
             android:layout_marginTop="@dimen/dimen_15dp" />
 
         <TextView
@@ -29,7 +29,7 @@
 
         <ImageView
             android:id="@+id/editbutton"
-            style="@style/edit_pen"
+            style="@style/style_edit_pen"
             android:layout_marginEnd="@dimen/dimen_5dp"
             android:layout_marginTop="@dimen/dimen_20dp" />
     </RelativeLayout>
@@ -111,7 +111,6 @@
                 android:inputType="number"
                 android:imeOptions="actionDone"
                 android:enabled="false"  />
-
         </LinearLayout>
     </LinearLayout>
 
@@ -181,5 +180,4 @@
             android:layout_gravity="center"
             android:visibility="invisible" />
     </FrameLayout>
-
 </LinearLayout>

@@ -16,12 +16,10 @@
 
         <ImageView
             android:id="@+id/Back_Arrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/style_back_arrow"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="@dimen/dimen_8dp"
-            android:padding="5dp"
-            android:src="@drawable/back_arrow" />
+            android:padding="5dp" />
 
         <TextView
             android:id="@+id/companyName_1"
