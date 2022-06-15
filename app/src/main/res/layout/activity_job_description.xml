@@ -125,7 +125,7 @@
         </LinearLayout>
 
         <TextView
-            style="@style/heading_textview"
+            style="@style/heading_textview_1"
             android:id="@+id/Job_description"
             android:text="@string/job_description" />
         <TextView
@@ -138,7 +138,7 @@
             android:textSize="14dp"
             android:textStyle="bold" />
         <TextView
-            style="@style/heading_textview"
+            style="@style/heading_textview_1"
             android:id="@+id/req_years"
             android:text="@string/required_years_expirence" />
         <TextView
@@ -151,11 +151,11 @@
             android:textSize="14dp"
             android:textStyle="bold" />
         <TextView
-            style="@style/heading_textview"
+            style="@style/heading_textview_1"
             android:id="@+id/skill_required"
             android:text="@string/skill_required" />
         <TextView
-            style="@style/heading_textview"
+            style="@style/heading_textview_1"
             android:id="@+id/job_type"
             android:text="@string/job_type" />
         <TextView

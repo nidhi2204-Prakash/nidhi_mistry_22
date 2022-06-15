@@ -159,7 +159,7 @@
         <item name="android:background">@color/white</item>
         <item name="cardCornerRadius">@dimen/dimen_20dp</item>
     </style>
-    <style name="heading_textview" parent="Widget.AppCompat.TextView">
+    <style name="heading_textview_1" parent="Widget.AppCompat.TextView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/dimen_14dp</item>
