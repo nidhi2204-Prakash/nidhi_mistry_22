@@ -113,12 +113,8 @@ class JobDescription : AppCompatActivity() {
             startActivity(intent)
         }
         btn_description.setOnClickListener {
-//            val intent = Intent(this, JobApply::class.java)
-//           startActivity(intent)
         }
         btn_company.setOnClickListener {
-//            val intent = Intent(this, JobApply::class.java)
-//            startActivity(intent)
         }
     }
 }

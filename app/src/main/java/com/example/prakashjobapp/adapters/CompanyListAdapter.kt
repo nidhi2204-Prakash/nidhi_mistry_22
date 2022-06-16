@@ -9,8 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.prakashjobapp.R
 import com.example.prakashjobapp.models.CompanyData
 
-//class CompanyListAdapter(val Listner: OnItemClickListner, val companyList: List<CompanyData>) :
-//    RecyclerView.Adapter<CompanyListAdapter.MyViewHolder>() {
 class CompanyListAdapter(val context :Context, var companyList: ArrayList<CompanyData>) : RecyclerView.Adapter<CompanyListAdapter.MyViewHolder>() {
     private lateinit var mlistener:OnItemClickListener
 
@@ -36,20 +34,10 @@ class CompanyListAdapter(val context :Context, var companyList: ArrayList<Compan
     override fun getItemCount(): Int {
         return companyList.size
     }
-//    fun filterList(filteredList: ArrayList<CompanyData>) {
-//        filteredList.also { it.also { CompanyData = it } }
-//        notifyDataSetChanged()
-//    }
     fun filterList(filteredList: ArrayList<CompanyData>) {
     filteredList.also { it.also { companyList = it } }
     notifyDataSetChanged()
-    // below line is to notify our adapter
-    // as change in recycler view data.
 }
-//    fun filterList(filteredList: ArrayList<CompanyData>) {
-//     filteredList.also { it.also { companyList = it } }
-//        notifyDataSetChanged()
-//    }
 
     inner class MyViewHolder(itemview: View , listner: OnItemClickListener)  : RecyclerView.ViewHolder(itemview)
       {
@@ -60,13 +48,6 @@ class CompanyListAdapter(val context :Context, var companyList: ArrayList<Compan
                 listner.onItemClick(adapterPosition)
             }
         }
-
-//        override fun onClick(v: View?) {
-//            val position = bindingAdapterPosition
-//            if (position != RecyclerView.NO_POSITION) {
-//                Listner.onItemClick(position)
-//            }
-//        }position
     }
 
 

@@ -11,9 +11,7 @@ class TokenBody {
 
         username: String?,
         password: String?
-//        Phone: String?,
-//        Psw: String?,
-//        gender: String
+
     ): RequestBody {
 
         // Create JSON using JSONObject
@@ -21,11 +19,6 @@ class TokenBody {
         jsonObject.put("username", username)
         jsonObject.put("password", password)
         jsonObject.put("grant_type", "password")
-      //  jsonObject.put("Phone", Phone)
-   //     jsonObject.put("Psw", Psw)
-      //  jsonObject.put("gender", gender)
-
-        // Convert JSONObject to String
         val jsonObjectString = jsonObject.toString()
         Log.d("rob",jsonObjectString)
 

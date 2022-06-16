@@ -31,8 +31,6 @@ class RequestParameters {
         jsonObject.put("Firstname", Firstname)
         jsonObject.put("Lastname", Lastname)
         jsonObject.put("Gender", Gender)
-//{"Email":"Nidhi@abc.co","Phone":"","Psw":"Abcd123#","first_name":"Nidhi","last_name":"Mistry","gender":"F"}
-        // Convert JSONObject to String
         val jsonObjectString = jsonObject.toString()
         Log.d("rob", jsonObjectString)
 
@@ -41,141 +39,6 @@ class RequestParameters {
 
         return body
     }
-    //InsertUser
-//    fun userProfileSubmit(
-//        user_id :Int?,
-//        Firstname: String?,
-//        Lastname: String?,
-//        Email: String,
-//        Password: String?,
-//        mobileNo: String?,
-//        DOB: String?,
-//        address: String?,
-//        city: String?,
-//        state: String?,
-//        country: String?,
-//        GapinEdu: String?,
-//        Gender: String?,
-//        skills: String?,
-//        knownLanguages: String?,
-////        resumeUpload :String?,
-//        //CompanyInfo
-//        companyName: String?,
-//        currentDesignation: String?,
-//        jobType: String?,
-//        employmentType: String?,
-//        totalExpirence: String?,
-//        department: String?,
-//        noticePeriod: String?,
-//        gapinWorkExp: String?,
-//        currentCTC: String?,
-//        expectedCTC: String?,
-//      //  EducationInfo
-//        qualification: String?,
-//        boardUniversity: String?,
-//        passingYear: String?,
-//        percentage: String?,
-//
-//    ): RequestBody {
-//        val jsonObject = JSONObject()
-//        jsonObject.put("user_id",user_id)
-//     //   jsonObject.put("profileImage",profileImage)
-////        jsonObject.put("resume",resumeUpload)
-//        jsonObject.put("firstNAme", Firstname)
-//        jsonObject.put("lastName", Lastname)
-//        jsonObject.put("email", Email)
-//        jsonObject.put("password", Password)
-//        jsonObject.put("mobileNo", mobileNo)
-//        jsonObject.put("DOB", DOB)
-//        jsonObject.put("address", address)
-//        jsonObject.put("city", city)
-//        jsonObject.put("state", state)
-//        jsonObject.put("country", country)
-//        jsonObject.put("gapinEdu", GapinEdu)
-//        jsonObject.put("knownLanguages", knownLanguages)
-//        jsonObject.put("skills", skills)
-//        jsonObject.put("companyName", companyName)
-//        jsonObject.put("currentDesignation", currentDesignation)
-//        jsonObject.put("jobType", jobType)
-//        jsonObject.put("employmentType", employmentType)
-//        jsonObject.put("TotalExp", totalExpirence)
-//        jsonObject.put("currentCTC", currentCTC)
-//        jsonObject.put("expectedCTC", expectedCTC)
-//        jsonObject.put("department", department)
-//        jsonObject.put("noticePeriod", noticePeriod)
-//        jsonObject.put("gapinWorkExp", gapinWorkExp)
-//        jsonObject.put("gapinWorkExp", Gender)
-//        jsonObject.put("qualification", qualification)
-//        jsonObject.put("boardUniversity", boardUniversity)
-//        jsonObject.put("passingYear", passingYear)
-//        jsonObject.put("percentage", percentage)
-//
-//        val jsonObjectString = jsonObject.toString()
-//        Log.d("rob", jsonObjectString)
-//
-//        val jSON: MediaType? = MediaType.parse("application/json; charset=utf-8")
-//        val body: RequestBody = RequestBody.create(jSON, jsonObjectString)
-//
-//        return body
-//    }
-
-    //insertUserProfile
-//    fun userProfile(user_id: Int?, personalinfo: PersonalInfoData, ): RequestBody? {
-//        var multipart: RequestBody? = null
-//        try {
-//            val builder = MultipartBody.Builder().setType(MultipartBody.FORM)
-//            builder.addFormDataPart("user_id",user_id.toString())
-//            if(TextUtils.isEmpty(personalinfo.profilePhoto)) {
-//                val imageFile = File(personalinfo.profilePhoto!!)
-//                if (imageFile.exists()){
-//                    builder.addFormDataPart("profile_upload",imageFile.name, RequestBody.create(MultipartBody.FORM,imageFile)
-//                   )
-//                }
-//            }
-//            builder.addFormDataPart("firstName",personalinfo.firstName!!)
-//            builder.addFormDataPart("lastName",personalinfo.lastName!!)
-//            builder.addFormDataPart("email",personalinfo.email!!)
-//            builder.addFormDataPart("password",personalinfo.password!!)
-//            builder.addFormDataPart("phone",personalinfo.mobileNo!!)
-//            builder.addFormDataPart("DOB",personalinfo.dateOfBirth!!)
-//            builder.addFormDataPart("address",personalinfo.address!!)
-//            builder.addFormDataPart("city",personalinfo.city!!)
-//            builder.addFormDataPart("state",personalinfo.state!!)
-//            builder.addFormDataPart("country",personalinfo.country!!)
-//            builder.addFormDataPart("gapInEducation",personalinfo.gapInEducation!!)
-//            builder.addFormDataPart("gender",personalinfo.gender!!)
-//            if (TextUtils.isEmpty(personalinfo.resume)){
-//                val docFile = File(personalinfo.resume!!)
-//                if (docFile.exists())
-//                {
-//                    builder.addFormDataPart("resume",docFile.name, RequestBody.create(MultipartBody.FORM,docFile))
-//                }
-//                }
-//
-//            builder.addFormDataPart("skills",personalinfo.skills!!)
-//            builder.addFormDataPart("knownLanguahes",personalinfo.knownlanguage!!)
-//            builder.addFormDataPart("company_name",personalinfo.companyName!!)
-//            builder.addFormDataPart("current_designation",personalinfo.currentDesignation!!)
-//            builder.addFormDataPart("job_type",personalinfo.jobType!!)
-//            builder.addFormDataPart("employment_type",personalinfo.employmentType!!)
-//            builder.addFormDataPart("total_expirence",personalinfo.totalExp!!)
-//            builder.addFormDataPart("department",personalinfo.department!!)
-//            builder.addFormDataPart("notice_period",personalinfo.noticePeriod!!)
-//            builder.addFormDataPart("gap_in_work_expirence",personalinfo.gapInWorkExpirence!!)
-//            builder.addFormDataPart("current_CTC",personalinfo.currentCTC!!)
-//            builder.addFormDataPart("expected_CTC",personalinfo.expectedCTC!!)
-//            builder.addFormDataPart("Qualification",personalinfo.Qualification!!)
-//            builder.addFormDataPart("board_university",personalinfo.boardUniversity!!)
-//            builder.addFormDataPart("passing_year",personalinfo.passingYear!!)
-//            builder.addFormDataPart("percentage",personalinfo.percentage!!)
-//            multipart = builder.build()
-//            Log.d("TAG", "reqUploadProfileImage: $multipart")
-//        } catch (e: Exception) {
-//            e.printStackTrace()
-//        }
-//
-//        return multipart
-//    }
     fun UploadProfileImage(imgFile: File): RequestBody? {
         var body: RequestBody? = null
         try {
@@ -405,8 +268,6 @@ class RequestParameters {
 
         val jsonObject = JSONObject()
         jsonObject.put("user_id",user_id)
-        //   jsonObject.put("profileImage",profileImage)
-//        jsonObject.put("resume",resumeUpload)
         jsonObject.put("firstNAme", Firstname)
         jsonObject.put("lastName", Lastname)
         jsonObject.put("email", Email)
@@ -444,7 +305,5 @@ class RequestParameters {
 
         return body
     }
-
-
 }
 

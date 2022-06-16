@@ -139,8 +139,6 @@ class PersonalInfo : AppCompatActivity() {
     fun updateProfileValidation(){
 
         val patternPassword = Regex("(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@\$%^&*-]).{8,}")
-        val patternPhone = (Regex("^(?:(?:\\+|0{0,2})91(\\s*[\\-]\\s*)?|[0]?)?[789]\\d{9}"))
-//        val emailAddress =  Patterns.EMAIL_ADDRESS.matcher(email_id.text.toString()).matches()
 
         if (FirstName_Text.getText().toString().isEmpty()) {
             Toast.makeText(
@@ -352,7 +350,6 @@ class PersonalInfo : AppCompatActivity() {
             val profileimage: String = Profile_Button.toString()
             val gender: String
             val skill = ""
-//            val skills :String = chipGroup.toString()
             val selectedGenderId = radioGroup.checkedRadioButtonId
             val radioButton: RadioButton = findViewById(selectedGenderId)
             val selectedGender: String = radioButton.text.toString()
@@ -382,26 +379,11 @@ class PersonalInfo : AppCompatActivity() {
             )
             val gson = Gson()
             val jsonString = gson.toJson(objPersonalInfoData)
-//            val bundle = Bundle()
-//            bundle.putString(KeyClass.KEY_FIRST_NAMEPI, fName)
-//            bundle.putString(KeyClass.KEY_LAST_NAMEPI, lNAme)
-//            bundle.putString(KeyClass.KEY_EMAIL, email)
-//            bundle.putString(KeyClass.KEY_STATE, state)
-//            bundle.putString(KeyClass.KEY_COUNTRY, country)
-//            bundle.putString(KeyClass.KEY_SKILL, skill)
-//            bundle.putString(KeyClass.KEY_PROFILE_IMAGE, profileimage)
             ValidPersonalInfo(jsonString)
         }
 
         iv_camera.setOnClickListener {
-//            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
-//            val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-//            cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, cameraIntent)
-//            capturePhoto()
-//            openCamera()
-//            openGallery()
             selectImage()
-//            startActivityForResult(gallery, pickImage)
         }
         uploadResume_button.setOnClickListener {
             val intent = Intent()
@@ -411,7 +393,6 @@ class PersonalInfo : AppCompatActivity() {
             val extraMimeTypes = arrayOf("application/docs", "application/doc", "application/pdf")
             intent.putExtra(Intent.EXTRA_MIME_TYPES, extraMimeTypes)
             startActivityForResult(intent, 12)
-//            startActivityForResult(Intent.createChooser(intent, "Select a file"), 111)
         }
 
         Date_of_birth_edit.setOnClickListener {
@@ -448,9 +429,7 @@ class PersonalInfo : AppCompatActivity() {
             personal_info_layout.isFocusable = true
             FirstName_Text.isEnabled = true
             Last_Name_2_Text.isEnabled = true
-//            email_id.isEnabled = true
             password_edit.isEnabled = true
-//            mobile_no_text.isEnabled = true
             address_text.isEnabled = true
             city_text.isEnabled = true
             state_text.isEnabled = true
@@ -471,7 +450,6 @@ class PersonalInfo : AppCompatActivity() {
 
         val patternPassword = Regex("(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@\$%^&*-]).{8,}")
         val patternPhone = (Regex("^(?:(?:\\+|0{0,2})91(\\s*[\\-]\\s*)?|[0]?)?[789]\\d{9}"))
-//        val emailAddress =  Patterns.EMAIL_ADDRESS.matcher(email_id.text.toString()).matches()
 
         if (FirstName_Text.getText().toString().isEmpty()) {
             Toast.makeText(
@@ -492,13 +470,6 @@ class PersonalInfo : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
         }
-//        else if (emailAddress){
-//            Toast.makeText(
-//                getApplicationContext(),
-//                resources.getString(R.string.Please_enter_valid_email),
-//                Toast.LENGTH_SHORT
-//            ).show()
-//        }
         else if (!patternPassword.matches(password_edit.text.toString())) {
             Toast.makeText(
                 this,
@@ -562,7 +533,6 @@ class PersonalInfo : AppCompatActivity() {
         } else{
             val intent = Intent(this, CompanyInfo::class.java)
             intent.putExtra(KeyClass.PERSONAL_INFO_DATA, jsonString)
-//            intent.putExtras(bundle)
             startActivity(intent)
         }
     }
@@ -573,11 +543,7 @@ class PersonalInfo : AppCompatActivity() {
         if (resultCode == RESULT_OK && requestCode == 1) {
             val filePath = data?.getData();
             val path_New = filePath?.getPath();
-//            Profile_Button.setImageURI(data?.data)
             imageUri = data?.data
-//            var bitmap = MediaStore.Images.Media.getBitmap(contentResolver,imageUri)
-//            imageUri = da?ta.getData()
-//           val path: String = imageUri.toString()
             val uriString = imageUri.toString()
             val myFile1 = File(uriString)
             val path1 = myFile1.absolutePath
@@ -601,13 +567,10 @@ class PersonalInfo : AppCompatActivity() {
         if (requestCode == 12 && resultCode == RESULT_OK) {
             val selectedFile = data?.data //The uri with the location of the file
             val uri: Uri = data?.data!!
-            //  val uriString: String = uri.toString()
-            // var pdfName: String? = null
             val uriString = uri.toString()
             val myFile1 = File(uriString)
             val path1 = myFile1.absolutePath
             var displayName: String? = null
-            //  val uri1: Uri = attr.data.getData()
             val myFile = File(uri.toString())
             val path: String = myFile.getAbsolutePath()
             Log.d("nidhi", myFile.getAbsolutePath().toString())
@@ -647,24 +610,6 @@ class PersonalInfo : AppCompatActivity() {
         }
         return byteBuffer.toByteArray()
     }
-
-//    private fun openCamera() {
-//        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { intent ->
-//            intent.resolveActivity(packageManager)?.also {
-//
-//                startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
-//            }
-//        }
-//    }
-
-//    private fun openGallery() {
-//        Intent(Intent.ACTION_GET_CONTENT).also { intent ->
-//            intent.type = "image/*"
-//            intent.resolveActivity(packageManager)?.also {
-//                startActivityForResult(intent, REQUEST_PICK_IMAGE)
-//            }
-//        }
-//    }
 
     //DisplayUserApi
     fun displayUser() {
@@ -735,9 +680,6 @@ class PersonalInfo : AppCompatActivity() {
 
                            if (userDisplay.Data != null && userDisplay.Data.DateOfBirth.isNullOrEmpty()) {
 
-//                                editbutton_edit.visibility = View.VISIBLE
-//                                fieldEnabled()
-//                                Update_btn.visibility = View.VISIBLE
                                 //for check
                                 editbutton_edit.visibility = View.INVISIBLE
                                 next_button.visibility = View.VISIBLE
@@ -766,17 +708,6 @@ class PersonalInfo : AppCompatActivity() {
                                 editbutton_edit.visibility = View.VISIBLE
                                 fieldEnabled()
                                 Update_btn.visibility = View.VISIBLE
-                                //for check
-//                                editbutton_edit.visibility = View.INVISIBLE
-//                                next_button.visibility = View.VISIBLE
-//                                personal_info_layout.isFocusable = true
-//                                FirstName_Text.isEnabled = true
-//                                country_text.isEnabled = true
-//                                Update_btn.isEnabled = true
-//                                Date_of_birth_edit.isEnabled = true
-//                                for (chip in chipGroup.children) {
-//                                    chip.isEnabled = true
-//                                }
                             }
                         }
                     } catch (e: JSONException) {

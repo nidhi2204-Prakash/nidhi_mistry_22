@@ -7,7 +7,6 @@ import retrofit2.Call
 import retrofit2.http.*
 
 
-//const val BASE_URL = "http://prakashrecruitment.azurewebsites.net/api/"
 const val BASE_URL = "http://prakashjob.azurewebsites.net/"
 
 interface ApiInterface {
@@ -27,7 +26,6 @@ interface ApiInterface {
     fun signUp(@Body registration: RequestBody): Call<Registration>
 
     //CompanyList
-    // @Headers("WIr7BuwxQil5CAsWn24Beye3610dLtV4wvRx5tC-IXGMmEDpmOtxPMCdiIRpIaHCZLV4QTguXAlf5-PEVaprnuMXXmZ7emCb1uFiG5F1BuudkBLucE9Es6IfOSQyyblwLIF7xilSsZhQ5dgbuY4fV2VrNBanv7lCyqXlYihWRR5iY3R4T9rkQIbtk--P0WwTyCdTuwnhzkn75yBbQgeqSiuUC-iMBdJNLzG_Tx2ggmE")
      @GET("api/company/companylist")
      fun companyList() : Call<Company>
 
@@ -66,11 +64,5 @@ interface ApiInterface {
    //UserDataFillStatus
     @GET("api/userprofile/UserProfileStatus?")
     fun userProfileStatus(@Query("userid") userid  :Int)  : Call<ProfileStatusData>
-
-//    //Example
-//    fun updateUser(
-//        @Part("profile_photo") profile_image: RequestBody?,
-//        @Part("resume") resume: RequestBody?,
-//    ): Call<InserUserData?>?
 
 }

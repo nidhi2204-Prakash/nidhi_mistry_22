@@ -46,13 +46,9 @@ class homefragment : Fragment(R.layout.fragment_homefragment) {
     lateinit var cmpListView :TextView
     //sessionMnagerClass
     private lateinit var sessionManager: SessionManager
-
     lateinit var search :EditText
-//    lateinit var buttonsearch :ImageButton
-    //ARRAYlIST
     var companyListdata = ArrayList<CompanyData>()
     private var mUri: Uri? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,31 +66,9 @@ class homefragment : Fragment(R.layout.fragment_homefragment) {
         savedInstanceState: Bundle?,
     ): View? {
 
-//        val companyList = ArrayList<String>()
-//        companyList.add("Prakash Software Solutions pvt.ltd")
-//        companyList.add("Prakash Chemicals  pvt.ltd")
-//        companyList.add("Prakash Chemicals International pvt.ltd")
-//        companyList.add("Prakash Chemicals AGENCIES pvt.ltd")
-//        companyList.add("PrakashtELE servicess pvt.ltd")
-
-        // Inflate the layout for this fragment
-        //  val searchview =  Regex("(.*?[A-Z])(?=.*?[a-z]).{3,}")
         val view = inflater.inflate(R.layout.fragment_homefragment, container, false)
-//        buttonsearch = view.findViewById(R.id.button_search)
         search = view.findViewById(R.id.search)
         cmpListView = view.findViewById(R.id.textview_datanotfound)
-//        companyList = view.findViewById(R.id.verticalrecyclerview)
-//        search.addTextChangedListener(true)
-//       search. addTextChangedListener(object : TextWatcher {
-//            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
-//            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
-//                adaptercompanylist.filter.filter(charSequence.toString())
-//
-//            }
-//
-//            override fun afterTextChanged(editable: Editable) {}
-//        })
-
 
         //  companyList = ArrayList<CompanyData>()
         companyListCL = view.findViewById(R.id.verticalrecyclerview)
@@ -107,40 +81,8 @@ class homefragment : Fragment(R.layout.fragment_homefragment) {
         Log.d("bhoot3", args.toString())
         Log.d("bhoot2", args?.get("image").toString())
         imageview.setImageURI(imageUri as Uri?)
-
-
-//        val imageUri = "https://blobstorageprakashjobs.blob.core.windows.net/blobstorageprakashjobs/ecabc4e1-cd35-46ec-8ab3-cf4c505602fc-sunflower.jpg"
-//        Picasso.with(activity).load(imageUri).into(imageview)
-        //  adaptercompanylist = CompanyListAdapter()
-        // popularjobsAdapter = PopularjobsAdapter()
-        //   popularjobsRV.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-        //   popularjobsRV.adapter = popularjobsAdapter
-//        companyListCL.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-//        companyListCL.adapter = adaptercompanylist
         companylistdata()
         recentJobList()
-
-//        imageview.setOnClickListener {
-//            displayUser()
-//        }
-//        button_search.setOnClickListener {
-//            if (search.length() > 3) {
-//                //api
-//                //  companylistdata()
-//            } else {
-//                Toast.makeText(activity,
-//                    resources.getString(R.string.minimum_3_characters_are_required_to_search),
-//                    Toast.LENGTH_SHORT).show()
-//            }
-//        }
-//        search.setOnClickListener {
-//            if (search.length() > 3){
-//                Toast.makeText(activity,
-//                    resources.getString(R.string.minimum_3_characters_are_required_to_search),
-//                    Toast.LENGTH_SHORT).show()
-//            }
-//
-//        }
 
         search.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -164,18 +106,6 @@ class homefragment : Fragment(R.layout.fragment_homefragment) {
         return view
     }
 
-//   private fun filter(text: String) {
-//
-//       val filteredList: ArrayList<CompanyData> = ArrayList()
-//       for (item in companyList) {
-//            if (item.getText1().toLowerCase().contains(text.toLowerCase())) {
-//                filteredList.add(item)
-//            }
-//           }
-//        }
-//    adaptercompanylist.filterList(cmpName)
-//   }
-
     private fun filter(text :String){
         val filteredNames = ArrayList<CompanyData>()
         companyListdata.filterTo(filteredNames) {
@@ -186,34 +116,6 @@ class homefragment : Fragment(R.layout.fragment_homefragment) {
             adaptercompanylist.filterList(filteredNames)
     }
 }
-//    private fun filter1(text: String) {
-//        val filteredList: ArrayList<CompanyData> = ArrayList()
-//        for (item in companyListdata) {
-//            if (item.company_name.toLowerCase().contains(text.toLowerCase())) {
-//                filteredList.add(item)
-//            }
-//        }
-//        adaptercompanylist.filterList(filteredList)
-//    }
-//
-//        val cmpName = ArrayList<CompanyData>()
-//    companyListdata.filterTo(cmpName) {
-//            it.company_name!!.toLowerCase().contains(text.toLowerCase())
-//        }
-//        //calling a method of the adapter class and passing the filtered list
-//        if (cmpName != null){
-//            adaptercompanylist.filterList(cmpName)
-//        }
-//
-//    }
-
-
-
-//    override fun onItemClick(position: Int) {
-//        val intent = Intent(this.context, JobVacancyPage::class.java)
-//        startActivity(intent)
-//    }
-
     fun companylistdata(){
 
         RetrofitBuilder.JsonServices.jsonInstance.companyList()
@@ -222,7 +124,6 @@ class homefragment : Fragment(R.layout.fragment_homefragment) {
 
   //                  Log.d("TAG", "Total Companies: " + response.body()!!.Data.size)
                     try {
-
                         val company1 = response.body()
                         if (company1 != null)
                         {
@@ -257,12 +158,6 @@ class homefragment : Fragment(R.layout.fragment_homefragment) {
                     catch (e : NullPointerException){
                         e.printStackTrace()
                     }
-//                    if (response.body()?.Data!!.size != null) {
-//
-//                        companyList.removeAll(companyList)
-//                        companyList.addAll(response.body()!!.Data)
-//                        adaptercompanylist.notifyDataSetChanged()
-//                    }
                 }
 
                 override fun onFailure(call: Call<Company?>, t: Throwable) {
@@ -303,15 +198,12 @@ class homefragment : Fragment(R.layout.fragment_homefragment) {
 
      fun displayUser() {
          sessionManager = SessionManager(requireActivity())
-//         val id: String? = sessionManager.getString(KeyClass.KEY_ID)
-//         val id1 : Int = id!!.toInt()
          val id = sessionManager.getString(SessionManager.KEY_ID).toString()
          val id3 = id.toInt()
         RetrofitBuilder.JsonServices.jsonInstance.displayProfile(id3).enqueue(object :
             Callback<DisplayUser?> {
             @SuppressLint("StringFormatMatches")
             override fun onResponse(call: Call<DisplayUser?>, response: Response<DisplayUser?>) {
-    //            Log.d("TAG", "Display User " + response.body()!!.Data)
 
                 try {
 
@@ -323,9 +215,6 @@ class homefragment : Fragment(R.layout.fragment_homefragment) {
                         Glide.with(activity!!).load(profileImage)
                             .placeholder(R.drawable.ic_baseline_person_24)
                             .into(imageview)
-
-                        //   Set_Profile.setImageURI(imageUri as Uri?)
-//                      Profile_Button.setImageResource(user1.Data.ProfilePhoto)
                     }
 
                 } catch (e: JSONException) {

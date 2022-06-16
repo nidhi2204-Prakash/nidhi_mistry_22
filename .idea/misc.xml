@@ -34,7 +34,7 @@
         <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/drawable/signout_button.xml" value="0.3769230769230769" />
         <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/drawable/update_button.xml" value="0.3769230769230769" />
         <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout-v31/activity_personal_info.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/activity_company_info.xml" value="0.33" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/activity_company_info.xml" value="0.1" />
         <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/activity_education_info.xml" value="0.33" />
         <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/activity_forgot_password.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/activity_job_apply.xml" value="0.33" />
@@ -52,6 +52,7 @@
         <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/dashboard.xml" value="0.2957427536231884" />
         <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/fragment_applied.xml" value="0.276268115942029" />
         <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/fragment_fav_fragment.xml" value="0.28940217391304346" />
+        <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/fragment_help.xml" value="0.34322916666666664" />
         <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/fragment_home_fragment.xml" value="0.28940217391304346" />
         <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/fragment_homefragment.xml" value="0.33" />
         <entry key="..\:/Users/nidhi/AndroidStudioProjects/PrakashJobApp/app/src/main/res/layout/fragment_profile.xml" value="0.25" />

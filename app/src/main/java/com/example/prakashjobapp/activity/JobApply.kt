@@ -7,7 +7,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.OpenableColumns
 import android.util.Log
-import android.util.Patterns
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.children
@@ -28,7 +27,6 @@ import java.io.File
 
 class JobApply : AppCompatActivity() {
     lateinit var back_Arrow_2:ImageView
-//    lateinit var editbutton_2 :ImageView
     lateinit var FirstName_editText:EditText
     lateinit var Last_Name_2_editText:EditText
     lateinit var YourEmail_text :EditText
@@ -80,13 +78,10 @@ class JobApply : AppCompatActivity() {
         timeslot_text = findViewById(R.id.timeslot_text)
         job_apply_layout = findViewById(R.id.job_apply_layout)
         back_Arrow_2 = findViewById(R.id.back_Arrow_2)
-//        editbutton_2 = findViewById(R.id.editbutton_2)
         uploadhere_button = findViewById(R.id.uploadhere_button)
         chipGroup = findViewById(R.id.chipGroup)
         addChipCode()
         back_Arrow_2.setOnClickListener {
-//            val intent = Intent(this, JobDescription::class.java)
-//            startActivity(intent)
             onBackPressed()
         }
 
@@ -99,12 +94,8 @@ class JobApply : AppCompatActivity() {
             intent.putExtra(Intent.EXTRA_MIME_TYPES, extraMimeTypes)
 
             startActivityForResult(intent, 12)
-           // startActivityForResult(Intent.createChooser(intent, "Select a file"), 111)
         }
         Joby_Apply_Button.setOnClickListener {
-
-//            val intent = Intent(this, DashboardActivity::class.java)
-//            startActivity(intent)
             objJobApply = JobApplyData(
                 firstname = Firstname,
                 lastname = lastname,
@@ -116,28 +107,9 @@ class JobApply : AppCompatActivity() {
                 resumeUpload = resumeUpload
             )
             validateJobapply()
-//            insertUser()
         }
         val bundle : Bundle = intent.extras!!
         vacancyId = bundle.getInt(KeyClass.KEY_VACANCY_ID)
-
-//        job_apply_layout.alpha = 0.5f
-
-//        editbutton_2.setOnClickListener {
-//
-//            job_apply_layout.alpha = 1.0f
-//            job_apply_layout.isFocusable = true
-//            FirstName_editText.isEnabled = true
-//            Last_Name_2_editText.isEnabled = true
-//            YourEmail_text.isEnabled = true
-//            contact_no_text.isEnabled = true
-//            currentCTC_Edittext.isEnabled = true
-//            ExpectedCTC_Edittext.isEnabled = true
-//            noticeperiod_text.isEnabled = true
-//            timeslot_text.isEnabled = true
-//            Joby_Apply_Button.isEnabled = true
-//            uploadhere_button.isEnabled = true
-//        }
         DisplayUserDetail()
     }
     fun addChipCode(){
@@ -154,9 +126,6 @@ class JobApply : AppCompatActivity() {
     }
     fun validateJobapply() {
 
-        val ContactNo = (Regex("^(?:(?:\\+|0{0,2})91(\\s*[\\-]\\s*)?|[0]?)?[789]\\d{9}"))
-        val emailAddress = Patterns.EMAIL_ADDRESS.matcher(YourEmail_text.text.toString()).matches()
-
         if (FirstName_editText.getText().toString().isEmpty()) {
                 Toast.makeText(
                     getApplicationContext(),
@@ -169,57 +138,37 @@ class JobApply : AppCompatActivity() {
                     resources.getString(R.string.Last_Name_should_not_be_emptied),
                     Toast.LENGTH_SHORT
                 ).show()
-        }
-//       else if (!emailAddress) {
-//               Toast.makeText(
-//                  getApplicationContext(),
-//                   resources.getString(R.string.Please_enter_a_valid_email),
-//                  Toast.LENGTH_SHORT
-//               ).show()
-//       }
-        else  if (YourEmail_text.getText().toString().isEmpty()) {
+        } else  if (YourEmail_text.getText().toString().isEmpty()) {
             Toast.makeText(
                 getApplicationContext(),
                 resources.getString(R.string.there_are_not_characters_entered_with_email_field),
                 Toast.LENGTH_SHORT
             ).show()
-        }
-//        } else  if (!ContactNo.containsMatchIn(contact_no_text.text.toString())) {
-//                 Toast.makeText(
-//                    getApplicationContext(),
-//                   resources.getString(R.string.Contact_number_should_contain_only_numbers),
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//         }
-        else if(contact_no_text.getText().toString().isEmpty()) {
+        } else if(contact_no_text.getText().toString().isEmpty()) {
                      Toast.makeText(
                          getApplicationContext(),
                          resources.getString(R.string.Contact_number_should_should_not_be_emptied),
                          Toast.LENGTH_SHORT
                      ).show()
-             }
-       else  if (currentCTC_Edittext.getText().toString().isEmpty()){
+        } else  if (currentCTC_Edittext.getText().toString().isEmpty()){
                 Toast.makeText(
                     getApplicationContext(),
                     resources.getString(R.string.Current_CTC_should_not_be_emptied),
                     Toast.LENGTH_SHORT
                 ).show()
-        }
-        else if (ExpectedCTC_Edittext.getText().toString().isEmpty()){
+        } else if (ExpectedCTC_Edittext.getText().toString().isEmpty()){
                 Toast.makeText(
                     getApplicationContext(),
                     resources.getString(R.string.Expected_CTC_should_not_be_emptied),
                     Toast.LENGTH_SHORT
                 ).show()
-        }
-        else if (noticeperiod_text.getText().toString().isEmpty()){
+        } else if (noticeperiod_text.getText().toString().isEmpty()){
                 Toast.makeText(
                     getApplicationContext(),
                     resources.getString(R.string.Notice_Period_should_not_be_emptied),
                     Toast.LENGTH_SHORT
                 ).show()
-        }
-        else if (timeslot_text.getText().toString().isEmpty()){
+        } else if (timeslot_text.getText().toString().isEmpty()){
                 Toast.makeText(
                     getApplicationContext(),
                     resources.getString(R.string.Time_slot_should_not_be_emptied),
@@ -242,7 +191,6 @@ class JobApply : AppCompatActivity() {
             val myFile1 = File(uriString)
             val path1 = myFile1.absolutePath
             var displayName: String? = null
-            //  val uri1: Uri = attr.data.getData()
             val myFile = File(uri.toString())
             val path: String = myFile.getAbsolutePath()
             Log.d("nidhi",   myFile.getAbsolutePath().toString())
@@ -289,7 +237,6 @@ class JobApply : AppCompatActivity() {
                         for (chip in chipGroup.children) {
                             chip.isEnabled = true
                         }
-                         // timeslot_text.setText(userDetali.Data.)
                     }
                 } catch (e : JSONException){
                     e.printStackTrace()

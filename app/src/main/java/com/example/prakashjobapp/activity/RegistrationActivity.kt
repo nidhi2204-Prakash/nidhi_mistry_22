@@ -44,9 +44,6 @@ class RegistrationActivity : AppCompatActivity() {
         sign_up_textview = findViewById(R.id.sign_up_textview)
         signup = findViewById(R.id.signup)
         signup.setOnClickListener {
-
-//            progressBar1.visibility = View.VISIBLE
-//            sign_up_textview.visibility = View.GONE
             ValidationRules()
         }
         Login_text.setOnClickListener {
@@ -60,7 +57,6 @@ class RegistrationActivity : AppCompatActivity() {
 
     fun ValidationRules() {
         emailAddress = Patterns.EMAIL_ADDRESS.matcher(email_phone_layout.text.toString()).matches()
-        //  val  patternPhone =(Regex("[789]\\d{9}"))
         val patternPhone = (Regex("(\\+[0-9]+[\\- \\.]*)?" +
                 "(\\([0-9]+\\)[\\- \\.]*)?" +
                 "([0-9][0-9\\- \\.]+[0-9])" +
@@ -84,7 +80,6 @@ class RegistrationActivity : AppCompatActivity() {
 
             if (patternPhone.containsMatchIn(password_Layout.text.toString())) {
                 if (patternPassword.containsMatchIn(password_Layout.text.toString())) {
-                    // Toast.makeText(getApplicationContext(), resources.getString(R.string.Welcome), Toast.LENGTH_SHORT).show()
                     signUpData()
                 } else {
                     Toast.makeText(
@@ -109,7 +104,6 @@ class RegistrationActivity : AppCompatActivity() {
         } else {
             progressBar1.visibility = View.VISIBLE
             sign_up_textview.visibility = View.GONE
-            // Toast.makeText(getApplicationContext(), resources.getString(R.string.API_call), Toast.LENGTH_SHORT).show()
             signUpData()
         }
     }
@@ -121,7 +115,6 @@ class RegistrationActivity : AppCompatActivity() {
         var email = ""
         var phone = ""
         val paswword = password_Layout.text.toString()
-        // val gender = genderRadioGroup.checkedRadioButtonId
         val gender: String
         val selectedGenderId = genderRadioGroup.checkedRadioButtonId
         val radioButton: RadioButton = findViewById(selectedGenderId)

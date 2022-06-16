@@ -106,4 +106,7 @@
     <string name="qualification">Qualification</string>
     <string name="percentage">Percentage</string>
     <string name="closing_date">Closing Date</string>
+    <string name="net">.Net</string>
+    <string name="java">java</string>
+    <string name="upload_here">Upload Here</string>
 </resources>

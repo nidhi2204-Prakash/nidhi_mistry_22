@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.prakashjobapp.R
 import com.example.prakashjobapp.SessionManager
 import com.example.prakashjobapp.api.RetrofitBuilder
-import com.example.prakashjobapp.helper.Constant
 import com.example.prakashjobapp.models.Login
 import com.example.prakashjobapp.models.ProfileStatusData
 import okhttp3.ResponseBody
@@ -54,18 +53,10 @@ class LoginActivity : AppCompatActivity() {
         loginText = findViewById(R.id.login_textview)
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         editor = sharedPreferences.edit()
-    //   checkSharedPreference()
 
         login_button.setOnClickListener {
-//            val intent = Intent(this, DashboardActivity::class.java)
-//            startActivity(intent)
-//            progressBar.visibility = View.VISIBLE
-//            loginText.visibility = View.GONE
             ValidationRules()
             }
-
-//            userProfileStatus()
-
         Sign_up.setOnClickListener {
             val intent = Intent(this, RegistrationActivity::class.java)
             startActivity(intent)
@@ -75,15 +66,12 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
         google_logo.setOnClickListener {
-//            val intent = Intent(this, DashboardActivity::class.java)
-//            startActivity(intent)
         }
     }
 
     fun ValidationRules() {
 
         val emailAddress = Patterns.EMAIL_ADDRESS.matcher(email_phone.text.toString()).matches()
-      //  val patternPassword = Regex("(.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@\$%^&*-]).{8,}")
         val patternPassword = Regex("(.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}")
         val patternPhone =  ( Regex("((\\+|0{0,2})91(\\s*[\\-]\\s*)?|[0]?)?[789]\\d{9}"))
 
@@ -102,19 +90,17 @@ class LoginActivity : AppCompatActivity() {
             }
         }
         else{
-          // Toast.makeText(getApplicationContext(),resources.getString(R.string.API_call) ,Toast.LENGTH_SHORT).show()
             progressBar.visibility = View.VISIBLE
             loginText.visibility = View.GONE
             LoginApi()
         }
-
     }
 
         fun LoginApi(){
 
             val email = email_phone.text.toString()
             val password = password.text.toString()
-           // var phone = ""
+
 
             RetrofitBuilder.JsonServices.jsonInstance.LoginData(email,password).enqueue(object : Callback<Login?> {
                 override fun onResponse(call: Call<Login?>, response: Response<Login?>) {
@@ -123,9 +109,7 @@ class LoginActivity : AppCompatActivity() {
                         System.out.println("--------------->>> 115")
 
                         val jsonParams = response.body()
-                      //  val tokenbody = TokenBody()
                         val sessionManager = SessionManager(this@LoginActivity)
-                        val constant = Constant()
                         if (response.body()?.Status == 200) {
                             System.out.println("--------------->>> 121");
                             val id = jsonParams?.Data?.Id
@@ -135,8 +119,6 @@ class LoginActivity : AppCompatActivity() {
                             val gender = jsonParams?.Data?.Gender
                             val phone = jsonParams?.Data?.Mobileno
                             val password = jsonParams?.Data?.Password
-                          //  val token = jsonParams?.Data?.toString()
-
                             sessionManager.putString(
                                 SessionManager.KEY_ID,
                                 java.lang.String.valueOf(id)
@@ -200,28 +182,14 @@ class LoginActivity : AppCompatActivity() {
         user.enqueue(object : Callback<ResponseBody?> {
             override fun onResponse(call: Call<ResponseBody?>, response: Response<ResponseBody?>) {
                 try {
-//                    val gson = GsonBuilder().setPrettyPrinting().create()
                     val sessionManager = SessionManager(this@LoginActivity)
                     val authToken = response.body()
-//                    val jsonString = authToken!!.string()
-////                    val constant = Constant()
-//                    val jsonObject = JSONObject(jsonString)
-//                    val token =jsonObject.getString("access_token")
-//                    sessionManager.putString(SessionManager.USER_TOKEN ,token)
-//                    sessionManager.putBoolean(SessionManager.KEY_USER_LOGIN, true)
-//                    constant.putBoolean(Constant.KEY_FLAG,true)
                     if (authToken != null && response.code() == 200 ){
 
                         val jsonString = response.body()!!.string()
                         val jsonObject = JSONObject(jsonString)
                         val token =jsonObject.getString("access_token")
-//                        sessionManager.putBoolean(SessionManager.KEY_USER_LOGIN, true)
-//                        sessionManager.putString(SessionManager.USER_TOKEN ,java.lang.String.valueOf(token))
                         sessionManager.putString(SessionManager.USER_TOKEN,token)
-
-//                        sessionManager.putString(SessionManager.USER_TOKEN, java.lang.String.valueOf(token)) // Save Token in SharedPreferences
-//                        var dashActivity  = Intent(this@LoginActivity,DashboardActivity::class.java)
-//                        dashActivity.putExtra("token",token)
                         userProfileStatus()
                     }
                  else{

@@ -46,12 +46,6 @@ class EducationInfo : AppCompatActivity() {
     lateinit var previous_button_edu: AppCompatButton
     lateinit var progressBar: ProgressBar
     lateinit var progress_bar: ProgressBar
-//    lateinit var picker_year: NumberPicker
-//    private val MAX_YEAR = 2099
-    private var year = 0
-    private var month = 0
-    private var day = 0
-//    private lateinit var calendar: Calendar
     protected lateinit var sessionManager: SessionManager
     private lateinit var objectPersonalInfoData: PersonalInfoData
     private lateinit var objectCompanyInfoData: CompanyInfoData
@@ -102,8 +96,6 @@ class EducationInfo : AppCompatActivity() {
         setContentView(R.layout.activity_education_info)
 
         val bundle = intent.extras
-//        personaldata = bundle!!.getString(KeyClass.PERSONAL_INFO_DATA)!!
-//        companydata = bundle!!.getString(KeyClass.COMPANY_INFO_DATA)!!
         fName = String()
         lName = String()
         password = String()
@@ -152,67 +144,6 @@ class EducationInfo : AppCompatActivity() {
         EducationInfo_Layout = findViewById(R.id.EducationInfo_Layout)
         linear_button = findViewById(R.id.linear_button)
         progress_bar = findViewById(R.id.progress_bar)
-//        picker_year = findViewById(R.id.picker_year)
-
-        //NumberPicker
-//        passing_year_text.setOnClickListener {
-//
-////            calendar = Calendar.getInstance()
-////            year = calendar.get(Calendar.YEAR)
-////            month = calendar.get(Calendar.MONTH)
-////            day = calendar.get(Calendar.DAY_OF_MONTH)
-////            val year: Int = calendar.get(Calendar.YEAR)
-////            picker_year.setMinValue(1900)
-////            picker_year.setMaxValue(3500)
-////            picker_year.setValue(year)
-////            val dialog = DatePickerDialog(this, { _, year, month, day_of_month ->
-////                calendar[Calendar.YEAR] = year
-////                calendar[Calendar.MONTH] = month
-////                calendar[Calendar.DAY_OF_MONTH] = day_of_month
-////                val myFormat = "yyy"
-////                val sdf = SimpleDateFormat(myFormat, Locale.US)
-////                passing_year_text.setText(sdf.format(calendar.time))
-////            }, calendar[Calendar.YEAR], calendar[Calendar.MONTH], calendar[Calendar.DAY_OF_MONTH])
-////            dialog.datePicker.maxDate = calendar.timeInMillis
-////            dialog.show()
-//
-////            createDialogWithoutDateField().show()
-//            passing_year_text.setShowSoftInputOnFocus(false)
-////            picker_year.visibility = View.VISIBLE
-//        }
-        //Data from Personal info and Company info
-//       val bundle = intent.extras
-//       if (bundle != null) {
-//            fName = bundle.getString(KeyClass.KEY_FIRST_NAMEPI)!!
-//           lName = bundle.getString(KeyClass.KEY_LAST_NAMEPI)!!
-//           password = bundle.getString(KeyClass.KEY_PASSWORDPI)!!
-//           email = bundle.getString(KeyClass.KEY_EMAIL)!!
-//           mobileNo = bundle.getString(KeyClass.KEY_MOBILENO_PI)!!
-//            address = bundle.getString(KeyClass.KEY_ADDRESS)!!
-//           gender = bundle.getString(KeyClass.KEY_GENDER)!!
-//           city = bundle.getString(KeyClass.KEY_CITY)!!
-//           state = bundle.getString(KeyClass.KEY_STATE)!!
-//            country = bundle.getString(KeyClass.KEY_COUNTRY)!!
-//           dateOfBirth = bundle.getString(KeyClass.KEY_BIRTH_DATE)!!
-//           gapInedu = bundle.getString(KeyClass.KEY_GAP_IN_EDU_PI)!!
-//            knownLanguage = bundle.getString(KeyClass.KEY_KNOWN_LANGUAGES)!!
-//           ProfileImage = bundle.getString(KeyClass.KEY_PROFILE_IMAGE)!!
-//          uploadResume = bundle.getString(KeyClass.KEY_RESUME_UPLOAD)!!
-//          companyNameCI = bundle.getString(KeyClass.KEY_COMPANY_NAMECI)!!
-//            currentDesignination = bundle.getString(KeyClass.KEY_CURRENT_DESIGNINATION)!!
-//           jobTypwCI = bundle.getString(KeyClass.KEY_JOBTYPE_CI)!!
-//            employmentTypeCI = bundle.getString(KeyClass.KEY_EMPLOYMENTTYPE_CI)!!
-//           totalExp = bundle.getString(KeyClass.KEY_TOTAL_EXPIRENCE_CI)!!
-//            department = bundle.getString(KeyClass.KEY_DEPARTMENT)!!
-//            noticePeriod = bundle.getString(KeyClass.KEY_NOTICE_PERIOD_CI)!!
-//            GapinWorkExp = bundle.getString(KeyClass.KEY_WORK_EXPRIENCE)!!
-//           currentCTC = bundle.getString(KeyClass.KEY_CURRENTCTC_CI)!!
-//            expectedCTC = bundle.getString(KeyClass.KEY_EXPECTEDCTC_CI)!!
-//           objectPersonalInfoData =
-//                bundle.getParcelable<PersonalInfoData>(KeyClass.PERSONAL_INFO_DATA)!!
-//           objectCompanyInfoData =
-//              bundle.getParcelable<CompanyInfoData>(KeyClass.COMPANY_INFO_DATA)!!
-//       }
 
         backarrow_edit.setOnClickListener {
             if (editbutton.isInvisible) {
@@ -228,8 +159,6 @@ class EducationInfo : AppCompatActivity() {
         }
         //SubmitButton
         submit_button.setOnClickListener {
-//            progress_bar.visibility = View.VISIBLE
-//            submit_textview.visibility = View.GONE
             personaldata = bundle!!.getString(KeyClass.PERSONAL_INFO_DATA)!!
             companydata = bundle!!.getString(KeyClass.COMPANY_INFO_DATA)!!
             objectEducationInfoData = EducationInfoData(Qualification = qualification,
@@ -309,7 +238,6 @@ class EducationInfo : AppCompatActivity() {
             ValidEducation(false)
         }
     }
-
     private fun enabledField() {
         EducationInfo_Layout.alpha = 0.5f
         editbutton.setOnClickListener {
@@ -358,31 +286,6 @@ class EducationInfo : AppCompatActivity() {
                 update_textview.visibility = View.GONE
             }
         }
-    //       if (qualification_text.getText().toString().isEmpty()) {
-//            Toast.makeText(
-//                this,
-//                resources.getString(R.string.Qualification_should_not_be_emptied),
-//                Toast.LENGTH_SHORT
-//            ).show()
-//        } else if (board_university_text.getText().toString().isEmpty()) {
-//            Toast.makeText(
-//                this,
-//                resources.getString(R.string.University_should_not_be_emptied),
-//                Toast.LENGTH_SHORT
-//            ).show()
-//        } else if (passing_year_text.getText().toString().isEmpty()) {
-//            Toast.makeText(
-//                this,
-//                resources.getString(R.string.Passing_year_should_not_be_emptied),
-//                Toast.LENGTH_SHORT
-//            ).show()
-//        } else if (percent_text.getText().toString().isEmpty()) {
-//            Toast.makeText(
-//                this,
-//                resources.getString(R.string.Percentage_should_not_be_emptied),
-//                Toast.LENGTH_SHORT
-//            ).show()
-//        }
     }
 
     // UserInsert
@@ -459,9 +362,6 @@ class EducationInfo : AppCompatActivity() {
                         passing_year_text.setText(user1.Data.PassingYear.toString())
                         percent_text.setText(user1.Data.Percentage.toString())
                         if (user1.Data != null && user1.Data.DateOfBirth.isNullOrEmpty()) {
-//                            editbutton.visibility = View.VISIBLE
-//                            enabledField()
-//                            update_button.visibility = View.VISIBLE
                             //for check
                             EducationInfo_Layout.alpha = 1.0f
                             EducationInfo_Layout.isFocusable = true
@@ -476,15 +376,6 @@ class EducationInfo : AppCompatActivity() {
                             editbutton.visibility = View.VISIBLE
                             enabledField()
                             update_button.visibility = View.VISIBLE
-//                            EducationInfo_Layout.alpha = 1.0f
-//                            EducationInfo_Layout.isFocusable = true
-//                            qualification_text.isEnabled = true
-//                            board_university_text.isEnabled = true
-//                            passing_year_text.isEnabled = true
-//                            percent_text.isEnabled = true
-//                            editbutton.visibility = View.INVISIBLE
-//                            submit_button.visibility = View.VISIBLE
-//                            previous_button_edu.visibility = View.VISIBLE
                         }
                     }
 

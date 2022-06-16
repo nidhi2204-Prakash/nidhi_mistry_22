@@ -52,11 +52,6 @@ class KeyClass {
         //For DataClass
         const val PERSONAL_INFO_DATA = "PersonalInfoData"
         const val COMPANY_INFO_DATA = "companyinfodata"
-        const val EDUCATION_INFO_DATA = "educationinfodata"
-
-
-        const val KEY_PROFILE_FRAGMENT = "Profile Fragment"
-
     }
     fun putString(key_name :String , value : String){
         edior.putString(key_name,value)

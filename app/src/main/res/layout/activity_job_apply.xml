@@ -21,8 +21,9 @@
                 android:layout_marginBottom="10dp" />
 
             <TextView
-                style="@style/title_textView"
                 android:id="@+id/JobApply"
+                android:layout_centerInParent="true"
+                style="@style/title_textView"
                 android:layout_marginTop="@dimen/dimen_10dp"
                 android:text="Job Apply" />
         </RelativeLayout>
@@ -86,7 +87,6 @@
 
         <LinearLayout
             style="@style/linear_layout">
-
         <TextView
             style="@style/text_view"
             android:id="@+id/YourEmail"
@@ -108,11 +108,6 @@
 
           <LinearLayout
               style="@style/linear_layout">
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="vertical"-->
-<!--            android:layout_marginHorizontal="@dimen/dimen_30dp"-->
-<!--            >-->
         <TextView
             style="@style/text_view"
             android:id="@+id/Contact_no"
@@ -260,7 +255,7 @@
                 android:layout_width="wrap_content"
                 android:enabled="false"
                 android:layout_height="wrap_content"
-                android:text="java"
+                android:text="@string/java"
                 android:layout_marginStart="10dp"
                 android:textAlignment="center"
                 android:background="@drawable/custom_edittext"
@@ -272,7 +267,7 @@
                 android:layout_height="wrap_content"
                 android:enabled="false"
                 android:layout_marginStart="@dimen/dimen_10dp"
-                android:text=".Net"
+                android:text="@string/net"
                 android:textAlignment="center"
                 android:background="@drawable/custom_edittext"
                 android:textColor="@color/black" />
@@ -298,7 +293,7 @@
                 android:id="@+id/uploadhere_button"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_50dp"
-                android:text="Upload Here"
+                android:text="@string/upload_here"
                 android:imeOptions="actionDone"
                 android:backgroundTint="#869C9A9A"
                 android:textColor="@color/black" />

@@ -38,21 +38,10 @@ class AppliedFragment : Fragment(R.layout.fragment_applied) {
         savedInstanceState: Bundle?
     ): View? {
 
-//        val AppliedJobList = ArrayList<String>()
-//        AppliedJobList.add("Applied Job 2")
-//        AppliedJobList.add("Applied Job 3")
-//        AppliedJobList.add("Applied Job 4")
-//        AppliedJobList.add("Applied Job 5")
-//        AppliedJobList.add("Applied Job 6")
-
-        // Inflate the layout for this fragment
 
         val view = inflater.inflate(R.layout.fragment_applied, container, false)
         AppliedJobJB =view.findViewById(R.id.AppliedJob_recyclerView)
         data_empty = view.findViewById(R.id.data_empty)
-      //  adapterAppliedJonList = AppliedJobAdapter(appliedJobList)
-      //  AppliedJobJB.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-     //   AppliedJobJB.adapter = adapterAppliedJonList
         AppliedJob()
         return view
 
@@ -71,10 +60,6 @@ class AppliedFragment : Fragment(R.layout.fragment_applied) {
                         adapterAppliedJonList = activity?.let { AppliedJobAdapter(it, applyjob1.Data) }!!
                         AppliedJobJB.adapter = adapterAppliedJonList
                         AppliedJobJB.layoutManager = LinearLayoutManager(activity)
-//                        if (applyjob1.Data.isEmpty()){
-//
-//                        }
-
                         val dataNull = (AppliedJobJB.adapter as AppliedJobAdapter).itemCount
                         if (dataNull == 0) {
 

@@ -125,15 +125,6 @@
                     android:visibility="invisible" />
 
             </FrameLayout>
-<!--            <Button-->
-<!--                android:id="@+id/login_button"-->
-<!--                android:layout_width="@dimen/dimen_200dp"-->
-<!--                android:layout_height="@dimen/dimen_50dp"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:layout_marginHorizontal="@dimen/dimen_30dp"-->
-<!--                android:layout_marginTop="@dimen/dimen_10dp"-->
-<!--                android:layout_marginBottom="@dimen/dimen_10dp"-->
-<!--                android:layout_weight="0"-->
             <TextView
                 android:id="@+id/textview"
                 android:layout_width="match_parent"

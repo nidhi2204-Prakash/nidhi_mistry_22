@@ -26,17 +26,9 @@
                 android:paddingLeft="@dimen/dimen_10dp" />
 
             <TextView
+                style="@style/jobtitle_textview"
                 android:id="@+id/job_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="2dp"
-                android:layout_marginRight="@dimen/dimen_20dp"
-                android:text="@string/job_title"
-               android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:text="@string/job_title" />
         </LinearLayout>
 
         <LinearLayout
