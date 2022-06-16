@@ -168,43 +168,6 @@ class CompanyInfo : AppCompatActivity() {
             val gson = Gson()
             val testModel =
                 gson.fromJson(KeyClass.PERSONAL_INFO_DATA, jsonPersonal::class.java)
-//                val bundle = Bundle()
-//                bundle.putString(KeyClass.KEY_COMPANY_NAMECI,companyNameCI)
-//                bundle.putString(KeyClass.KEY_CURRENT_DESIGNINATION,currentDesignination)
-//                bundle.putString(KeyClass.KEY_JOBTYPE_CI,jobTypeCI)
-//                bundle.putString(KeyClass.KEY_EMPLOYMENTTYPE_CI,employmentTypeCI)
-//                bundle.putString(KeyClass.KEY_TOTAL_EXPIRENCE_CI,totalExp)
-//                bundle.putString(KeyClass.KEY_DEPARTMENT,department)
-//                bundle.putString(KeyClass.KEY_NOTICE_PERIOD_CI,noticePeriod)
-//                bundle.putString(KeyClass.KEY_WORK_EXPRIENCE,gapinWorkExp)
-//                bundle.putString(KeyClass.KEY_CURRENTCTC_CI,currentCTC)
-//                bundle.putString(KeyClass.KEY_EXPECTEDCTC_CI,expectedCTC)
-//                // Personalinfodata
-//                bundle.putString(KeyClass.KEY_FIRST_NAMEPI, fName)
-//                bundle.putString(KeyClass.KEY_LAST_NAMEPI, lName)
-//                bundle.putString(KeyClass.KEY_EMAIL, email)
-//                bundle.putString(KeyClass.KEY_PASSWORDPI, password)
-//                bundle.putString(KeyClass.KEY_MOBILENO_PI, mobileNo)
-//                bundle.putString(KeyClass.KEY_ADDRESS, address)
-//                bundle.putString(KeyClass.KEY_CITY, city)
-//                bundle.putString(KeyClass.KEY_STATE, state)
-//                bundle.putString(KeyClass.KEY_COUNTRY, country)
-//                bundle.putString(KeyClass.KEY_BIRTH_DATE, dateOfBirth)
-//                bundle.putString(KeyClass.KEY_GAP_IN_EDU_PI, gapInedu)
-//                bundle.putString(KeyClass.KEY_GENDER, gender)
-//                bundle.putString(KeyClass.KEY_KNOWN_LANGUAGES, knownLanguage)
-//                bundle.putString(KeyClass.KEY_RESUME_UPLOAD, uploadResume)
-//                bundle.putString(KeyClass.KEY_PROFILE_IMAGE, ProfileImage)
-//            val gson = Gson()
-//            val testModel =
-//                gson.fromJson(KeyClass.PERSONAL_INFO_DATA, jsonPersonal::class.java)
-            //  gson.fromJson(KeyClass.PERSONAL_INFO_DATA, objPersonalInfoData!!::class.java)
-//            val objPersonalInfoData = bundle.getParcelable<PersonalInfoData>(KeyClass.PERSONAL_INFO_DATA)
-//            val intent = Intent(this, EducationInfo::class.java)
-////                intent.putExtras(bundle)
-//            intent.putExtra(KeyClass.PERSONAL_INFO_DATA, testModel)
-//            intent.putExtra(KeyClass.COMPANY_INFO_DATA, jsonString)
-//            startActivity(intent)
             ValidationCompany(jsonString ,testModel)
         }
         //Button Click
@@ -219,9 +182,7 @@ class CompanyInfo : AppCompatActivity() {
             val gapinWorkExp = gap_in_workExp.text.toString()
             val currentCTC = currentCTC_text.text.toString()
             val expectedCTC = ExpectedCTC_text.text.toString()
-//            jsonPersonal = bundle!!.getString(KeyClass.PERSONAL_INFO_DATA)!!
-//            val gson = Gson()
-//            gson.fromJson(KeyClass.PERSONAL_INFO_DATA, jsonPersonal::class.java)
+
              objCompanyInfoData = CompanyInfoData(
                 companyName = companyNameCI,
                 currentDesignation = currentDesignination,
@@ -234,8 +195,7 @@ class CompanyInfo : AppCompatActivity() {
                 currentCTC = currentCTC,
                 expectedCTC = expectedCTC
             )
-//            prg_bar.visibility = View.VISIBLE
-//            update_textView.visibility = View.GONE
+
             objPersonalInfoData = PersonalInfoData(profilePhoto = ProfileImage,
                 firstName = fName,
                 lastName = lName,
@@ -399,7 +359,6 @@ class CompanyInfo : AppCompatActivity() {
             ).show()
         } else {
             val intent = Intent(this, EducationInfo::class.java)
-//                intent.putExtras(bundle)
             intent.putExtra(KeyClass.PERSONAL_INFO_DATA, testModel)
             intent.putExtra(KeyClass.COMPANY_INFO_DATA, jsonString)
             startActivity(intent)
@@ -452,8 +411,6 @@ class CompanyInfo : AppCompatActivity() {
                             editbutton_2.visibility = View.INVISIBLE
                             next_button.visibility = View.VISIBLE
                             previous_button.visibility = View.VISIBLE
-//                            editbutton_2.visibility = View.VISIBLE
-//                            updatebutton.visibility = View.VISIBLE
                         } else {
                             //for check
                             fieldEnableCI()
